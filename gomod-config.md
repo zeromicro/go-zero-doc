@@ -2,7 +2,8 @@
 
 ## Go Module介绍
 > Modules are how Go manages dependencies.[1]
-> 即Go Module是Golang管理依赖性的方式，像Java中的Maven，Android中的Gradle类似。
+
+即Go Module是Golang管理依赖性的方式，像Java中的Maven，Android中的Gradle类似。
 
 ## MODULE配置
 * 查看`GO111MODULE`开启情况

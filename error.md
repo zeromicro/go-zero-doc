@@ -1,4 +1,6 @@
 # 常见错误处理
+
+## grpc引起错误
 * 错误一:
 
   ```golang
@@ -37,3 +39,10 @@
     ```golang
     replace google.golang.org/grpc => google.golang.org/grpc v1.29.1
     ```
+  
+## protoc-gen-g安装失败
+```shell
+go get github.com/golang/protobuf/protoc-gen-go: module github.com/golang/protobuf/protoc-gen-go: Get "https://proxy.golang.org/github.com/golang/protobuf/protoc-gen-go/@v/list": dial tcp 216.58.200.49:443: i/o timeout
+```
+
+请确认`GOPROXY`已经设置,GOPROXY设置见[](gomod-config.md)
