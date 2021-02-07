@@ -256,6 +256,7 @@ $ mkdir mall && cd mall
   curl -i -X GET \
   http://localhost:8888/api/order/get/1
   ```
+  
   ``` text
   HTTP/1.1 200 OK
   Content-Type: application/json

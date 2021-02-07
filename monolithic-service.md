@@ -54,27 +54,28 @@ func (l *GreetLogic) Greet(req types.Request) (*types.Response, error) {
 ## 启动并访问服务
 
 * 启动服务
-``` shell
-$ cd ~/go-zer-demo/greet
-$ go run greet.go -f etc/greet-api.yaml
-```
-```text
-Starting server at 0.0.0.0:8888...
-```
+    ``` shell
+    $ cd ~/go-zer-demo/greet
+    $ go run greet.go -f etc/greet-api.yaml
+    ```
+    ```text
+    Starting server at 0.0.0.0:8888...
+    ```
 
 * 访问服务
-```shell
-$ curl -i -X GET \
-  http://localhost:8888/from/you
-```
-```text
-HTTP/1.1 200 OK
-Content-Type: application/json
-Date: Sun, 07 Feb 2021 04:31:25 GMT
-Content-Length: 27
+    ```shell
+    $ curl -i -X GET \
+      http://localhost:8888/from/you
+    ```
 
-{"message":"Hello go-zero"}
-```
+    ``` text
+    HTTP/1.1 200 OK
+    Content-Type: application/json
+    Date: Sun, 07 Feb 2021 04:31:25 GMT
+    Content-Length: 27
+    
+    {"message":"Hello go-zero"}
+    ```
 
 # 源码
 [greet源码](https://github.com/zeromicro/go-zero-demo/greet)
