@@ -8,6 +8,7 @@
     * [单体服务](monolithic-service.md)
     * [微服务](micro-service.md)
 * [框架设计](framework-design.md)
+    * [go-zero设计理念](go-zero-design.md)
     * [api语法介绍](api-grammar.md)
     * [api目录结构](api-dir.md)
     * [rpc目录结构](rpc-dir.md)
