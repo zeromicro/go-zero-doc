@@ -29,25 +29,24 @@
 
 ## 创建mall工程
 ``` shell
-$ cd ~
+$ cd ~/go-zero-demo
 $ mkdir mall && cd mall
-$ go mod init mall
 ```
 
 ## 创建user rpc服务
 
 * 创建user rpc服务
     ``` shell
-    $ cd ~/mall
+    $ cd ~/go-zero-demo/mall
     $ mkdir -p user/rpc&&cd user/rpc  
     ```
 
 * 添加`user.proto`文件，增加`getUser`方法
 
     ``` shell
-    $ vim ~/mall/user/user.proto
+    $ vim ~/go-zero-demo/mall/user/user.proto
     ```
-    ``` proto
+    ```proto
     syntax = "proto3";
 
     package user;
@@ -72,10 +71,8 @@ $ go mod init mall
 * 生成代码
 
     ``` shell
-    $ cd ~/mall/user
+    $ cd ~/go-zero-demo/mall/user/rpc
     $ goctl rpc proto -src user.proto -dir .
-    ```
-    ``` text
     protoc  -I=/Users/xx/mall/user user.proto --go_out=plugins=grpc:/Users/xx/mall/user/user
     Done.
     ```
@@ -84,14 +81,14 @@ $ go mod init mall
     ``` shell
     $ vim vi internal/logic/getuserlogic.go
     ```
-    ``` golang
+    ```golang
     package logic
 
     import (
-    "context"
-    
-        "mall/user/internal/svc"
-        "mall/user/user"
+        "context"
+      
+        "go-zero-demo/mall/user/internal/svc"
+        "go-zero-demo/mall/user/user"
     
         "github.com/tal-tech/go-zero/core/logx"
     )
@@ -112,7 +109,7 @@ $ go mod init mall
     
     func (l *GetUserLogic) GetUser(in *user.IdRequest) (*user.UserResponse, error) {
         return &user.UserResponse{
-            Id: "1",
+            Id:   "1",
             Name: "test",
         }, nil
     }
@@ -122,13 +119,14 @@ $ go mod init mall
 * 创建 `order api`服务
 
     ``` shell
+    $ cd ~/go-zero-demo/mall
     $ mkdir -p order/api&&cd order/api
     ```
 * 添加api文件
     ``` shell
     $ vim order.api
     ```
-    ``` text
+    ```golang
     type(
         OrderReq {
             Id string `path:"id"`
@@ -147,8 +145,6 @@ $ go mod init mall
 * 生成order服务
     ``` shell
     $ goctl api go -api order.api -dir .
-    ```
-    ``` text
     Done.
     ```
 * 添加user rpc配置
@@ -176,10 +172,11 @@ $ go mod init mall
     Name: order
     Host: 0.0.0.0
     Port: 8888
-    Etcd:
-    Hosts:
-    - 127.0.0.1:2379
-      Key: user.rpc
+    UserRpc:
+      Etcd:
+        Hosts:
+        - 127.0.0.1:2379
+        Key: user.rpc
     ```
 * 完善服务依赖
 
@@ -187,11 +184,92 @@ $ go mod init mall
     $ vim internal/svc/servicecontext.go
     ```
     ```golang
+    package svc
+
+    import (
+        "go-zero-demo/mall/order/api/internal/config"
+        "go-zero-demo/mall/user/rpc/userclient"
+  
+        "github.com/tal-tech/go-zero/zrpc"
+    )
     
+    type ServiceContext struct {
+        Config  config.Config
+        UserRpc userclient.User
+    }
+    
+    func NewServiceContext(c config.Config) *ServiceContext {
+        return &ServiceContext{
+            Config:  c,
+            UserRpc: userclient.NewUser(zrpc.MustNewClient(c.UserRpc)),
+        }
+    }
     ```
 
+* 添加order演示逻辑
+  
+  给`getorderlogic`添加业务逻辑
+  ``` shell
+  $ vim ~/go-zero-demo/mall/order/api/internal/logic/getorderlogic.go
+  ```
+  ``` golang
+  user, err := l.svcCtx.UserRpc.GetUser(l.ctx, &userclient.IdRequest{
+      Id: "1",
+  })
+  if err != nil {
+      return nil, err
+  }
+
+  if user.Name != "test" {
+      return nil, errors.New("用户不存在")
+  }
+
+  return &types.OrderReply{
+      Id:   req.Id,
+      Name: "test order",
+  }, nil
+  ```
+
+## 启动服务并验证
+* 启动etcd
+  ``` shell
+  $ etcd
+  ```
+* 启动user rpc
+  ``` shell
+  $ go run user.go -f etc/user.yaml
+  ```
+  ``` text
+  Starting rpc server at 127.0.0.1:8080...
+  ```
+  > [!TIP]
+  > 如果启动报类似`not enough arguments in call to base.NewBalancerBuilder`的错误，请查阅[常见错误处理](error.md)
+* 启动order api
+  ``` shell
+  $ go run order.go -f etc/order.yaml
+  ```
+  ``` text
+  Starting server at 0.0.0.0:8888...
+  ```
+* 访问order api
+  ``` shell
+  curl -i -X GET \
+  http://localhost:8888/api/order/get/1
+  ```
+  ``` text
+  HTTP/1.1 200 OK
+  Content-Type: application/json
+  Date: Sun, 07 Feb 2021 03:45:05 GMT
+  Content-Length: 30
+
+  {"id":"1","name":"test order"}
+  ```
+
 > [!TIP]
-> 在演示中的提及的api语法，rpc生成，goctl怎么使用，我们后续都会有详细的文档进行描述，你也可以点击下文的【猜你想看】快速跳转的对应文档查看。
+> 在演示中的提及的api语法，rpc生成，goctl，goctl环境等怎么使用和安装，快速入门中不作详细概述，我们后续都会有详细的文档进行描述，你也可以点击下文的【猜你想看】快速跳转的对应文档查看。
+
+# 源码
+[mall源码](https://github.com/zeromicro/go-zero-demo/mall)
 
 # 猜你想看
 * [goctl使用说明](goctl.md)

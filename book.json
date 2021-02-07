@@ -3,7 +3,6 @@
   "author": "松妹子",
   "language": "zh-hans",
   "plugins": [
-    "insert-logo",
     "back-to-top-button",
     "chapter-fold",
     "code",
@@ -22,24 +21,22 @@
     "edit-link"
   ],
   "pluginsConfig": {
-    "insert-logo": {
-      "url": "resource/logo.png",
-      "style": "background: white"
-    },
     "github": {
       "url": "https://github.com/go-zero"
     },
     "tbfed-pagefooter": {
-      "copyright":"Copyright © 2019-2021 go-zero",
+      "copyright": "Copyright © 2019-2021 go-zero",
       "modify_label": "最后更新时间：",
       "modify_format": "YYYY-MM-DD HH:mm:ss"
     },
     "hide-element": {
-      "elements": [".gitbook-link"]
+      "elements": [
+        ".gitbook-link"
+      ]
     },
     "edit-link": {
-      "base": "https://github.com/zeromicro/go-zero-document/master",
-      "label": "Edit This Page"
+      "base": "https://github.com/zeromicro/go-zero-doc/blob/master",
+      "label": "编辑此页"
     },
     "sharing": {
       "douban": false,

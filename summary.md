@@ -1,6 +1,6 @@
 # Summary
 
-* [Introduction](README.md)
+* [简介](README.md)
 * [关于我们](about-us.md)
 * [加入我们](join-us.md)
 * [概念介绍](concept-introduction.md)
@@ -51,4 +51,6 @@
     * [goctl开发日志](goctl-log.md)
     * [intellij开发日志](intellij-log.md)
 * [社区贡献](contributor.md)
+* [常见错误处理](error.md)
+* [相关源码](source.md)
 

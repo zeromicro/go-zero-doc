@@ -23,9 +23,18 @@ goctl环境是使用goctl前的准备环境，包含
 * protoc-gen-go插件
 * go module | gopath
 
+## go-zero-demo
+go-zero-demo里面包含了文档中所有源码的一个大仓库，后续我们在编写演示demo时，我们均在此项目下创建子项目，
+因此我们需要提前创建一个大仓库`go-zero-demo`，我这里把这个仓库放在home目录下。
+```shell
+$ cd ~
+$ mkdir go-zero-demo&&cd go-zero-demo
+$ go mod init go-zero-demo
+```
+
 
 # 参考文档
-* [go-zero](overview.md)
+* [go-zero](README.md)
 * [Goctl](goctl.md)
 * [插件中心](plugin-center.md)
 * [工具中心](tool-center.md)
