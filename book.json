@@ -1,0 +1,75 @@
+{
+  "title": "go-zero使用文档",
+  "author": "松妹子",
+  "language": "zh-hans",
+  "plugins": [
+    "insert-logo",
+    "back-to-top-button",
+    "chapter-fold",
+    "code",
+    "-lunr",
+    "-search",
+    "search-pro",
+    "github",
+    "splitter",
+    "-sharing",
+    "sharing-plus",
+    "tbfed-pagefooter",
+    "flexible-alerts",
+    "pageview-count",
+    "popup",
+    "hide-element",
+    "edit-link"
+  ],
+  "pluginsConfig": {
+    "insert-logo": {
+      "url": "resource/logo.png",
+      "style": "background: white"
+    },
+    "github": {
+      "url": "https://github.com/go-zero"
+    },
+    "tbfed-pagefooter": {
+      "copyright":"Copyright © 2019-2021 go-zero",
+      "modify_label": "最后更新时间：",
+      "modify_format": "YYYY-MM-DD HH:mm:ss"
+    },
+    "hide-element": {
+      "elements": [".gitbook-link"]
+    },
+    "edit-link": {
+      "base": "https://github.com/zeromicro/go-zero-document/master",
+      "label": "Edit This Page"
+    },
+    "sharing": {
+      "douban": false,
+      "facebook": false,
+      "google": true,
+      "hatenaBookmark": false,
+      "instapaper": false,
+      "line": true,
+      "linkedin": true,
+      "messenger": false,
+      "pocket": false,
+      "qq": false,
+      "qzone": true,
+      "stumbleupon": false,
+      "twitter": false,
+      "viber": false,
+      "vk": false,
+      "weibo": true,
+      "whatsapp": false,
+      "all": [
+        "douban",
+        "facebook",
+        "google",
+        "linkedin",
+        "twitter",
+        "weibo",
+        "qq",
+        "qzone",
+        "weibo"
+      ]
+    }
+  }
+}
