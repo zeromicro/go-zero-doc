@@ -21,3 +21,205 @@ JSON解析器在大多数编程语言中都很常见，因为它们直接映射�
 > 以上内容全部来自[jwt官网介绍](https://jwt.io/introduction)
 
 ## go-zero中怎么使用jwt
+jwt鉴权一般在api层使用，我们这次演示工程中分别在user api登录时生成jwt token，在search api查询图书时验证用户jwt token两步来实现。
+
+### user api生成jwt token
+接着[业务编码](business-coding.md)章节的内容，我们完善上一节遗留的`getJwtToken`方法，即生成jwt token逻辑
+
+#### 添加配置定义和yaml配置项
+``` shell
+$ vim service/user/cmd/api/internal/config/config.go
+```
+```golang
+type Config struct {
+	rest.RestConf
+	Mysql struct{
+		DataSource string
+	}
+	CacheRedis cache.CacheConf
+	Auth      struct {
+		AccessSecret string
+		AccessExpire int64
+	}
+}
+```
+``` shell
+$ vim service/user/cmd/api/etc/user-api.yaml
+```
+``` yaml
+Name: user-api
+Host: 0.0.0.0
+Port: 8888
+Mysql:
+  DataSource: $user:$password@tcp($url)/$db?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+CacheRedis:
+  - Host: $host
+    Pass: $pass
+    Type: node
+Auth:
+  AccessSecret: $AccessSecret
+  AccessExpire: $AccessExpire
+```
+
+> [!TIP]
+> $AccessSecret：生成jwt token的密钥，最简单的方式可以使用一个uuid值。
+> $AccessExpire：jwt token有效期，单位：秒
+> 更多配置信息，请参考[api配置介绍](api-config.md)
+
+``` shell
+$ vim service/user/cmd/api/internal/logic/loginlogic.go
+```
+
+```golang
+func (l *LoginLogic) getJwtToken(secretKey string, iat, seconds, userId int64) (string, error) {
+  claims := make(jwt.MapClaims)
+  claims["exp"] = iat + seconds
+  claims["iat"] = iat
+  claims["userId"] = userId
+  token := jwt.New(jwt.SigningMethodHS256)
+  token.Claims = claims
+  return token.SignedString([]byte(secretKey))
+}
+```
+
+### search api使用jwt token鉴权
+#### 编写search.api文件
+``` shell
+$ vim service/search/cmd/api/search.api
+```
+``` text
+type (
+    SearchReq {
+        // 图书名称
+        Name string `form:"name"`
+    }
+
+    SearchReply {
+        Name string `json:"name"`
+        Count int `json:"count"`
+    }
+)
+
+@server(
+    jwt: Auth
+)
+service search-api {
+    @handler search
+    get /search/do (SearchReq) returns (SearchReply)
+}
+
+service search-api {
+    @handler ping
+    get /search/ping
+}
+```
+
+> [!TIP]
+> `jwt: Auth`：开启jwt鉴权
+> 
+> 如果路由需要jwt鉴权，则需要在service上方声明此语法标志，如上文中的` /search/do`
+> 
+> 不需要jwt鉴权的路由就无需声明，如上文中`/search/ping`
+> 
+> 更多语法请阅读[api语法介绍](api-grammar.md)
+
+
+#### 生成代码
+前面已经描述过有三种方式去生成代码，这里就赘述了。
+
+
+#### 添加yaml配置项
+``` shell
+$ vim service/search/cmd/api/etc/search-api.yaml
+```
+``` yaml
+Name: search-api
+Host: 0.0.0.0
+Port: 8889
+Auth:
+  AccessSecret: $AccessSecret
+  AccessExpire: $AccessExpire
+
+```
+
+> [!TIP]
+> $AccessSecret：这个值必须要和user api中声明的一致。
+> 
+> 这里修改一下端口，避免和user api端口8888冲突
+
+### 验证 jwt token
+* 启动user api服务，登录
+    ``` shell
+    $ cd service/user/cmd/api
+    $ go run user.go -f etc/user-api.yaml
+    ```
+    ``` text
+    Starting server at 0.0.0.0:8888...
+    ```
+    ``` shell
+    $ curl -i -X POST \
+      http://127.0.0.1:8888/user/login \
+      -H 'content-type: application/json' \
+      -d '{
+        "username":"666",
+        "password":"123456"
+    }'
+    ```
+    ``` text
+    HTTP/1.1 200 OK
+    Content-Type: application/json
+    Date: Mon, 08 Feb 2021 10:37:54 GMT
+    Content-Length: 251
+    
+    {"id":1,"name":"小明","gender":"男","accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTI4NjcwNzQsImlhdCI6MTYxMjc4MDY3NCwidXNlcklkIjoxfQ.JKa83g9BlEW84IiCXFGwP2aSd0xF3tMnxrOzVebbt80","accessExpire":1612867074,"refreshAfter":1612823874}
+    ```
+* 启动search api服务，调用`/search/do`验证jwt鉴权是否通过
+    ``` shell
+    $ go run search.go -f etc/search-api.yaml
+    ```
+    ``` text
+    Starting server at 0.0.0.0:8889...
+    ```
+    我们先不传jwt token，看看结果
+    ``` shell
+    $ curl -i -X GET \
+      'http://127.0.0.1:8889/search/do?name=%E8%A5%BF%E6%B8%B8%E8%AE%B0'
+    ```
+    ``` text
+    HTTP/1.1 401 Unauthorized
+    Date: Mon, 08 Feb 2021 10:41:57 GMT
+    Content-Length: 0
+    ```
+    很明显，jwt鉴权失败了，返回401的statusCode，接下来我们带一下jwt token（即用户登录返回的`accessToken`）
+    ``` shell
+    $ curl -i -X GET \
+      'http://127.0.0.1:8889/search/do?name=%E8%A5%BF%E6%B8%B8%E8%AE%B0' \
+      -H 'authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTI4NjcwNzQsImlhdCI6MTYxMjc4MDY3NCwidXNlcklkIjoxfQ.JKa83g9BlEW84IiCXFGwP2aSd0xF3tMnxrOzVebbt80'
+    ```
+    ``` text
+    HTTP/1.1 200 OK
+    Content-Type: application/json
+    Date: Mon, 08 Feb 2021 10:44:45 GMT
+    Content-Length: 21
+
+    {"name":"","count":0}
+    ```
+
+    > [!TIP]
+    > 服务启动错误，请查看[常见错误处理](error.md)
+    > 
+    > 1、这一块如果你有很多疑问，比如为什么jwt要放在header里面，到底哪些值要放在header里面？请阅读[http规范](http-rule.md)章节
+    > 
+    > 2、如何获取jwt token中携带的用户id，见下文
+    > 
+    > 3、jwt验证逻辑我都没编写，怎么就通过了？关于这一块就推荐大家去阅读一下源码了
+
+
+### 获取jwt token中携带的信息
+todo
+
+# 猜你想看
+* [jwt介绍](https://jwt.io/)
+* [api配置介绍](api-config.md)
+* [api语法](api-grammar.md)
+* [http规范](http-rule.md)

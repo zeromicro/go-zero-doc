@@ -3,7 +3,7 @@
 ## grpc引起错误
 * 错误一:
 
-  ```golang
+  ```text
   pb/xx.pb.go:220:7: undefined: grpc.ClientConnInterface
   pb/xx.pb.go:224:11: undefined: grpc.SupportPackageIsVersion6
   pb/xx.pb.go:234:5: undefined: grpc.ClientConnInterface
@@ -14,7 +14,7 @@
 
 * 错误二:
 
-  ```golang
+  ```text
 
   # go.etcd.io/etcd/clientv3/balancer/picker
   ../../../go/pkg/mod/go.etcd.io/etcd@v0.0.0-20200402134248-51bdeb39e698/clientv3/balancer/picker/err.go:25:9: cannot use &errPicker literal (type *errPicker) as type Picker in return argument:*errPicker does not implement Picker (wrong type for Pick method)
@@ -36,13 +36,20 @@
 
   解决方法：
 
-    ```golang
+    ```text
     replace google.golang.org/grpc => google.golang.org/grpc v1.29.1
     ```
   
 ## protoc-gen-go安装失败
-```shell
+``` text
 go get github.com/golang/protobuf/protoc-gen-go: module github.com/golang/protobuf/protoc-gen-go: Get "https://proxy.golang.org/github.com/golang/protobuf/protoc-gen-go/@v/list": dial tcp 216.58.200.49:443: i/o timeout
 ```
 
 请确认`GOPROXY`已经设置,GOPROXY设置见[](gomod-config.md)
+
+## api服务启动失败
+``` text
+error: config file etc/user-api.yaml, error: type mismatch for field xx
+```
+
+请确认`user-api.yaml`配置文件中配置项是否已经配置，如果有值，检查一下yaml配置文件是否符合yaml格式。
