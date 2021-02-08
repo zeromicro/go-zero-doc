@@ -49,4 +49,7 @@ $ tree
 ![model生成](https://zeromicro.github.io/go-zero/resource/intellij-model.png)
 
 > [!TIP]
-> 更多关于goctl model请阅读[model命令及其原理](goctl-model.md)
+> intellij插件生成需要安装goctl插件，详情见[intellij插件](intellij.md)
+> 
+# 参考文档
+[model命令及其原理](goctl-model.md)
