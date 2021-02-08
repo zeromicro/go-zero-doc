@@ -42,7 +42,7 @@ $ tree
 └── vars.go
 ```
 
-### 方式三(intellj 插件)
+### 方式三(intellij 插件)
 在Goland中，右键`user.sql`，依次进入并点击`New`->`Go Zero`->`Model Code`即可生成，或者打开`user.sql`文件，
 进入编辑区，使用快捷键`Command+N`（for mac OS）或者 `alt+insert`（for windows），选择`Mode Code`即可
 
