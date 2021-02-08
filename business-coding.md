@@ -37,7 +37,7 @@ CacheRedis:
     Type: node
 ```
 
-> ![TIP]
+> [!TIP]
 > $user: mysql数据库user
 > 
 > $password: mysql数据库密码
