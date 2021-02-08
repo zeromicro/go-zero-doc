@@ -39,11 +39,17 @@ CacheRedis:
 
 > ![TIP]
 > $user: mysql数据库user
+> 
 > $password: mysql数据库密码
+> 
 > $url: mysql数据库连接地址
+> 
 > $db: mysql数据库db名称，即user表所在database
+> 
 > $host: redis连接地址 格式：ip:port,如:127.0.0.1:6379
+> 
 > $pass: redis密码
+> 
 > 更多配置信息，请参考[api配置介绍](api-config.md)
 
 ## 完善服务依赖

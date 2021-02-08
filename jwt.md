@@ -63,7 +63,9 @@ Auth:
 
 > [!TIP]
 > $AccessSecret：生成jwt token的密钥，最简单的方式可以使用一个uuid值。
+> 
 > $AccessExpire：jwt token有效期，单位：秒
+> 
 > 更多配置信息，请参考[api配置介绍](api-config.md)
 
 ``` shell
