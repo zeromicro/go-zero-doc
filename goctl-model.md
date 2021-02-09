@@ -6,13 +6,13 @@ goctl model 为go-zero下的工具模块中的组件之一，目前支持识别m
 
 * 通过ddl生成
 
-    ``` shell script
-    goctl model mysql ddl -src="./*.sql" -dir="./sql/model" -c
+    ``` shell
+    $ goctl model mysql ddl -src="./*.sql" -dir="./sql/model" -c
     ```
 
   执行上述命令后即可快速生成CURD代码。
 
-    ```Plain Text
+    ```text
     model
     │   ├── error.go
     │   └── usermodel.go
@@ -20,8 +20,8 @@ goctl model 为go-zero下的工具模块中的组件之一，目前支持识别m
 
 * 通过datasource生成
 
-    ``` shell script
-    goctl model mysql datasource -url="user:password@tcp(127.0.0.1:3306)/database" -table="*"  -dir="./model"
+    ``` shell
+    $ goctl model mysql datasource -url="user:password@tcp(127.0.0.1:3306)/database" -table="*"  -dir="./model"
     ```
 
 * 生成代码示例
@@ -216,11 +216,11 @@ goctl model 为go-zero下的工具模块中的组件之一，目前支持识别m
 
 ## 用法
 
-```Plain Text
-goctl model mysql -h
+``` text
+$ goctl model mysql -h
 ```
 
-```Plain Text
+``` text
 NAME:
    goctl model mysql - generate mysql model"
 
@@ -243,8 +243,8 @@ OPTIONS:
 * 带缓存模式
     * ddl
 
-      ``` shell script
-      goctl model mysql -src={patterns} -dir={dir} -cache
+      ``` shell
+      $ goctl model mysql -src={patterns} -dir={dir} -cache
       ```
 
       help
@@ -266,8 +266,8 @@ OPTIONS:
 
     * datasource
 
-      ``` shell script
-      goctl model mysql datasource -url={datasource} -table={patterns}  -dir={dir} -cache=true
+      ``` shell
+      $ goctl model mysql datasource -url={datasource} -table={patterns}  -dir={dir} -cache=true
       ```
 
       help
@@ -299,27 +299,27 @@ OPTIONS:
 
     * ddl
 
-        ``` shell script
-          goctl model -src={patterns} -dir={dir}
+        ``` shell
+        $  goctl model -src={patterns} -dir={dir}
         ```
 
     * datasource
 
-        ``` shell script
-          goctl model mysql datasource -url={datasource} -table={patterns}  -dir={dir}
+        ``` shell
+        $  goctl model mysql datasource -url={datasource} -table={patterns}  -dir={dir}
         ```
 
   or
     * ddl
 
-        ``` shell script
-          goctl model -src={patterns} -dir={dir}
+        ``` shell
+        $  goctl model -src={patterns} -dir={dir}
         ```
 
     * datasource
 
-        ``` shell script
-          goctl model mysql datasource -url={datasource} -table={patterns}  -dir={dir}
+        ``` shell
+        $  goctl model mysql datasource -url={datasource} -table={patterns}  -dir={dir}
         ```
 
 生成代码仅基本的CURD结构。

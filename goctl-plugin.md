@@ -1,1 +1,1 @@
-# plugin命令及其原理
+# plugin命令
