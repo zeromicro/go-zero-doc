@@ -6,10 +6,10 @@ goctl是go-zero微服务框架下的代码生成工具，其可以快速提升�
 • 模板管理
 本节将包含一下小节
 * [命令大全](goctl-commands.md)
-* [api命令及其原理](goctl-api.md)
-* [rpc命令及其原理](goctl-rpc.md)
-* [model命令及其原理](goctl-model.md)
-* [plugin命令及其原理](goctl-plugin.md)
+* [api命令](goctl-api.md)
+* [rpc命令](goctl-rpc.md)
+* [model命令](goctl-model.md)
+* [plugin命令](goctl-plugin.md)
 * [其他命令](goctl-other.md)
 
 ## go C-T-L?
