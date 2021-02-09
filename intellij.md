@@ -100,10 +100,10 @@ func main(){
 | options  | ApiService |options方法路由模板|
 | trace  | ApiService |trace方法路由模板|
 | service  | ApiFile |service服务block模板|
-| json  | Tag|Tag literal |tag模板|
-| xml  | Tag|Tag literal |tag模板|
-| path  | Tag|Tag literal |tag模板|
-| form  | Tag|Tag literal |tag模板|
+| json  | Tag、Tag literal |tag模板|
+| xml  | Tag、Tag literal |tag模板|
+| path  | Tag、Tag literal |tag模板|
+| form  | Tag、Tag literal |tag模板|
 
 关于每个模板对应内容可在`Goland(mac Os)->Preference->Editor->Live Templates-> Api|Api Tags`中查看详细模板内容，如json tag模板内容为
 ```golang
