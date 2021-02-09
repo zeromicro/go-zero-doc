@@ -46,7 +46,7 @@ CacheRedis:
 > 
 > $db: mysql数据库db名称，即user表所在database
 > 
-> $host: redis连接地址 格式：ip:port,如:127.0.0.1:6379
+> $host: redis连接地址 格式：ip:port，如:127.0.0.1:6379
 > 
 > $pass: redis密码
 > 

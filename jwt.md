@@ -147,6 +147,8 @@ Auth:
 > [!TIP]
 > $AccessSecret：这个值必须要和user api中声明的一致。
 > 
+> $AccessExpire: 有效期
+> 
 > 这里修改一下端口，避免和user api端口8888冲突
 
 ### 验证 jwt token
