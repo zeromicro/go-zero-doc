@@ -65,5 +65,5 @@ $ goctl api go -api user.api -dir . -style gozero
 
 
 # 猜你想看
-*[api语法](api-grammar.md)
-*[api目录](api-dir.md)
+* [api语法](api-grammar.md)
+* [api目录](api-dir.md)
