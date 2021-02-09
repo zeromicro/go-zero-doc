@@ -272,7 +272,7 @@ OPTIONS:
 
       help
 
-      ```
+      ``` text
       NAME:
          goctl model mysql datasource - generate model from datasource
       
@@ -286,8 +286,6 @@ OPTIONS:
          --dir value, -d value    the target dir
          --style value            the file naming format, see [https://github.com/tal-tech/go-zero/tree/master/tools/goctl/config/readme.md]
          --idea                   for idea plugin [optional]
-  
-  
       ```
 
       > [!TIP]
