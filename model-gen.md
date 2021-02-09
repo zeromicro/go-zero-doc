@@ -11,9 +11,9 @@ model是服务访问持久化数据层的桥梁，业务的持久化数据常存
 
 ## 代码生成(带缓存)
 ### 方式一(ddl)
-进入`book/service/user/model`目录，执行命令
+进入`service/user/model`目录，执行命令
 ``` shell
-$ cd book/service/user/model
+$ cd service/user/model
 $ goctl model mysql ddl -src user.sql -dir . -c
 ```
 ``` text

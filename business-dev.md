@@ -8,7 +8,6 @@
 * [中间件使用](middleware.md)
 * [rpc服务编写与调用](rpc-call.md)
 * [错误处理](error-handle.md)
-* [服务启动](service-start.md)
 
 ## 演示工程下载
 在正式进入后续文档叙述前，可以先留意一下这里的源码，后续我们会基于这份源码进行功能的递进式演示，

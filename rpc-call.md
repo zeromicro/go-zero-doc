@@ -83,7 +83,7 @@
     > 
     > $etcdHost: etcd连接地址，格式：ip:port，如： 127.0.0.1:2379
     >
-    > 更多配置信息，请参考[api配置介绍](api-config.md)
+    > 更多配置信息，请参考[rpc配置介绍](rpc-config.md)
 
 * 添加资源依赖
     ``` shell
@@ -224,7 +224,7 @@
 ```shell
 $ cd service/search/cmd/api
 $ go run search.go -f etc/search-api.yaml
-```
+``` 
 
 * 验证服务
     ```shell
@@ -241,3 +241,8 @@ $ go run search.go -f etc/search-api.yaml
     
     {"name":"西游记","count":100}
     ```
+
+# 猜你想看
+* [rpc配置](rpc-config.md)
+* [rpc服务目录](rpc-dir.md)
+* [goclt rpc命令](goctl-rpc.md)

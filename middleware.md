@@ -11,7 +11,7 @@
 ### 路由中间件
 * 重新编写`search.api`文件，添加`middleware`声明
     ``` shell
-    $ cd book/service/search/cmd/api
+    $ cd service/search/cmd/api
     $ vim search.api
     ```
     ``` text

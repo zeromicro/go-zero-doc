@@ -37,7 +37,6 @@
         * [中间件使用](middleware.md)
         * [rpc服务编写与调用](rpc-call.md)
         * [错误处理](error-handle.md)
-        * [服务启动](service-start.md)
     * [CI/CD](ci-cd.md)
     * [服务部署](service-deployment.md)
     * [日志收集](log-collection.md)
