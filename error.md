@@ -53,3 +53,9 @@ error: config file etc/user-api.yaml, error: type mismatch for field xx
 ```
 
 请确认`user-api.yaml`配置文件中配置项是否已经配置，如果有值，检查一下yaml配置文件是否符合yaml格式。
+
+## goctl找不到
+```
+command not found: goctl
+```
+请确保goctl已经安装或者goctl是否已经添加到环境变量
