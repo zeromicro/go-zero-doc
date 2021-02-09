@@ -29,7 +29,6 @@
         * [api配置](api-config.md)
         * [rpc配置](rpc-config.md)
     * [业务开发](business-dev.md)
-        * [http规范](http-rule.md)
         * [目录拆分](service-design.md)
         * [model生成](model-gen.md)
         * [api文件编写](api-coding.md)

@@ -1,6 +1,5 @@
 # 业务开发
 本章节我们用一个简单的示例去演示一下go-zero中的一些基本功能。本节将包含一下小节：
-* [http规范](http-rule.md)
 * [目录拆分](service-design.md)
 * [model生成](model-gen.md)
 * [api文件编写](api-coding.md)

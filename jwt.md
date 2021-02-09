@@ -209,19 +209,28 @@ Auth:
 
     > [!TIP]
     > 服务启动错误，请查看[常见错误处理](error.md)
-    > 
-    > 1、这一块如果你有很多疑问，比如为什么jwt要放在header里面，到底哪些值要放在header里面？请阅读[http规范](http-rule.md)章节
-    > 
-    > 2、如何获取jwt token中携带的用户id，见下文
-    > 
-    > 3、jwt验证逻辑我都没编写，怎么就通过了？关于这一块就推荐大家去阅读一下源码了
 
+
+至此，jwt从生成到使用就演示完成了，jwt token的鉴权是go-zero内部已经封装了，你只需在api文件中定义服务时简单的声明一下即可。
 
 ### 获取jwt token中携带的信息
-todo
+go-zero从jwt token解析后会将用户生成token时传入的kv原封不动的放在http.Request的Context中，因此我们可以通过Context就可以拿到你想要的值
+```shell
+$ vim /service/search/cmd/api/internal/logic/searchlogic.go
+```
+添加一个log来输出从jwt解析出来的userId。
+```golang
+func (l *SearchLogic) Search(req types.SearchReq) (*types.SearchReply, error) {
+	logx.Infof("userId: %v",l.ctx.Value("userId"))// 这里的key和生成jwt token时传入的key一致
+	return &types.SearchReply{}, nil
+}
+```
+运行结果
+```text
+{"@timestamp":"2021-02-09T10:29:09.399+08","level":"info","content":"userId: 1"}
+```
 
 # 猜你想看
 * [jwt介绍](https://jwt.io/)
 * [api配置介绍](api-config.md)
 * [api语法](api-grammar.md)
-* [http规范](http-rule.md)
