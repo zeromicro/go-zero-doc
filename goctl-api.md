@@ -59,7 +59,7 @@ OPTIONS:
 * --style 指定生成代码文件的文件名称风格，详情见[文件名称命名style说明](https://github.com/tal-tech/go-zero/tree/master/tools/goctl/config/readme.md)
 
 ## 使用示例
-```shell
+``` shell
 $ goctl api go -api user.api -dir . -style gozero
 ```
 
