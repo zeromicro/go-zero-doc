@@ -2,10 +2,10 @@
 
 ## Go-Zero Plugin
 
-[![go-zero](https://img.shields.io/badge/Github-go--zero-brightgreen?logo=github)](https://github.com/tal-tech/go-zero)
-[![license](https://img.shields.io/badge/License-MIT-blue)](https://github.com/zeromicro/goctl-intellij/blob/main/LICENSE)
-[![license](https://img.shields.io/badge/Release-0.7.14-red)](https://github.com/zeromicro/goctl-intellij/releases)
-[![Java CI with Gradle](https://github.com/zeromicro/goctl-intellij/workflows/Java%20CI%20with%20Gradle/badge.svg)](https://github.com/zeromicro/goctl-intellij/actions)
+[<img src="https://img.shields.io/badge/Github-go--zero-brightgreen?logo=github" alt="go-zero"/>](https://github.com/tal-tech/go-zero)
+[<img src="https://img.shields.io/badge/License-MIT-blue" alt="license"/>](https://github.com/zeromicro/goctl-intellij/blob/main/LICENSE)
+[<img src="https://img.shields.io/badge/Release-0.7.14-red" alt="release"/>](https://github.com/zeromicro/goctl-intellij/releases)
+[<img src="https://github.com/zeromicro/goctl-intellij/workflows/Java%20CI%20with%20Gradle/badge.svg" alt="Java CI with Gradle" />](https://github.com/zeromicro/goctl-intellij/actions)
 
 ## 介绍
 一款支持go-zero api语言结构语法高亮、检测以及api、rpc、model快捷生成的插件工具。
