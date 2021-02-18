@@ -185,12 +185,22 @@ $ cat id_rsa
     }
   }
   ```
+  
+
   > [!TIP]
   > ${credentialsId}要替换为你的具体凭据值，即【添加凭据】模块中的一串字符串，${gitUrl}需要替换为你代码的git仓库地址，其他的${xxx}形式的变量无需修改，保持原样即可。
-  > 
-  > dockerlogin.sh内容
-  > 
-  ![user-pipepine-script](./resource/user-pipeline-script.png)
+  > ![user-pipepine-script](./resource/user-pipeline-script.png)
+  
+
+  其中dockerlogin.sh内容
+  ```
+  #!/bin/bash
+  docker login --username=$docker-user --password=$docker-pass $docker-server
+  ``` 
+  * $docker-user: docker登录用户名
+  * $docker-pass: docker登录用户密码
+  * $docker-server: docker私有地址
+  
 
 ## 查看pipeline
 ![build with parameters](./resource/jenkins-build-with-parameters.png)
