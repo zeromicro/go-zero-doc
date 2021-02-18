@@ -62,7 +62,7 @@ $ cat id_rsa
 进入`Manage Jenkins`->`Configure System`，滑动到`全局属性`条目，添加docker私有仓库相关信息，如图为`docker用户名`、`docker用户密码`、`docker私有仓库地址`
 
 > [!TIP]
-> 这里我使用的是滴滴云的公测阶段私有仓库，如果没有云厂商提供的私有仓库使用，可以自行搭建一个私有仓库，这里就不赘述了，大家自行google。
+> 这里我使用的私有仓库，如果没有云厂商提供的私有仓库使用，可以自行搭建一个私有仓库，这里就不赘述了，大家自行google。
 
 #### 2.3、配置git
 进入`Manage Jenkins`->`Global Tool Configureation`，找到Git条目，填写jenkins所在机器git可执行文件所在path，如果没有的话，需要在jenkins插件管理中下载Git插件。
@@ -90,6 +90,7 @@ $ cat id_rsa
 
 * 配置`user`
   在`user`配置页面，向下滑动找到`Pipeline script`,填写脚本内容
+  
   ``` shell
   pipeline {
     agent any
@@ -203,5 +204,6 @@ $ cat id_rsa
 * [k8s介绍](https://kubernetes.io/zh/)
 * [docker介绍](https://www.docker.com/)
 * [jenkins安装](https://www.jenkins.io/zh/doc/book/installing/)
+* [jenkins pipeline](https://www.jenkins.io/zh/doc/pipeline/tour/hello-world/)
 * [nginx文档介绍](http://nginx.org/en/docs/)
 * [etcd文档说明](https://etcd.io/docs/current/)
