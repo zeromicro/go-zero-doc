@@ -168,7 +168,7 @@ func (p Stream) Tail(n int64) Stream {
 
 
 至于为什么 `Tail()` 可以做到把源的后n个取出来，这个就留给大家去细品了。这里给出我的理解：
-![f93c621571074e44a2d403aa25e7db6f_tplv-k3u1fbpfcp-zoom-1.png](https://cdn.nlark.com/yuque/0/2020/png/2623842/1601801234503-b3155cae-e279-4240-b9c2-6c6580b467bc.png#align=left&display=inline&height=393&margin=%5Bobject%20Object%5D&name=f93c621571074e44a2d403aa25e7db6f_tplv-k3u1fbpfcp-zoom-1.png&originHeight=393&originWidth=828&size=82105&status=done&style=none&width=828)
+![f93c621571074e44a2d403aa25e7db6f_tplv-k3u1fbpfcp-zoom-1.png](./resource/f93c621571074e44a2d403aa25e7db6f_tplv-k3u1fbpfcp-zoom-1.png)
 
 > [!TIP]
 > 假设有以下这个场景，`Tail(5)`

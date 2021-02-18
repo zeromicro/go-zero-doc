@@ -135,7 +135,7 @@ func (um *UserModel) FindOne(sex int) ([]*User, error) {
     return users, nil
 }
 ```
-与 `QueryRow()` 不同的地方在于： `model` 需要设置成 `Slice` ，因为是查询多行，需要对多个 `model` 赋值。但同时需要 ⚠️：第一个参数需要传入 `Ptr`
+与 `QueryRow()` 不同的地方在于： `model` 需要设置成 `Slice` ，因为是查询多行，需要对多个 `model` 赋值。但同时需要注意️：第一个参数需要传入 `Ptr`
 
 ### querypartial
 
