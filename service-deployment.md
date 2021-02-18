@@ -88,10 +88,9 @@ $ cat id_rsa
   `,点击`添加参数`选择`Choice Parameter`，按照图中添加选择的值常量(api、rpc)及接收值的变量(type)，后续在Pipeline script中会用到。
   ![jenkins-choice-parameter](./resource/jenkins-choice.png)
 
-* 配置`user`
-  在`user`配置页面，向下滑动找到`Pipeline script`,填写脚本内容
+* 配置`user`，在`user`配置页面，向下滑动找到`Pipeline script`,填写脚本内容
   
-  ``` shell
+  ``` text
   pipeline {
     agent any
     parameters {
@@ -193,10 +192,12 @@ $ cat id_rsa
   
 
   其中dockerlogin.sh内容
-  ```
+
+  ``` shell
   #!/bin/bash
   docker login --username=$docker-user --password=$docker-pass $docker-server
   ``` 
+
   * $docker-user: docker登录用户名
   * $docker-pass: docker登录用户密码
   * $docker-server: docker私有地址
