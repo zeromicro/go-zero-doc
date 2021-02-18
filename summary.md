@@ -40,6 +40,7 @@
     * [CI/CD](ci-cd.md)
     * [服务部署](service-deployment.md)
     * [日志收集](log-collection.md)
+    * [链路追踪](log-collection.md)
     * [服务监控](service-monitor.md)
 * [Goctl](goctl.md)
   * [命令大全](goctl-commands.md)
