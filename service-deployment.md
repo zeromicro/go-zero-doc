@@ -89,118 +89,117 @@ $ cat id_rsa
   ![jenkins-choice-parameter](./resource/jenkins-choice.png)
 
 * 配置`user`，在`user`配置页面，向下滑动找到`Pipeline script`,填写脚本内容
-  
-  ``` text
-  pipeline {
-    agent any
-    parameters {
-        gitParameter name: 'branch', 
-        type: 'PT_BRANCH',
-        branchFilter: 'origin/(.*)',
-        defaultValue: 'master',
-        selectedValue: 'DEFAULT',
-        sortMode: 'ASCENDING_SMART',
-        description: '选择需要构建的分支'
-    }
 
-    stages {
-        stage('服务信息')    {
-            steps {
-                sh 'echo 分支：$branch'
-                sh 'echo 构建服务类型：${JOB_NAME}-$type'
-            }
-        }
-
-
-        stage('check out') {
-            steps {
-                checkout([$class: 'GitSCM', 
-                branches: [[name: '$branch']],
-                doGenerateSubmoduleConfigurations: false, 
-                extensions: [], 
-                submoduleCfg: [],
-                userRemoteConfigs: [[credentialsId: '${credentialsId}', url: '${gitUrl}']]])
-            }   
-        }
-
-        stage('获取commit_id') {
-            steps {
-                echo '获取commit_id'
-                git credentialsId: '${credentialsId}', url: '${gitUrl}'
-                script {
-                    env.commit_id = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
-                }
-            }
-        }
-
-
-        stage('goctl版本检测') {
-            steps{
-                sh '/usr/local/bin/goctl -v'
-            }
-        }
-
-        stage('Dockerfile Build') {
-            steps{
-                   sh '/usr/local/bin/goctl docker -go service/${JOB_NAME}/${type}/${JOB_NAME}.go'
-                   script{
-                       env.image = sh(returnStdout: true, script: 'echo ${JOB_NAME}-${type}:${commit_id}').trim()
-                   }
-                   sh 'echo 镜像名称：${image}'
-                   sh 'docker build -t ${image} .'
-            }
-        }
-
-        stage('上传到镜像仓库') {
-            steps{
-                sh '/root/dockerlogin.sh'
-                sh 'docker tag  ${image} ${dockerServer}/${image}'
-                sh 'docker push ${dockerServer}/${image}'
-            }
-        }
-
-        stage('部署到k8s') {
-            steps{
-                script{
-                    env.deployYaml = sh(returnStdout: true, script: 'echo ${JOB_NAME}-${type}-deploy.yaml').trim()
-                    env.port=sh(returnStdout: true, script: '/root/port.sh ${JOB_NAME}-${type}').trim()
-                }
-
-                sh 'echo ${port}'
-
-                sh 'rm -f ${deployYaml}'
-                sh '/usr/local/bin/goctl kube deploy -secret dockersecret -replicas 2 -nodePort 3${port} -requestCpu 200 -requestMem 50 -limitCpu 300 -limitMem 100 -name ${JOB_NAME}-${type} -namespace hey-go-zero -image ${dockerServer}/${image} -o ${deployYaml} -port ${port}'
-                sh '/usr/bin/kubectl apply -f ${deployYaml}'
-            }
-        }
-        
-        stage('Clean') {
-            steps{
-                sh 'docker rmi -f ${image}'
-                sh 'docker rmi -f ${dockerServer}/${image}'
-                cleanWs notFailBuild: true
-            }
-        }
-    }
+```text
+pipeline {
+  agent any
+  parameters {
+      gitParameter name: 'branch', 
+      type: 'PT_BRANCH',
+      branchFilter: 'origin/(.*)',
+      defaultValue: 'master',
+      selectedValue: 'DEFAULT',
+      sortMode: 'ASCENDING_SMART',
+      description: '选择需要构建的分支'
   }
-  ```
-  
 
-  > [!TIP]
-  > ${credentialsId}要替换为你的具体凭据值，即【添加凭据】模块中的一串字符串，${gitUrl}需要替换为你代码的git仓库地址，其他的${xxx}形式的变量无需修改，保持原样即可。
-  > ![user-pipepine-script](./resource/user-pipeline-script.png)
-  
+  stages {
+      stage('服务信息')    {
+          steps {
+              sh 'echo 分支：$branch'
+              sh 'echo 构建服务类型：${JOB_NAME}-$type'
+          }
+      }
 
-  其中dockerlogin.sh内容
 
-  ``` shell
-  #!/bin/bash
-  docker login --username=$docker-user --password=$docker-pass $docker-server
-  ``` 
+      stage('check out') {
+          steps {
+              checkout([$class: 'GitSCM', 
+              branches: [[name: '$branch']],
+              doGenerateSubmoduleConfigurations: false, 
+              extensions: [], 
+              submoduleCfg: [],
+              userRemoteConfigs: [[credentialsId: '${credentialsId}', url: '${gitUrl}']]])
+          }   
+      }
 
-  * $docker-user: docker登录用户名
-  * $docker-pass: docker登录用户密码
-  * $docker-server: docker私有地址
+      stage('获取commit_id') {
+          steps {
+              echo '获取commit_id'
+              git credentialsId: '${credentialsId}', url: '${gitUrl}'
+              script {
+                  env.commit_id = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
+              }
+          }
+      }
+
+
+      stage('goctl版本检测') {
+          steps{
+              sh '/usr/local/bin/goctl -v'
+          }
+      }
+
+      stage('Dockerfile Build') {
+          steps{
+                 sh '/usr/local/bin/goctl docker -go service/${JOB_NAME}/${type}/${JOB_NAME}.go'
+                 script{
+                     env.image = sh(returnStdout: true, script: 'echo ${JOB_NAME}-${type}:${commit_id}').trim()
+                 }
+                 sh 'echo 镜像名称：${image}'
+                 sh 'docker build -t ${image} .'
+          }
+      }
+
+      stage('上传到镜像仓库') {
+          steps{
+              sh '/root/dockerlogin.sh'
+              sh 'docker tag  ${image} ${dockerServer}/${image}'
+              sh 'docker push ${dockerServer}/${image}'
+          }
+      }
+
+      stage('部署到k8s') {
+          steps{
+              script{
+                  env.deployYaml = sh(returnStdout: true, script: 'echo ${JOB_NAME}-${type}-deploy.yaml').trim()
+                  env.port=sh(returnStdout: true, script: '/root/port.sh ${JOB_NAME}-${type}').trim()
+              }
+
+              sh 'echo ${port}'
+
+              sh 'rm -f ${deployYaml}'
+              sh '/usr/local/bin/goctl kube deploy -secret dockersecret -replicas 2 -nodePort 3${port} -requestCpu 200 -requestMem 50 -limitCpu 300 -limitMem 100 -name ${JOB_NAME}-${type} -namespace hey-go-zero -image ${dockerServer}/${image} -o ${deployYaml} -port ${port}'
+              sh '/usr/bin/kubectl apply -f ${deployYaml}'
+          }
+      }
+      
+      stage('Clean') {
+          steps{
+              sh 'docker rmi -f ${image}'
+              sh 'docker rmi -f ${dockerServer}/${image}'
+              cleanWs notFailBuild: true
+          }
+      }
+  }
+}
+```
+
+> [!TIP]
+> ${credentialsId}要替换为你的具体凭据值，即【添加凭据】模块中的一串字符串，${gitUrl}需要替换为你代码的git仓库地址，其他的${xxx}形式的变量无需修改，保持原样即可。
+> ![user-pipepine-script](./resource/user-pipeline-script.png)
+
+
+其中dockerlogin.sh内容
+
+``` shell
+#!/bin/bash
+docker login --username=$docker-user --password=$docker-pass $docker-server
+``` 
+
+* $docker-user: docker登录用户名
+* $docker-pass: docker登录用户密码
+* $docker-server: docker私有地址
   
 
 ## 查看pipeline
