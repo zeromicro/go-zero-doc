@@ -79,7 +79,7 @@ func newTimingWheelWithClock(interval time.Duration, numSlots int, execute Execu
 ```
 
 
-![76108cc071154e2faa66eada81857fb0~tplv-k3u1fbpfcp-zoom-1.image.png](https://cdn.nlark.com/yuque/0/2020/png/2623842/1602123257809-ef786bea-9130-4f96-8e77-398c83ed5567.png#align=left&display=inline&height=767&margin=%5Bobject%20Object%5D&name=76108cc071154e2faa66eada81857fb0~tplv-k3u1fbpfcp-zoom-1.image.png&originHeight=767&originWidth=1731&size=1108943&status=done&style=none&width=1731)
+![76108cc071154e2faa66eada81857fb0~tplv-k3u1fbpfcp-zoom-1.image.png](./resource/76108cc071154e2faa66eada81857fb0_tplv-k3u1fbpfcp-zoom-1.image.png)
 
 
 以上比较直观展示 `timingWheel` 的 **“时间轮”**，后面会围绕这张图解释其中推进的细节。
@@ -108,7 +108,7 @@ func (tw *TimingWheel) run() {
 可以看出，在初始化的时候就开始了 `timer` 执行，并以`internal`时间段转动，然后底层不停的获取来自 `slot` 中的  `list` 的task，交给 `execute` 执行。
 
 
-![3bbddc1ebb79455da91dfcf3da6bc72f~tplv-k3u1fbpfcp-zoom-1.image.png](https://cdn.nlark.com/yuque/0/2020/png/2623842/1602123281182-af199687-ee08-41aa-bb06-a0c72b5e265c.png#align=left&display=inline&height=706&margin=%5Bobject%20Object%5D&name=3bbddc1ebb79455da91dfcf3da6bc72f~tplv-k3u1fbpfcp-zoom-1.image.png&originHeight=706&originWidth=1266&size=676240&status=done&style=none&width=1266)
+![3bbddc1ebb79455da91dfcf3da6bc72f~tplv-k3u1fbpfcp-zoom-1.image.png](./resource/3bbddc1ebb79455da91dfcf3da6bc72f_tplv-k3u1fbpfcp-zoom-1.image.png)
 
 
 ### Task Operation
@@ -298,8 +298,9 @@ func (tw *TimingWheel) getPositionAndCircle(d time.Duration) (pos int, circle in
 ```
 
 
-> 上面的过程可以简化成下面：
-> ```go
+上面的过程可以简化成下面：
+ 
+```go
 steps = d / interval
 pos = step % numSlots - 1
 circle = (step - 1) / numSlots
