@@ -174,8 +174,11 @@ func (p Stream) Tail(n int64) Stream {
 > 假设有以下这个场景，`Tail(5)`
 > - `stream size` ：7
 > - `ring size`：5
->
+
+
+
 这里可以使用把环状链表拉开的方式，**环转线**，此时以全部长度划分对称轴，翻转多余的元素，之后的元素就是 `Tail(5)` 需要的部分了。
+
 
 > [!TIP]
 > 这里采用图的方式更清晰的表现，不过代码大家也要看看。算法要考的 ![](https://gw.alipayobjects.com/os/lib/twemoji/11.2.0/2/svg/1f528.svg#align=left&display=inline&height=18&margin=%5Bobject%20Object%5D&originHeight=150&originWidth=150&status=done&style=none&width=18)
