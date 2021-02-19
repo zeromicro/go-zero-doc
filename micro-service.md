@@ -79,7 +79,7 @@ $ mkdir mall && cd mall
 * 填充业务逻辑
 
     ``` shell
-    $ vim vi internal/logic/getuserlogic.go
+    $ vim internal/logic/getuserlogic.go
     ```
     ```golang
     package logic
