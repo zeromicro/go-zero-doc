@@ -9,7 +9,7 @@
 > 如果是一个简单的单体服务系统或者服务过于小不建议直接使用，否则会适得其反。
 
 ## 准备工作
-* fafka
+* kafka
 * elasticsearch
 * kibana
 * filebeat、Log-Pilot（k8s）
@@ -53,7 +53,7 @@ processors:
       target: ""
 ```
 
-> ![TIP]
+> [!TIP]
 > xx为filebeat.yaml所在路径
 
 ## go-stash配置
