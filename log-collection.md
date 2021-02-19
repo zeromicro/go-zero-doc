@@ -19,6 +19,7 @@
 ``` shell
 $ vim xx/filebeat.yaml
 ```
+
 ``` yaml
 filebeat.inputs:
 - type: log
@@ -59,9 +60,11 @@ processors:
 ## go-stash配置
 * 新建`config.yaml`文件
 * 添加配置内容
+
 ``` shell
 $ vim config.yaml
 ```
+
 ``` yaml
 Clusters:
 - Input:
