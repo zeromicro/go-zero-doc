@@ -4,7 +4,8 @@
 
 ## 整体API
 还是从整体上概览 `fx` 到底是怎么构建的：
-![dc500acd526d40aabfe4f53cf5bd180a_tplv-k3u1fbpfcp-zoom-1.png](https://cdn.nlark.com/yuque/0/2020/png/2623842/1601801167610-6605f862-bdbf-469a-8aba-6d9d6ecca5a7.png#align=left&display=inline&height=602&margin=%5Bobject%20Object%5D&name=dc500acd526d40aabfe4f53cf5bd180a_tplv-k3u1fbpfcp-zoom-1.png&originHeight=602&originWidth=604&size=81255&status=done&style=none&width=604)
+![dc500acd526d40aabfe4f53cf5bd180a_tplv-k3u1fbpfcp-zoom-1.png](./resource/dc500acd526d40aabfe4f53cf5bd180a_tplv-k3u1fbpfcp-zoom-1.png)
+
 被标注的部分就是整个 `fx` 最重要的部分：
 
 1. 由 `From(fn)` 这类API，产生数据流 `Stream`
