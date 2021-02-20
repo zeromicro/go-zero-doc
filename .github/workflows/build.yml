@@ -28,8 +28,8 @@ jobs:
         run: gitbook install
       - name: build
         run: gitbook build
-      - name: pwd
-        run: pwd
+      - name: chmod
+        run: chmod +x ./.github/workflows/build.sh
       - name: publish
-        run: ./build.sh ${{ secrets.ACCESSTOKEN }}
+        run: ./.github/workflows/build.sh ${{ secrets.ACCESSTOKEN }}
         shell: bash
