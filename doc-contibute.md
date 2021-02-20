@@ -37,6 +37,17 @@
     * 你的文档目录名称
   ```
 
+## 开发实践文档模板
+```markdown
+# 标题
+
+> 作者：填入作者名称
+> 
+> 原文连接： 原文连接
+
+some markdown content
+```
+
 # 猜你想看
 * [怎么参与贡献](join-us.md)
 * [Github Pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/proposing-changes-to-your-work-with-pull-requests)
