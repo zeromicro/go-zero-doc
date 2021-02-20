@@ -10,7 +10,7 @@
 </a>
 </div>
 
-## 参与人员(排名不分先后)
+## go-zero参与人员(排名不分先后)
 
 <div style="display: flex;flex-wrap: wrap">
 <div style="width: auto;height: auto;margin: 5px">
@@ -359,4 +359,12 @@
 </div>
 </div>
 
-> 注：以上贡献人员为go-zero项目，最后更新于2021年2月5日
+## 文档贡献人员
+<div style="display: flex;flex-wrap: wrap">
+<div style="width: auto;height: auto; margin: 5px">
+<a href="https://github.com/anqiansong">
+<img alt="anqiansong" src="https://avatars.githubusercontent.com/u/10302073?s=460&v=4" width="80px" height="80px" />
+<center><div style="max-width:80px; overflow: hidden;text-overflow: ellipsis;white-space: nowrap">松妹子</div></center>
+</a>
+</div>
+</div>
