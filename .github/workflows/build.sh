@@ -4,8 +4,8 @@ REPO="https://x-access-token:${ACCESSTOKEN}@github.com/zeromicro/go-zero.git"
 
 # git 配置
 echo "git基础配置"
-git config --local user.name "anqiansong"
-git config --local user.email "anqiansong@tal.com"
+git config --global user.name "anqiansong"
+git config --global user.email "anqiansong@tal.com"
 
 # push
 mkdir ./doc
