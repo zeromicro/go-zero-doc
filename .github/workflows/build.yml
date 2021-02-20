@@ -17,8 +17,5 @@ jobs:
       - name: checkout code
         uses: actions/checkout@v2
       - name: build&publish
-        run: ./build.sh
+        run: ./build.sh ${{ secrets.ACCESSTOKEN }}
         shell: bash
-        with:
-          accessToken: ${{ secrets.ACCESSTOKEN }}
-

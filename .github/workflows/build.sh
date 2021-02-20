@@ -1,4 +1,5 @@
 #!/bin/bash
+ACCESSTOKEN=$1
 REPO="https://${ACCESSTOKEN}@github.com:zeromicro/go-zero.git"
 
 # git 配置
