@@ -205,6 +205,8 @@ $ mkdir mall && cd mall
         }
     }
     ```
+    > **[!WARNING]**
+    > 结构体 **ServiceContext** 中加入的 rpc 服务成员（即 `UserRpc userclient.User`）名称必须和 yaml 配置中的 `etcd` 所在组名保持一致。
 
 * 添加order演示逻辑
   
