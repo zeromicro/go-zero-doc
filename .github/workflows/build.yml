@@ -28,8 +28,8 @@ jobs:
         run: gitbook install
       - name: build
         run: gitbook build
-      - name: 查看目录
-        run: ls
+      - name: pwd
+        run: pwd
       - name: publish
         run: ./build.sh ${{ secrets.ACCESSTOKEN }}
         shell: bash
