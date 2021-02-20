@@ -16,6 +16,7 @@ jobs:
     steps:
       - name: checkout code
         uses: actions/checkout@v2
+      - name: build&publish
         run: ./build.sh
         shell: bash
         with:
