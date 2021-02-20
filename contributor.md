@@ -367,4 +367,10 @@
 <center><div style="max-width:80px; overflow: hidden;text-overflow: ellipsis;white-space: nowrap">松妹子</div></center>
 </a>
 </div>
+<div style="width: auto;height: auto; margin: 5px">
+<a href="https://github.com/loocor">
+<img alt="loocor" src="https://avatars.githubusercontent.com/u/25772398?s=460&u=0158a99899405ca9b7de5359a5097adf61b6f268&v=4" width="80px" height="80px" />
+<center><div style="max-width:80px; overflow: hidden;text-overflow: ellipsis;white-space: nowrap">loocor</div></center>
+</a>
+</div>
 </div>
