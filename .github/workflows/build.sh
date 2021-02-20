@@ -7,18 +7,7 @@ echo "git基础配置"
 git config --local user.name "anqiansong"
 git config --local user.email "anqiansong@tal.com"
 
-# 安装gitbook
-echo "gitbook installing..."
-npm install gitbook-cli -g
-gitbook --version
-gitbook install
-
-# build
-echo "gitbook building..."
-gitbook build
-
-# clone&push
-
+# push
 mkdir ./doc
 cd ./doc
 echo $PWD

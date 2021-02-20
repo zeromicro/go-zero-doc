@@ -16,6 +16,20 @@ jobs:
     steps:
       - name: checkout code
         uses: actions/checkout@v2
-      - name: build&publish
+      - name: use node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.18.1'
+      - name: install gitbook
+        run: npm install gitbook-cli -g
+      - name: gitbook version
+        run: gitbook --version
+      - name: gitbook install
+        run: gitbook install
+      - name: build
+        run: gitbook build
+      - name: 查看目录
+        run: ls
+      - name: publish
         run: ./build.sh ${{ secrets.ACCESSTOKEN }}
         shell: bash
