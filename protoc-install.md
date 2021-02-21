@@ -1,7 +1,7 @@
-# protoc&protoc-gen-go安装
+# protoc & protoc-gen-go安装
 
 ## 前言
-protoc是一款用C++编写的工具，其可以将proto文件翻译为指定语言的，在go-zero的微服务中，我们采用grpc进行服务间的通信，而grpc的编写就需要用到protoc和翻译成go语言rpc stub代码的插件protoc-gen-go。
+protoc是一款用C++编写的工具，其可以将proto文件翻译为指定语言的代码。在go-zero的微服务中，我们采用grpc进行服务间的通信，而grpc的编写就需要用到protoc和翻译成go语言rpc stub代码的插件protoc-gen-go。
 
 本文演示环境
 * mac OS
@@ -27,7 +27,6 @@ protoc是一款用C++编写的工具，其可以将proto文件翻译为指定语
     ```shell
     libprotoc 3.14.0
     ```
-
 ## protoc-gen-go安装
 
 * 下载安装`protoc-gen-go`
