@@ -11,7 +11,7 @@
 
 
 具体解释之前，先给一个大致的概览图：
-![c42c34e8d33d48ec8a63e56feeae882a.png](https://cdn.nlark.com/yuque/0/2020/png/2623842/1601723457107-a4b762da-d737-456e-944c-374e4440dc3d.png#align=left&display=inline&height=1011&margin=%5Bobject%20Object%5D&name=c42c34e8d33d48ec8a63e56feeae882a.png&originHeight=1011&originWidth=1544&size=151855&status=done&style=none&width=1544)
+![c42c34e8d33d48ec8a63e56feeae882a](./resource/c42c34e8d33d48ec8a63e56feeae882a.png)
 ## 接口设计
 
 
