@@ -9,10 +9,10 @@ goctl api是goctl中的核心模块之一，其可以通过.api文件一键快�
 > 其中的结构体编写，路由定义用api进行替代，因此总的来说，省去的是你创建文件夹、添加各种文件及资源依赖的过程的时间。
 
 ## api命令说明
-``` shell
+```shell
 $ goctl api -h
 ```
-``` text
+```text
 NAME:
    goctl api - generate api related files
 
@@ -38,10 +38,10 @@ OPTIONS:
 
 从上文中可以看到，根据功能的不同，api包含了很多的自命令和flag，我们这里重点说明一下
 `go`子命令，其功能是生成golang api服务，我们通过`goctl api go -h`看一下使用帮助：
-``` shell
+```shell
 $ goctl api go -h
 ```
-``` text
+```text
 NAME:
    goctl api go - generate go files for provided api in yaml file
 
@@ -59,7 +59,7 @@ OPTIONS:
 * --style 指定生成代码文件的文件名称风格，详情见[文件名称命名style说明](https://github.com/tal-tech/go-zero/tree/master/tools/goctl/config/readme.md)
 
 ## 使用示例
-``` shell
+```shell
 $ goctl api go -api user.api -dir . -style gozero
 ```
 

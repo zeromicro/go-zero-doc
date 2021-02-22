@@ -27,10 +27,10 @@ jwt鉴权一般在api层使用，我们这次演示工程中分别在user api登
 接着[业务编码](business-coding.md)章节的内容，我们完善上一节遗留的`getJwtToken`方法，即生成jwt token逻辑
 
 #### 添加配置定义和yaml配置项
-``` shell
+```shell
 $ vim service/user/cmd/api/internal/config/config.go
 ```
-```golang
+```go
 type Config struct {
 	rest.RestConf
 	Mysql struct{
@@ -43,10 +43,10 @@ type Config struct {
 	}
 }
 ```
-``` shell
+```shell
 $ vim service/user/cmd/api/etc/user-api.yaml
 ```
-``` yaml
+```yaml
 Name: user-api
 Host: 0.0.0.0
 Port: 8888
@@ -68,11 +68,11 @@ Auth:
 > 
 > 更多配置信息，请参考[api配置介绍](api-config.md)
 
-``` shell
+```shell
 $ vim service/user/cmd/api/internal/logic/loginlogic.go
 ```
 
-```golang
+```go
 func (l *LoginLogic) getJwtToken(secretKey string, iat, seconds, userId int64) (string, error) {
   claims := make(jwt.MapClaims)
   claims["exp"] = iat + seconds
@@ -86,10 +86,10 @@ func (l *LoginLogic) getJwtToken(secretKey string, iat, seconds, userId int64) (
 
 ### search api使用jwt token鉴权
 #### 编写search.api文件
-``` shell
+```shell
 $ vim service/search/cmd/api/search.api
 ```
-``` text
+```text
 type (
     SearchReq {
         // 图书名称
@@ -131,10 +131,10 @@ service search-api {
 
 
 #### 添加yaml配置项
-``` shell
+```shell
 $ vim service/search/cmd/api/etc/search-api.yaml
 ```
-``` yaml
+```yaml
 Name: search-api
 Host: 0.0.0.0
 Port: 8889
@@ -153,14 +153,14 @@ Auth:
 
 ### 验证 jwt token
 * 启动user api服务，登录
-    ``` shell
+    ```shell
     $ cd service/user/cmd/api
     $ go run user.go -f etc/user-api.yaml
     ```
-    ``` text
+    ```text
     Starting server at 0.0.0.0:8888...
     ```
-    ``` shell
+    ```shell
     $ curl -i -X POST \
       http://127.0.0.1:8888/user/login \
       -H 'content-type: application/json' \
@@ -169,7 +169,7 @@ Auth:
         "password":"123456"
     }'
     ```
-    ``` text
+    ```text
     HTTP/1.1 200 OK
     Content-Type: application/json
     Date: Mon, 08 Feb 2021 10:37:54 GMT
@@ -178,29 +178,29 @@ Auth:
     {"id":1,"name":"小明","gender":"男","accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTI4NjcwNzQsImlhdCI6MTYxMjc4MDY3NCwidXNlcklkIjoxfQ.JKa83g9BlEW84IiCXFGwP2aSd0xF3tMnxrOzVebbt80","accessExpire":1612867074,"refreshAfter":1612823874}
     ```
 * 启动search api服务，调用`/search/do`验证jwt鉴权是否通过
-    ``` shell
+    ```shell
     $ go run search.go -f etc/search-api.yaml
     ```
-    ``` text
+    ```text
     Starting server at 0.0.0.0:8889...
     ```
     我们先不传jwt token，看看结果
-    ``` shell
+    ```shell
     $ curl -i -X GET \
       'http://127.0.0.1:8889/search/do?name=%E8%A5%BF%E6%B8%B8%E8%AE%B0'
     ```
-    ``` text
+    ```text
     HTTP/1.1 401 Unauthorized
     Date: Mon, 08 Feb 2021 10:41:57 GMT
     Content-Length: 0
     ```
     很明显，jwt鉴权失败了，返回401的statusCode，接下来我们带一下jwt token（即用户登录返回的`accessToken`）
-    ``` shell
+    ```shell
     $ curl -i -X GET \
       'http://127.0.0.1:8889/search/do?name=%E8%A5%BF%E6%B8%B8%E8%AE%B0' \
       -H 'authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTI4NjcwNzQsImlhdCI6MTYxMjc4MDY3NCwidXNlcklkIjoxfQ.JKa83g9BlEW84IiCXFGwP2aSd0xF3tMnxrOzVebbt80'
     ```
-    ``` text
+    ```text
     HTTP/1.1 200 OK
     Content-Type: application/json
     Date: Mon, 08 Feb 2021 10:44:45 GMT
@@ -221,7 +221,7 @@ go-zero从jwt token解析后会将用户生成token时传入的kv原封不动的
 $ vim /service/search/cmd/api/internal/logic/searchlogic.go
 ```
 添加一个log来输出从jwt解析出来的userId。
-```golang
+```go
 func (l *SearchLogic) Search(req types.SearchReq) (*types.SearchReply, error) {
 	logx.Infof("userId: %v",l.ctx.Value("userId"))// 这里的key和生成jwt token时传入的key一致
 	return &types.SearchReply{}, nil

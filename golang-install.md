@@ -10,7 +10,7 @@
 
 * 下载并安装[Go for Mac](https://dl.google.com/go/go1.15.1.darwin-amd64.pkg)
 * 验证安装结果
-    ``` shell
+    ```shell
     $ go version
     ```
     ```text

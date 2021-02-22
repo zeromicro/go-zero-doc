@@ -16,11 +16,11 @@
 * go-stash
 
 ## filebeat配置
-``` shell
+```shell
 $ vim xx/filebeat.yaml
 ```
 
-``` yaml
+```yaml
 filebeat.inputs:
 - type: log
   enabled: true
@@ -61,11 +61,11 @@ processors:
 * 新建`config.yaml`文件
 * 添加配置内容
 
-``` shell
+```shell
 $ vim config.yaml
 ```
 
-``` yaml
+```yaml
 Clusters:
 - Input:
     Kafka:

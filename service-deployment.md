@@ -23,13 +23,13 @@
 
 * 1、在jenkins所在机器上查看公钥
 
-``` shell
+```shell
 $ cat ~/.ssh/id_rsa.pub
 ```
 
 * 2、如果没有，则需要生成，如果存在，请跳转到第3步
 
-``` shell
+```shell
 $ ssh-keygen -t rsa -b 2048 -C "email@example.com"
 ```
 
@@ -48,7 +48,7 @@ $ ssh-keygen -t rsa -b 2048 -C "email@example.com"
 
 * 查看jenkins所在机器的私钥，与前面gitlab公钥对应
 
-``` shell
+```shell
 $ cat id_rsa
 ```
 
@@ -192,10 +192,10 @@ pipeline {
 
 其中dockerlogin.sh内容
 
-``` shell
+```shell
 #!/bin/bash
 docker login --username=$docker-user --password=$docker-pass $docker-server
-``` 
+```
 
 * $docker-user: docker登录用户名
 * $docker-pass: docker登录用户密码

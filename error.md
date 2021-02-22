@@ -41,14 +41,14 @@
     ```
   
 ## protoc-gen-go安装失败
-``` text
+```text
 go get github.com/golang/protobuf/protoc-gen-go: module github.com/golang/protobuf/protoc-gen-go: Get "https://proxy.golang.org/github.com/golang/protobuf/protoc-gen-go/@v/list": dial tcp 216.58.200.49:443: i/o timeout
 ```
 
 请确认`GOPROXY`已经设置,GOPROXY设置见[](gomod-config.md)
 
 ## api服务启动失败
-``` text
+```text
 error: config file etc/user-api.yaml, error: type mismatch for field xx
 ```
 

@@ -9,10 +9,10 @@
 ## rpc服务编写
 
 * 编译proto文件
-    ``` shell
+    ```shell
     $ vim service/user/cmd/rpc/user.proto
     ```
-    ```proto
+    ```protobuf
     syntax = "proto3";
     
     package user;
@@ -33,7 +33,7 @@
     }
     ```
     * 生成rpc服务代码
-    ``` shell
+    ```shell
     $ cd service/user/cmd/rpc
     $ goctl rpc proto -src user.proto -dir .
     ```
@@ -42,7 +42,7 @@
     ```shell
     $ vim service/user/cmd/rpc/internal/config/config.go
     ```
-    ```golang
+    ```go
     type Config struct {
         zrpc.RpcServerConf
         Mysql struct {
@@ -86,10 +86,10 @@
     > 更多配置信息，请参考[rpc配置介绍](rpc-config.md)
 
 * 添加资源依赖
-    ``` shell
+    ```shell
     $ vim service/user/cmd/rpc/internal/svc/servicecontext.go  
     ```
-    ``` golang
+    ```go
     type ServiceContext struct {
         Config    config.Config
         UserModel model.UserModel
@@ -107,7 +107,7 @@
     ```shell
     $ service/user/cmd/rpc/internal/logic/getuserlogic.go
     ```
-    ```golang
+    ```go
     func (l *GetUserLogic) GetUser(in *user.IdReq) (*user.UserInfoReply, error) {
         one, err := l.svcCtx.UserModel.FindOne(in.Id)
         if err != nil {
@@ -130,7 +130,7 @@
     ```shell
     $ vim service/search/cmd/api/internal/config/config.go
     ```
-    ```golang
+    ```go
     type Config struct {
         rest.RestConf
         Auth struct {
@@ -165,10 +165,10 @@
     > 
     > etcd中的`Key`必须要和user rpc服务配置中Key一致
 * 添加依赖
-    ``` shell
+    ```shell
     $ vim service/search/cmd/api/internal/svc/servicecontext.go
     ```
-    ``` golang
+    ```go
     type ServiceContext struct {
         Config  config.Config
         Example rest.Middleware
@@ -184,10 +184,10 @@
     }
     ```
 * 补充逻辑
-    ``` shell
+    ```shell
     $ vim /service/search/cmd/api/internal/logic/searchlogic.go
     ```
-    ```golang
+    ```go
     func (l *SearchLogic) Search(req types.SearchReq) (*types.SearchReply, error) {
         userIdNumber := json.Number(fmt.Sprintf("%v", l.ctx.Value("userId")))
         logx.Infof("userId: %s", userIdNumber)
@@ -213,7 +213,7 @@
 ## 启动并验证服务
 * 启动etcd、redis、mysql
 * 启动user rpc
-    ``` shell
+    ```shell
     $ cd /service/user/cmd/rpc
     $ go run user.go -f etc/user.yaml
     ```
@@ -224,7 +224,7 @@
 ```shell
 $ cd service/search/cmd/api
 $ go run search.go -f etc/search-api.yaml
-``` 
+```
 
 * 验证服务
     ```shell

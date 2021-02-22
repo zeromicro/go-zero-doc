@@ -5,7 +5,7 @@ code,msg两个字段来进行业务处理结果描述，并且希望能够以jso
 
 ## 业务错误响应格式
 * 业务处理正常
-    ``` json
+    ```json
     {
       "code": 0,
       "msg": "successful",
@@ -16,7 +16,7 @@ code,msg两个字段来进行业务处理结果描述，并且希望能够以jso
     ```
 
 * 业务处理异常
-    ``` json
+    ```json
     {
       "code": 10001,
       "msg": "参数错误"
@@ -47,7 +47,7 @@ Content-Length: 19
 
 ## 自定义错误
 * 首先在common中添加一个`baseerror.go`文件，并填入代码
-    ``` shell
+    ```shell
     $ cd common
     $ mkdir errorx&&cd errorx
     $ vim baseerror.go
@@ -89,7 +89,7 @@ Content-Length: 19
     ```
 
 * 将登录逻辑中错误用CodeError自定义错误替换
-    ```golang
+    ```go
     if len(strings.TrimSpace(req.Username)) == 0 || len(strings.TrimSpace(req.Password)) == 0 {
             return nil, errorx.NewDefaultError("参数错误")
         }
@@ -128,7 +128,7 @@ Content-Length: 19
     ```shell
     $ vim service/user/cmd/api/user.go
     ```
-    ```golang
+    ```go
     func main() {
         flag.Parse()
     

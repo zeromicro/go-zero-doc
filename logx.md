@@ -54,7 +54,7 @@ const (
 ## 日志模式
 目前日志打印模式主要分为2种，一种文件输出，一种控制台输出。推荐方式，当采用 k8s，docker 等部署方式的时候，可以将日志输出到控制台，使用日志收集器收集导入至 es 进行日志分析。如果是直接部署方式，可以采用文件输出方式，logx 会自动在指定文件目录创建对应 5 个对应级别的的日志文件保存日志。
 
-``` bash
+```bash
 .
 ├── access.log
 ├── error.log
@@ -104,7 +104,7 @@ if duration > slowThreshold {
 
 会输出如下格式
 
-``` json
+```json
 {"@timestamp":"2020-09-12T01:22:55.552+08","level":"info","duration":"3.0ms","content":"sql query:..."}
 {"@timestamp":"2020-09-12T01:22:55.552+08","level":"slow","duration":"500ms","content":"[SQL] query: slowcall - ..."}
 ```

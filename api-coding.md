@@ -1,10 +1,10 @@
 # api文件编写
 
 ## 编写user.api文件
-``` shell
+```shell
 $ vim service/user/cmd/api/user.api  
 ```
-``` text
+```text
 type (
     LoginReq {
         Username string `json:"username"`
@@ -29,11 +29,11 @@ service user-api {
 ## 生成api服务
 ### 方式一
 
-``` shell
+```shell
 $ cd book/service/user/cmd/api
 $ goctl api go -api user.api -dir . 
 ```
-``` text
+```text
 Done.
 ```
 

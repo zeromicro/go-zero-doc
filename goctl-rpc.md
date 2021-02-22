@@ -24,7 +24,7 @@ Goctl Rpc是`goctl`脚手架下的一个rpc服务代码生成模块，支持prot
 
 执行后代码结构如下:
 
-  ```golang
+  ```go
 .
 ├── etc             // yaml配置文件
 │   └── greet.yaml
@@ -79,7 +79,7 @@ rpc一键生成常见问题解决，见[常见错误处理](error.md)
   goctl rpc template -o=user.proto
   ```
 
-  ```golang
+  ```go
   syntax = "proto3";
 
   package remote;
@@ -180,7 +180,7 @@ OPTIONS:
 proto示例:
 
 ### 错误import
-```proto
+```protobuf
 syntax = "proto3";
 
 package greet;
@@ -203,7 +203,7 @@ service Greet {
 
 
 ### 正确import
-```proto
+```protobuf
 syntax = "proto3";
 
 package greet;

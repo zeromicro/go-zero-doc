@@ -10,11 +10,11 @@
 
 ### 路由中间件
 * 重新编写`search.api`文件，添加`middleware`声明
-    ``` shell
+    ```shell
     $ cd service/search/cmd/api
     $ vim search.api
     ```
-    ``` text
+    ```text
     @server(
         jwt: Auth
         middleware: Example // 路由中间件声明
@@ -25,10 +25,10 @@
     }
     ```
 * 重新生成api代码
-    ``` shell
+    ```shell
     $ goctl api go -api search.api -dir . 
     ```
-    ``` text
+    ```text
     etc/search-api.yaml exists, ignored generation
     internal/config/config.go exists, ignored generation
     search.go exists, ignored generation
@@ -41,10 +41,10 @@
     ```
     生成完后会在`internal`目录下多一个`middleware`的目录，这里即中间件文件，后续中间件的实现逻辑也在这里编写。
 *  完善资源依赖`ServiceContext`
-    ``` shell
+    ```shell
     $ vim service/search/cmd/api/internal/svc/servicecontext.go
     ```
-    ```golang
+    ```go
     type ServiceContext struct {
         Config config.Config
         Example rest.Middleware
@@ -63,7 +63,7 @@
     ```shell
     $ vim service/search/cmd/api/internal/middleware/examplemiddleware.go
     ```
-    ```golang
+    ```go
     func (m *ExampleMiddleware) Handle(next http.HandlerFunc) http.HandlerFunc {
         return func(w http.ResponseWriter, r *http.Request) {
             logx.Info("example middle")
@@ -72,13 +72,13 @@
     }
     ```
 * 启动服务验证
-    ``` text
+    ```text
     {"@timestamp":"2021-02-09T11:32:57.931+08","level":"info","content":"example middle"}
     ```
 
 ### 全局中间件
 通过rest.Server提供的Use方法即可
-```golang
+```go
 func main() {
 	flag.Parse()
 

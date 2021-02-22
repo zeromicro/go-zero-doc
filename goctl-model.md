@@ -6,7 +6,7 @@ goctl model 为go-zero下的工具模块中的组件之一，目前支持识别m
 
 * 通过ddl生成
 
-    ``` shell
+    ```shell
     $ goctl model mysql ddl -src="./*.sql" -dir="./sql/model" -c
     ```
 
@@ -20,12 +20,12 @@ goctl model 为go-zero下的工具模块中的组件之一，目前支持识别m
 
 * 通过datasource生成
 
-    ``` shell
+    ```shell
     $ goctl model mysql datasource -url="user:password@tcp(127.0.0.1:3306)/database" -table="*"  -dir="./model"
     ```
 
 * 生成代码示例
-    ``` go
+    ```go
     package model
     
     import (
@@ -216,11 +216,11 @@ goctl model 为go-zero下的工具模块中的组件之一，目前支持识别m
 
 ## 用法
 
-``` text
+```text
 $ goctl model mysql -h
 ```
 
-``` text
+```text
 NAME:
    goctl model mysql - generate mysql model"
 
@@ -243,7 +243,7 @@ OPTIONS:
 * 带缓存模式
     * ddl
 
-      ``` shell
+      ```shell
       $ goctl model mysql -src={patterns} -dir={dir} -cache
       ```
 
@@ -266,13 +266,13 @@ OPTIONS:
 
     * datasource
 
-      ``` shell
+      ```shell
       $ goctl model mysql datasource -url={datasource} -table={patterns}  -dir={dir} -cache=true
       ```
 
       help
 
-      ``` text
+      ```text
       NAME:
          goctl model mysql datasource - generate model from datasource
       
@@ -297,26 +297,26 @@ OPTIONS:
 
     * ddl
 
-        ``` shell
+        ```shell
         $  goctl model -src={patterns} -dir={dir}
         ```
 
     * datasource
 
-        ``` shell
+        ```shell
         $  goctl model mysql datasource -url={datasource} -table={patterns}  -dir={dir}
         ```
 
   or
     * ddl
 
-        ``` shell
+        ```shell
         $  goctl model -src={patterns} -dir={dir}
         ```
 
     * datasource
 
-        ``` shell
+        ```shell
         $  goctl model mysql datasource -url={datasource} -table={patterns}  -dir={dir}
         ```
 

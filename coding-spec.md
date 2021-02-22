@@ -3,7 +3,7 @@
 ## import
 * 单行import不建议用圆括号包裹
 * 按照`官方包`，NEW LINE，`当前工程包`，NEW LINE，`第三方依赖包`顺序引入
-    ```golang
+    ```go
     import (
         "context"
         "string"
@@ -24,7 +24,7 @@
 
 ## 函数体编码
 * 建议一个block结束空一行，如if、for等
-    ```golang
+    ```go
     func main (){
         if x==1{
             // do something
@@ -34,7 +34,7 @@
     }
     ```
 * return前空一行
-    ```golang
+    ```go
     func getUser(id string)(string,error){
         ....
   

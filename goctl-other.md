@@ -22,17 +22,17 @@ ENV TZ Asia/Shanghai
 
 ### Dockerfile编写过程
 * 首先安装 goctl 工具
-``` shell
+```shell
 $ GO111MODULE=on GOPROXY=https://goproxy.cn/,direct go get -u github.com/tal-tech/go-zero/tools/goctl
 ```
 
 * 在 greet 项目下创建一个 hello 服务
-``` shell
+```shell
 $ goctl api new hello
 ```
 
 文件结构如下：
-``` text
+```text
 greet
 ├── go.mod
 ├── go.sum
@@ -57,11 +57,11 @@ greet
                 └── types.go
 ```
 * 在 `hello` 目录下一键生成 `Dockerfile`
-``` shell
+```shell
 $ goctl docker -go greet.go
 ```
 Dockerfile 内容如下：
-``` shell
+```shell
     FROM golang:alpine AS builder
     LABEL stage=gobuilder
     ENV CGO_ENABLED 0
@@ -85,25 +85,25 @@ Dockerfile 内容如下：
     CMD ["./hello", "-f", "etc/hello-api.yaml"]
 ```
 * 在 `greet` 目录下 `build` 镜像
-``` shell
+```shell
 $ docker build -t hello:v1 -f service/hello/Dockerfile .
 ```
 
 * 查看镜像
-``` shell
+```shell
 hello v1 5455f2eaea6b 7 minutes ago 18.1MB
 ```
 
 可以看出镜像大小约为18M。
 * 启动服务
-``` shell
+```shell
 $ docker run --rm -it -p 8888:8888 hello:v1
 ```
 * 测试服务
 ```shell
 $ curl -i http://localhost:8888/from/you
 ```
-``` text
+```text
 HTTP/1.1 200 OK
 Content-Type: application/json
 Date: Thu, 10 Dec 2020 06:03:02 GMT
@@ -140,19 +140,19 @@ goctl 工具极大简化了 Dockerfile 文件的编写，提供了开箱即用�
 
 - 首先安装 `goctl` 工具
 
-``` shell
+```shell
 $ GO111MODULE=on GOPROXY=https://goproxy.cn/,direct go get -u github.com/tal-tech/go-zero/tools/goctl
 ```
 
 - 一键生成 K8S 部署文件
 
-``` shell
+```shell
 $ goctl kube deploy -name redis -namespace adhoc -image redis:6-alpine -o redis.yaml -port 6379
 ```
 生成的 `yaml` 文件如下：
 
 
-``` yaml
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:

@@ -35,7 +35,7 @@ Gitlab CI/CD是Gitlab内置的软件开发工具，提供
   每个阶段可以包含一个或者多个并行运行的job。
 * 添加CI内容(仅供参考)
 
-    ``` yaml
+    ```yaml
     stages:
     - analysis
     

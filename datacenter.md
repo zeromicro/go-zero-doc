@@ -513,7 +513,7 @@ common.proto
 往里面填入内容：
 
 
-```protobuf
+```protobufbuf
 ➜  rpc cat common.proto
 syntax = "proto3";
 

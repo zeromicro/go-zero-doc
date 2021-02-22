@@ -3,10 +3,10 @@
 通过业务编码来讲述go-zero怎么在实际业务中使用。
 
 ## 添加Mysql配置
-``` shell
+```shell
 $ vim service/user/cmd/api/internal/config/config.go
 ```
-```golang
+```go
 package config
 
 import "github.com/tal-tech/go-zero/rest"
@@ -22,10 +22,10 @@ type Config struct {
 ```
 
 ## 完善yaml配置
-``` shell
+```shell
 $ vim service/user/cmd/api/etc/user-api.yaml
 ```
-``` yaml
+```yaml
 Name: user-api
 Host: 0.0.0.0
 Port: 8888
@@ -53,10 +53,10 @@ CacheRedis:
 > 更多配置信息，请参考[api配置介绍](api-config.md)
 
 ## 完善服务依赖
-``` shell
+```shell
 $ vim service/user/cmd/api/internal/svc/servicecontext.go
 ```
-``` golang
+```go
 type ServiceContext struct {
     Config    config.Config
     UserModel model.UserModel
@@ -71,11 +71,11 @@ func NewServiceContext(c config.Config) *ServiceContext {
 }
 ```
 ## 填充登录逻辑
-``` shell
+```shell
 $ vim service/user/cmd/api/internal/logic/loginlogic.go
 ```
 
-```golang
+```go
 func (l *LoginLogic) Login(req types.LoginReq) (*types.LoginReply, error) {
     if len(strings.TrimSpace(req.Username)) == 0 || len(strings.TrimSpace(req.Password)) == 0 {
         return nil, errors.New("参数错误")

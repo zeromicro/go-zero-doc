@@ -3,7 +3,7 @@
 * 小写单词、横杠(-)组合
 * 见名知义
 
-```golang
+```go
 /user/get-info
 /user/get/info
 /user/password/change/:id

@@ -12,11 +12,11 @@ model是服务访问持久化数据层的桥梁，业务的持久化数据常存
 ## 代码生成(带缓存)
 ### 方式一(ddl)
 进入`service/user/model`目录，执行命令
-``` shell
+```shell
 $ cd service/user/model
 $ goctl model mysql ddl -src user.sql -dir . -c
 ```
-``` text
+```text
 Done.
 ```
 
@@ -24,7 +24,7 @@ Done.
 ```shell
 $ goctl model mysql datasource -url="$datasource" -table="user" -c -dir .
 ```
-``` text
+```text
 Done.
 ```
 > [!TIP]
@@ -41,10 +41,10 @@ Done.
 
 ## 验证生成的model文件
 查看tree
-``` shell
+```shell
 $ tree
 ```
-``` text
+```text
 .
 ├── user.sql
 ├── usermodel.go

@@ -2,7 +2,7 @@
 rpc配置控制着一个rpc服务的各种功能，包含但不限于监听地址，etcd配置，超时，熔断配置等，下面我们以一个常见的rpc服务配置来进行说明。
 
 ## 配置说明
-```golang
+```go
 Config struct {
     zrpc.RpcServerConf
     CacheRedis         cache.CacheConf // redis缓存配置，详情见api配置说明，这里不赘述
@@ -13,7 +13,7 @@ Config struct {
 ```
 
 ### zrpc.RpcServerConf
-```golang
+```go
 RpcServerConf struct {
     service.ServiceConf // 服务配置，详情见api配置说明，这里不赘述
     ListenOn      string // rpc监听地址和端口，如：127.0.0.1:8888
@@ -29,7 +29,7 @@ RpcServerConf struct {
 ```
 
 ### discov.EtcdConf
-```golang
+```go
 type EtcdConf struct {
 	Hosts []string // etcd host数组
 	Key   string // rpc注册key
@@ -37,7 +37,7 @@ type EtcdConf struct {
 ```
 
 ### redis.RedisKeyConf
-```golang
+```go
 RedisConf struct {
     Host string // redis 主机
     Type string `json:",default=node,options=node|cluster"` // redis类型

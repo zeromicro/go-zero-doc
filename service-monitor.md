@@ -27,7 +27,7 @@ Prometheus Server直接从监控目标中或者间接通过推送网关来拉取
 go-zero 框架中集成了基于prometheus的服务指标监控，下面我们通过go-zero官方的示例shorturl来演示是如何对服务指标进行收集监控的：
 * 第一步需要先安装Prometheus，安装步骤请参考官方文档
 * go-zero默认不开启prometheus监控，开启方式很简单，只需要在shorturl-api.yaml文件中增加配置如下，其中Host为Prometheus Server地址为必填配置，Port端口不填默认9091，Path为用来拉取指标的路径默认为/metrics
-    ``` yaml
+    ```yaml
     Prometheus:
     Host: 127.0.0.1
     Port: 9091
@@ -35,14 +35,14 @@ go-zero 框架中集成了基于prometheus的服务指标监控，下面我们�
     ```
 
 * 编辑prometheus的配置文件prometheus.yml，添加如下配置，并创建targets.json
-    ``` yaml
+    ```yaml
     - job_name: 'file_ds'
     file_sd_configs:
     - files:
       - targets.json
     ```
 * 编辑targets.json文件，其中targets为shorturl配置的目标地址，并添加了几个默认的标签
-    ``` yaml
+    ```yaml
     [
         {
             "targets": ["127.0.0.1:9091"],
@@ -56,7 +56,7 @@ go-zero 框架中集成了基于prometheus的服务指标监控，下面我们�
     ]
     ```
 * 启动prometheus服务，默认侦听在9090端口
-    ``` shell
+    ```shell
     $ prometheus --config.file=prometheus.yml
     ```
 * 在浏览器输入`http://127.0.0.1:9090/`，然后点击`Status` -> `Targets`即可看到状态为Up的Job，并且Lables栏可以看到我们配置的默认的标签
@@ -70,7 +70,7 @@ go-zero目前在http的中间件和rpc的拦截器中添加了对请求指标的
 主要从请求耗时和请求错误两个维度，请求耗时采用了Histogram指标类型定义了多个Buckets方便进行分位统计，请求错误采用了Counter类型，并在http metric中添加了path标签rpc metric中添加了method标签以便进行细分监控。
 接下来演示如何查看监控指标：
 首先在命令行多次执行如下命令
-``` shell
+```shell
 $ curl -i "http://localhost:8888/shorten?url=http://www.xiaoheiban.cn"
 ```
 打开Prometheus切换到Graph界面，在输入框中输入{path="/shorten"}指令，即可查看监控指标，如下图

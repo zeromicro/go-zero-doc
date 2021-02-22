@@ -28,7 +28,7 @@
 两个服务来初步实现这个小demo。
 
 ## 创建mall工程
-``` shell
+```shell
 $ cd ~/go-zero-demo
 $ mkdir mall && cd mall
 ```
@@ -36,17 +36,18 @@ $ mkdir mall && cd mall
 ## 创建user rpc服务
 
 * 创建user rpc服务
-    ``` shell
+    ```shell
     $ cd ~/go-zero-demo/mall
     $ mkdir -p user/rpc&&cd user/rpc  
     ```
 
 * 添加`user.proto`文件，增加`getUser`方法
 
-    ``` shell
+    ```shell
     $ vim ~/go-zero-demo/mall/user/user.proto
     ```
-    ```proto
+  
+    ```protobuf
     syntax = "proto3";
 
     package user;
@@ -70,18 +71,19 @@ $ mkdir mall && cd mall
     ```
 * 生成代码
 
-    ``` shell
+    ```shell
     $ cd ~/go-zero-demo/mall/user/rpc
     $ goctl rpc proto -src user.proto -dir .
     protoc  -I=/Users/xx/mall/user user.proto --go_out=plugins=grpc:/Users/xx/mall/user/user
     Done.
     ```
+  
 * 填充业务逻辑
 
-    ``` shell
+    ```shell
     $ vim internal/logic/getuserlogic.go
     ```
-    ```golang
+    ```go
     package logic
 
     import (
@@ -118,15 +120,16 @@ $ mkdir mall && cd mall
 ## 创建order api服务
 * 创建 `order api`服务
 
-    ``` shell
+    ```shell
     $ cd ~/go-zero-demo/mall
     $ mkdir -p order/api&&cd order/api
     ```
+  
 * 添加api文件
-    ``` shell
+    ```shell
     $ vim order.api
     ```
-    ```golang
+    ```go
     type(
         OrderReq {
             Id string `path:"id"`
@@ -143,16 +146,16 @@ $ mkdir mall && cd mall
     }
     ```
 * 生成order服务
-    ``` shell
+    ```shell
     $ goctl api go -api order.api -dir .
     Done.
     ```
 * 添加user rpc配置
 
-    ``` shell
+    ```shell
     $ vim internal/config/config.go
     ```
-    ```golang
+    ```go
     package config
 
     import "github.com/tal-tech/go-zero/rest"
@@ -165,10 +168,10 @@ $ mkdir mall && cd mall
     ```
 * 添加yaml配置
 
-    ``` shell
+    ```shell
     $ vim etc/order.yaml 
     ```
-    ``` yaml
+    ```yaml
     Name: order
     Host: 0.0.0.0
     Port: 8888
@@ -180,10 +183,10 @@ $ mkdir mall && cd mall
     ```
 * 完善服务依赖
 
-    ``` shell
+    ```shell
     $ vim internal/svc/servicecontext.go
     ```
-    ```golang
+    ```go
     package svc
 
     import (
@@ -209,10 +212,10 @@ $ mkdir mall && cd mall
 * 添加order演示逻辑
   
   给`getorderlogic`添加业务逻辑
-  ``` shell
+  ```shell
   $ vim ~/go-zero-demo/mall/order/api/internal/logic/getorderlogic.go
   ```
-  ``` golang
+  ```go
   user, err := l.svcCtx.UserRpc.GetUser(l.ctx, &userclient.IdRequest{
       Id: "1",
   })
@@ -232,32 +235,32 @@ $ mkdir mall && cd mall
 
 ## 启动服务并验证
 * 启动etcd
-  ``` shell
+  ```shell
   $ etcd
   ```
 * 启动user rpc
-  ``` shell
+  ```shell
   $ go run user.go -f etc/user.yaml
   ```
-  ``` text
+  ```text
   Starting rpc server at 127.0.0.1:8080...
   ```
   > [!TIP]
   > 如果启动报类似`not enough arguments in call to base.NewBalancerBuilder`的错误，请查阅[常见错误处理](error.md)
 * 启动order api
-  ``` shell
+  ```shell
   $ go run order.go -f etc/order.yaml
   ```
-  ``` text
+  ```text
   Starting server at 0.0.0.0:8888...
   ```
 * 访问order api
-  ``` shell
+  ```shell
   curl -i -X GET \
   http://localhost:8888/api/order/get/1
   ```
   
-  ``` text
+  ```text
   HTTP/1.1 200 OK
   Content-Type: application/json
   Date: Sun, 07 Feb 2021 03:45:05 GMT

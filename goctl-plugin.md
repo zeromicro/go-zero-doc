@@ -1,7 +1,7 @@
 # plugin命令
 
 goctl支持针对api自定义插件，那我怎么来自定义一个插件了？来看看下面最终怎么使用的一个例子。
-``` golang
+```go
 $ goctl api plugin -p goctl-android="android -package com.tal" -api user.api -dir .
 ```
 
@@ -13,7 +13,7 @@ $ goctl api plugin -p goctl-android="android -package com.tal" -api user.api -di
 此命令前面部分 goctl api plugin -p 是固定参数，goctl-android="android -package com.tal" 是plugin参数，其中goctl-android是插件二进制文件，android -package com.tal是插件的自定义参数，-api user.api -dir .是goctl通用自定义参数。
 ## 怎么编写自定义插件？
 go-zero框架中包含了一个很简单的自定义插件 demo，代码如下：
-```golang
+```go
 package main
 
 import (
@@ -37,7 +37,7 @@ func main() {
 
 `plugin, err := plugin.NewPlugin()` 这行代码作用是解析从goctl传递过来的数据，里面包含如下部分内容：
 
-```golang
+```go
 type Plugin struct {
     Api   *spec.ApiSpec
     Style string

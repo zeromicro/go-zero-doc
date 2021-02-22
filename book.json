@@ -18,9 +18,19 @@
     "pageview-count",
     "popup",
     "hide-element",
-    "edit-link"
+    "edit-link",
+    "-highlight",
+    "prism"
   ],
   "pluginsConfig": {
+    "prism": {
+      "lang": {
+        "shell": "bash"
+      },
+      "css": [
+        "prismjs/themes/prism-tomorrow.css"
+      ]
+    },
     "github": {
       "url": "https://github.com/go-zero"
     },

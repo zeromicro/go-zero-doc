@@ -2,7 +2,7 @@
 
 ## api示例
 
-``` golang
+```go
 /**
  * api语法示例及语法说明
  */
@@ -76,7 +76,7 @@ syntax是新加入的语法结构，该语法的引入可以解决：
 
 **语法定义**
 
-``` antlrv4
+```antlrv4
 'syntax'={checkVersion(p)}STRING
 ```
 
@@ -94,13 +94,13 @@ STRING：一串英文双引号包裹的字符串，如"v1"
 
 eg1：不规范写法
 
-``` api
+```api
 syntax="v1"
 ```
 
 eg2：规范写法(推荐)
 
-``` api
+```api
 syntax = "v2"
 ```
 
@@ -108,19 +108,19 @@ syntax = "v2"
 
 eg1：
 
-``` api
+```api
 syntax = "v0"
 ```
 
 eg2：
 
-``` api
+```api
 syntax = v1
 ```
 
 eg3：
 
-``` api
+```api
 syntax = "V1"
 ```
 
@@ -135,7 +135,7 @@ syntax = "V1"
 
 **语法定义**
 
-``` antlrv4
+```antlrv4
 'import' {checkImportValue(p)}STRING  
 |'import' '(' ({checkImportValue(p)}STRING)+ ')'
 ```
@@ -152,7 +152,7 @@ STRING：一串英文双引号包裹的字符串，如"foo.api"
 
 eg：
 
-``` api
+```api
 import "foo.api"
 import "foo/bar.api"
 
@@ -166,7 +166,7 @@ import(
 
 eg：
 
-``` api
+```api
 import foo.api
 import "foo.txt"
 import (
@@ -185,7 +185,7 @@ info语法块是一个包含了多个键值对的语法体，其作用相当于�
 
 **语法定义**
 
-``` antlrv4
+```antlrv4
 'info' '(' (ID {checkKeyValue(p)}VALUE)+ ')'
 ```
 
@@ -201,7 +201,7 @@ VALUE：key对应的值，可以为单行的除'\r','\n','/'后的任意字符�
 
 eg1：不规范写法
 
-``` api
+```api
 info(
 foo: foo value
 bar:"bar value"
@@ -212,7 +212,7 @@ long long text"
 
 eg2：规范写法(推荐)
 
-``` api
+```api
 info(
     foo: "foo value"
     bar: "bar value"
@@ -224,13 +224,13 @@ info(
 
 eg1：没有key-value内容
 
-``` api
+```api
 info()
 ```
 
 eg2：不包含冒号
 
-``` api
+```api
 info(
     foo value
 )
@@ -238,13 +238,13 @@ info(
 
 eg3：key-value没有换行
 
-``` api
+```api
 info(foo:"value")
 ```
 
 eg4：没有key
 
-``` api
+```api
 info(
     : "value"
 )
@@ -252,7 +252,7 @@ info(
 
 eg5：非法的key
 
-``` api
+```api
 info(
     12: "value"
 )
@@ -260,7 +260,7 @@ info(
 
 eg6：移除旧版本多行语法
 
-``` api
+```api
 info(
     foo: >
     some text
@@ -294,7 +294,7 @@ info(
 
 eg1：不规范写法
 
-``` api
+```api
 type Foo struct{
     Id int `path:"id"` // ①
     Foo int `json:"foo"`
@@ -315,7 +315,7 @@ type(
 
 eg2：规范写法（推荐）
 
-``` api
+```api
 type Foo{
     Id int `path:"id"`
     Foo int `json:"foo"`
@@ -336,7 +336,7 @@ type(
 
 eg
 
-``` api
+```api
 type Gender int // 不支持
 
 // 非struct token
@@ -416,7 +416,7 @@ service语法块用于定义api服务，包含服务名称，服务metadata，�
 
 **语法定义**
 
-``` antlrv4
+```antlrv4
 serviceSpec:    atServer? serviceApi;
 atServer:       '@server' lp='(' kvLit+ rp=')';
 serviceApi:     {match(p,"service")}serviceToken=ID serviceName lbrace='{' serviceRoute* rbrace='}';
@@ -496,7 +496,7 @@ path：api请求路径，必须以'/'或者'/:'开头，切不能以'/'结尾，
 
 eg1：不规范写法
 
-``` api
+```api
 @server(
   jwt: Auth
   group: foo
@@ -523,7 +523,7 @@ service foo-api{
 
 eg2：规范写法（推荐）
 
-``` api
+```api
 @server(
   jwt: Auth
   group: foo
@@ -548,7 +548,7 @@ service foo-api{
 
 **错误语法示例** ❌
 
-``` api
+```api
 // 不支持空的server语法块
 @server(
 )
@@ -591,7 +591,7 @@ service foo-api{
 
 **语法定义**
 
-``` antlrv4
+```antlrv4
 '//' ~[\r\n]*
 ```
 
@@ -600,14 +600,14 @@ service foo-api{
 
 **正确语法示例** ✅
 
-``` api
+```api
 // doc
 // comment
 ```
 
 **错误语法示例** ❌
 
-``` api
+```api
 // break
 line comments
 ```
@@ -616,7 +616,7 @@ line comments
 
 **语法定义**
 
-``` antlrv4
+```antlrv4
 '/*' .*? '*/'
 ```
 
@@ -626,7 +626,7 @@ line comments
 
 **正确语法示例** ✅
 
-``` api
+```api
 /**
  * java-style doc
  */
@@ -634,7 +634,7 @@ line comments
 
 **错误语法示例** ❌
 
-``` api
+```api
 /*
  * java-style doc */
  */
@@ -688,7 +688,7 @@ line comments
 
 以下为对应语法块解析后细带doc和comment的写法
 
-``` api
+```api
 // syntaxLit doc
 syntax = "v1" // syntaxLit commnet
 

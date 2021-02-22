@@ -8,7 +8,7 @@ api配置控制着api服务中的各种功能，包含但不限于服务监听�
 
 ### Config
 
-```golang
+```go
 type Config struct{
     rest.RestConf // rest api配置
     Auth struct { // jwt鉴权配置
@@ -25,7 +25,7 @@ type Config struct{
 
 ### rest.RestConf
 api服务基础配置，包含监听地址，监听端口，证书配置，限流，熔断参数，超时参数等控制，对其展开我们可以看到：
-```golang
+```go
 service.ServiceConf // service配置
 Host     string `json:",default=0.0.0.0"` // http监听ip，默认0.0.0.0
 Port     int // http监听端口,必填
@@ -41,7 +41,7 @@ Signature    SignatureConf `json:",optional"` // 签名配置
 ```
 
 ### service.ServiceConf
-```golang
+```go
 type ServiceConf struct {
     Name       string // 服务名称
     Log        logx.LogConf // 日志配置
@@ -52,7 +52,7 @@ type ServiceConf struct {
 ```
 
 ### logx.LogConf
-```golang
+```go
 type LogConf struct {
 	ServiceName         string `json:",optional"` // 服务名称
 	Mode                string `json:",default=console,options=console|file|volume"` // 日志模式，console-输出到console，file-输出到当前服务器（容器）文件，，volume-输出docker挂在文件内
@@ -65,7 +65,7 @@ type LogConf struct {
 ```
 
 ### prometheus.Config
-```golang
+```go
 type Config struct {
 	Host string `json:",optional"` // prometheus 监听host
 	Port int    `json:",default=9101"` // prometheus 监听端口
@@ -74,7 +74,7 @@ type Config struct {
 ```
 
 ### SignatureConf
-```golang
+```go
 SignatureConf struct {
     Strict      bool          `json:",default=false"` // 是否Strict模式，如果是则PrivateKeys必填
     Expiry      time.Duration `json:",default=1h"` // 有效期，默认1小时
@@ -83,7 +83,7 @@ SignatureConf struct {
 ```
 
 ### PrivateKeyConf
-```golang
+```go
 PrivateKeyConf struct {
     Fingerprint string // 指纹配置
     KeyFile     string // 密钥配置
@@ -91,7 +91,7 @@ PrivateKeyConf struct {
 ```
 
 ### cache.CacheConf
-```golang
+```go
 ClusterConf []NodeConf
 
 NodeConf struct {
@@ -101,7 +101,7 @@ NodeConf struct {
 ```
 
 ### redis.RedisConf
-```golang
+```go
 RedisConf struct {
     Host string // redis地址
     Type string `json:",default=node,options=node|cluster"` // redis类型

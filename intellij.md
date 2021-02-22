@@ -68,7 +68,7 @@
 
 # Live Template
 Live Template可以加快我们对api文件的编写，比如我们在go文件中输入`main`关键字根据tip回车后会插入一段模板代码
-```golang
+```go
 func main(){
 
 }
@@ -106,7 +106,7 @@ func main(){
 | form  | Tag、Tag literal |tag模板|
 
 关于每个模板对应内容可在`Goland(mac Os)->Preference->Editor->Live Templates-> Api|Api Tags`中查看详细模板内容，如json tag模板内容为
-```golang
+```go
 json:"$FIELD_NAME$"
 ```
 ![context menu](./resource/json_tag.png)
