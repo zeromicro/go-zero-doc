@@ -205,19 +205,3 @@ GO111MODULE=on GOPROXY=https://goproxy.cn/,direct go get -u github.com/tal-tech/
 项目地址：[https://github.com/tal-tech/go-zero](https://github.com/tal-tech/go-zero)
 
 码云地址：[https://gitee.com/kevwan/go-zero](https://gitee.com/kevwan/go-zero) (国内用户可访问gitee，每日自动从github同步代码)
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-<div id="gitalk-container"></div>
-<script>
-var gitalk = new Gitalk({
-  "clientID": "ff8c0fd19dc889e934d8",
-  "clientSecret": "e6e550eaf49516789a9b23b8c1e541b4edcc6da8",
-  "repo": "go-zero-doc",
-  "owner": "zeromicro",
-  "admin": ["anqiansong"],
-  "id": location.pathname,      
-  "distractionFreeMode": false  
-});
-gitalk.render("gitalk-container");
-</script>
