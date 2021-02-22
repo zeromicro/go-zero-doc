@@ -17,7 +17,9 @@ jobs:
       - name: chmod contributor tool
         run: chmod +x ./.github/workflows/contributor-tool
       - name: get latest contributors
-        run: ./.github/workflows/contributor-tool -o contributor.md
+        run: ./.github/workflows/contributor-tool -f contributor -o contributor.md
+      - name: append gitalk
+        run: ./.github/workflows/contributor-tool -f comment
       - name: use node.js
         uses: actions/setup-node@v1
         with:
