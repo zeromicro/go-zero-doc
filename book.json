@@ -2,6 +2,7 @@
   "title": "go-zero使用文档",
   "author": "松妹子",
   "language": "zh-hans",
+  "gitbook": "3.2.3",
   "plugins": [
     "back-to-top-button",
     "chapter-fold",
@@ -20,7 +21,8 @@
     "hide-element",
     "edit-link",
     "-highlight",
-    "prism"
+    "prism",
+    "theme-comscore"
   ],
   "pluginsConfig": {
     "prism": {
