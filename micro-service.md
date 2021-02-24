@@ -273,7 +273,7 @@ $ mkdir mall && cd mall
 > 在演示中的提及的api语法，rpc生成，goctl，goctl环境等怎么使用和安装，快速入门中不作详细概述，我们后续都会有详细的文档进行描述，你也可以点击下文的【猜你想看】快速跳转的对应文档查看。
 
 # 源码
-[mall源码](https://github.com/zeromicro/go-zero-demo/mall)
+[mall源码](https://github.com/zeromicro/go-zero-demo/tree/master/mall)
 
 # 猜你想看
 * [goctl使用说明](goctl.md)

@@ -78,7 +78,7 @@ func (l *GreetLogic) Greet(req types.Request) (*types.Response, error) {
     ```
 
 # 源码
-[greet源码](https://github.com/zeromicro/go-zero-demo/greet)
+[greet源码](https://github.com/zeromicro/go-zero-demo/tree/master/greet)
 
 # 猜你想看
 * [goctl使用说明](goctl.md)
