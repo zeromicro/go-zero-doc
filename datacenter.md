@@ -1,57 +1,44 @@
-# 我是如何用go-zero 实现一个中台系统
+# 我是如何用 go-zero 实现一个中台系统
 
-> 作者：jack
+> 作者：Jack Luo
 > 
-> 原文连接： 无
+> 原文连接：https://www.cnblogs.com/jackluo/p/14148518.html
+
+[TOC]
 
 最近发现golang社区里出了一个新星的微服务框架，来自好未来，光看这个名字，就很有奔头，之前，也只是玩过go-micro，其实真正的还没有在项目中运用过，只是觉得 微服务，grpc 这些很高大尚，还没有在项目中，真正的玩过，我看了一下官方提供的工具真的很好用，只需要定义好，舒适文件jia结构 都生成了，只需要关心业务，加上最近 有个投票的活动，加上最近这几年中台也比较火，所以决定玩一下，
 
-
 > 开源地址: [https://github.com/jackluo2012/datacenter](https://github.com/jackluo2012/datacenter)
-
-
 
 先聊聊中台架构思路吧：
 
-
-![](https://cdn.nlark.com/yuque/0/2020/jpeg/261626/1608457429653-1c106b19-f9dc-4ac8-86eb-a36c15613445.jpeg#align=left&display=inline&height=1159&margin=%5Bobject%20Object%5D&originHeight=1159&originWidth=1719&size=0&status=done&style=none&width=1719)
-
+![](https://img2020.cnblogs.com/blog/203395/202012/203395-20201217094615171-335437652.jpg)
 
 中台的概念大概就是把一个一个的app 统一起来，反正我是这样理解的。
 
+先聊用户服务吧，现在一个公司有很多的公众号、小程序、微信的、支付宝的，还有 xxx xxx，很多的平台，每次开发的时候，我们总是需要做用户登陆的服务，不停的复制代码，然后我们就在思考能不能有一套独立的用户服务，只需要告诉我你需要传个你要登陆的平台(比如微信)，微信登陆，需要的是客户端返回给服务端一个code ，然后服务端拿着这个code去微信获取用户信息，反正大家都明白。
 
-先聊用户服务吧，现在一个公司有很多的公众号，小程序，微信的，支付宝的，还有xxx xxx ,很多的平台，每次开发的时候，我们总是需要做用户登陆的服务，不停的复制代码，然后我们就在思考能不能有一套独立的用户服务，只需要告诉我你需要传个你要登陆的平台(比如微信)，微信登陆，需要的是客户端返回给服务端一个code ，然后服务端拿着这个code去微信获取用户信息，反正大家都明白。
-
-
-我们决定，将所有的信息 弄到 配置公共服务中去，里面在存，微信，支付宝，以及其它平台的 appid ,appkey,还有支付的appid,appkey，这样就写一套。
+我们决定，将所有的信息弄到配置公共服务中去，里面再存微信、支付宝以及其它平台的appid、appkey、还有支付的appid、appkey，这样就写一套。
 
 ---
 
 最后说说实现吧，整个就一个repo：
 
-
 - 网关，我们用的是: go-zero的Api服务
 - 其它它的是服务，我们就是用的go-zero的rpc服务
 
-
-
 看下目录结构
 
+![](https://img2020.cnblogs.com/blog/203395/202012/203395-20201209110504600-317546535.png)
 
-![](https://cdn.nlark.com/yuque/0/2020/png/261626/1608457429608-d5b8c0a1-5d7c-4519-bbcf-e0c802918dc4.png#align=left&display=inline&height=1918&margin=%5Bobject%20Object%5D&originHeight=1918&originWidth=2934&size=0&status=done&style=none&width=2934)
-
-
-整个项目完成，我一个人操刀， 写了1个来星期，我就实现了上面的中台系统。
-
+整个项目完成，我一个人操刀，写了1个来星期，我就实现了上面的中台系统。
 
 ## datacenter-api服务
 
 
 先看官方文档 [https://www.yuque.com/tal-tech/go-zero/yaoehb](https://www.yuque.com/tal-tech/go-zero/yaoehb)
 
-
-我们先把网关搭建起来
-
+我们先把网关搭建起来：
 
 ```shell
 ➜ blogs mkdir datacenter && cd datacenter
@@ -59,7 +46,6 @@
 go: creating new go.mod: module datacenter
 ➜ datacenter
 ```
-
 
 查看book目录：
 
