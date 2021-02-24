@@ -3,7 +3,7 @@
 流处理 (Stream processing) 是一种计算机编程范式，其允许给定一个数据序列 (流处理数据源)，一系列数据操作 (函数) 被应用到流中的每个元素。同时流处理工具可以显著提高程序员的开发效率，允许他们编写有效、干净和简洁的代码。
 
 流数据处理在我们的日常工作中非常常见，举个例子，我们在业务开发中往往会记录许多业务日志，这些日志一般是先发送到 Kafka，然后再由 Job 消费 Kafaka 写到 elasticsearch，在进行日志流处理的过程中，往往还会对日志做一些处理，比如过滤无效的日志，做一些计算以及重新组合日志等等，示意图如下:
-![fx_log.png](https://cdn.nlark.com/yuque/0/2020/png/1220818/1602254714159-7753eb68-5e65-4194-94ad-197af105ed44.png#align=left&display=inline&height=766&margin=%5Bobject%20Object%5D&name=fx_log.png&originHeight=766&originWidth=1422&size=74150&status=done&style=none&width=1422)
+![fx_log.png](./resource/fx_log.png)
 ### 流处理工具fx
 [go-zero](https://github.com/tal-tech/go-zero) 是一个功能完备的微服务框架，框架中内置了很多非常实用的工具，其中就包含流数据处理工具[fx](https://github.com/tal-tech/go-zero/tree/master/core/fx) ，下面我们通过一个简单的例子来认识下该工具：
 ```go
@@ -67,7 +67,7 @@ inputStream函数模拟了流数据的产生，outputStream函数模拟了流数
 
 
 一个流的数据处理可能存在许多的中间操作，每个中间操作都可以作用在流上。就像流水线上的工人一样，每个工人操作完零件后都会返回处理完成的新零件，同理流处理中间操作完成后也会返回一个新的流。
-![](https://cdn.nlark.com/yuque/0/2020/png/1220818/1602255062429-6e02af02-47d3-4d59-b7d5-d8c2db9afe10.png#align=left&display=inline&height=476&margin=%5Bobject%20Object%5D&originHeight=476&originWidth=800&size=0&status=done&style=none&width=800)
+![7715f4b6-8739-41ac-8c8c-04d187172e9d.png](./resource/7715f4b6-8739-41ac-8c8c-04d187172e9d.png)
 fx的流处理中间操作:
 
 | 操作函数 | 功能 | 输入 |
@@ -88,7 +88,7 @@ fx的流处理中间操作:
 下图展示了每个步骤和每个步骤的结果:
 
 
-![](https://cdn.nlark.com/yuque/0/2020/png/1220818/1602255082959-f9ac5002-4647-478d-a9d6-bec2fc910ff7.png#align=left&display=inline&height=515&margin=%5Bobject%20Object%5D&originHeight=515&originWidth=800&size=0&status=done&style=none&width=800)
+![3aefec98-56eb-45a6-a4b2-9adbdf4d63c0.png](./resource/3aefec98-56eb-45a6-a4b2-9adbdf4d63c0.png)
 
 
 ### 用法与原理分析
@@ -212,7 +212,7 @@ func (p Stream) Group(fn KeyFunc) Stream {
 reverse可以对流中元素进行反转处理:
 
 
-![](https://cdn.nlark.com/yuque/0/2020/png/1220818/1602255083537-48be0f11-5be2-43ec-a3a0-cd60c6353797.png#align=left&display=inline&height=286&margin=%5Bobject%20Object%5D&originHeight=286&originWidth=800&size=0&status=done&style=none&width=800)
+![7e0fd2b8-d4c1-4130-a216-a7d3d4301116.png](./resource/7e0fd2b8-d4c1-4130-a216-a7d3d4301116.png)
 
 
 ```go
@@ -337,7 +337,7 @@ func (p Stream) walkLimited(fn WalkFunc, option *rxOptions) Stream {
 fx工具除了进行流数据处理以外还提供了函数并发功能，在微服务中实现某个功能往往需要依赖多个服务，并发的处理依赖可以有效的降低依赖耗时，提升服务的性能。
 
 
-![](https://cdn.nlark.com/yuque/0/2020/png/1220818/1602255083561-d28a504c-aba8-4cb8-80cf-f2ea194dd8c3.png#align=left&display=inline&height=397&margin=%5Bobject%20Object%5D&originHeight=397&originWidth=800&size=0&status=done&style=none&width=800)
+![b97bf7df-1781-436e-bf04-f1dd90c60537.png](./resource/b97bf7df-1781-436e-bf04-f1dd90c60537.png)
 
 
 ```go
