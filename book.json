@@ -16,6 +16,7 @@
     "sharing-plus",
     "tbfed-pagefooter",
     "flexible-alerts",
+    "page-toc",
     "pageview-count",
     "popup",
     "hide-element",
@@ -36,6 +37,11 @@
     "github": {
       "url": "https://github.com/tal-tech/go-zero"
     },
+    "page-toc": {
+      "selector": ".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4",
+      "position": "before-first",
+      "showByDefault": true
+    },
     "tbfed-pagefooter": {
       "copyright": "Copyright © 2019-2021 go-zero",
       "modify_label": "最后更新时间：",
@@ -48,7 +54,7 @@
     },
     "edit-link": {
       "base": "https://github.com/zeromicro/go-zero-doc/blob/master",
-      "label": "编辑此页"
+      "label": "编辑"
     },
     "sharing": {
       "douban": false,
