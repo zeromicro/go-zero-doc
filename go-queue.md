@@ -9,6 +9,8 @@
 
   我们主要说一下dq，kq使用也一样的，只是依赖底层不同，如果没使用过beanstalkd，没接触过beanstalkd的可以先google一下，使用起来还是挺容易的。
 
+  
+
   etc/job.yaml : 配置文件
 
   ```yaml
@@ -309,16 +311,6 @@
 
   
 
-  
+  项目源码 ： https://github.com/Mikaelemmmm/go-zero-job.git
 
   
-
-  
-
-  
-
-  
-
-  
-
-  https://github.com/tal-tech/go-queue)
