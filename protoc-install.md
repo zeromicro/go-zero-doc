@@ -31,7 +31,7 @@ protoc是一款用C++编写的工具，其可以将proto文件翻译为指定语
 
 * 下载安装`protoc-gen-go`
     ```shell
-    $ go get -u github.com/golang/protobuf/protoc-gen-go
+    $ go get -u github.com/golang/protobuf/protoc-gen-go@v1.3.2
     ```
     ```text
     go: found github.com/golang/protobuf/protoc-gen-go in github.com/golang/protobuf v1.4.3

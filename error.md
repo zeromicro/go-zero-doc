@@ -40,6 +40,24 @@
     replace google.golang.org/grpc => google.golang.org/grpc v1.29.1
     ```
   
+* 错误三
+  ```text
+  protoc-gen-go: unable to determine Go import path for "greet.proto"
+  
+  Please specify either:
+  • a "go_package" option in the .proto source file, or
+  • a "M" argument on the command line.
+  
+  See https://developers.google.com/protocol-buffers/docs/reference/go-generated#package for more information.
+  
+  --go_out: protoc-gen-go: Plugin failed with status code 1.
+  
+  ```
+   解决方法：
+   ```text
+   go get -u github.com/golang/protobuf/protoc-gen-go@v1.3.2
+   ```
+  
 ## protoc-gen-go安装失败
 ```text
 go get github.com/golang/protobuf/protoc-gen-go: module github.com/golang/protobuf/protoc-gen-go: Get "https://proxy.golang.org/github.com/golang/protobuf/protoc-gen-go/@v/list": dial tcp 216.58.200.49:443: i/o timeout
