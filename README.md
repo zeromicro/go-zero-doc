@@ -104,6 +104,12 @@ GO111MODULE=on GOPROXY=https://goproxy.cn/,direct go get -u github.com/tal-tech/
     ```shell
     GO111MODULE=on GOPROXY=https://goproxy.cn/,direct go get -u github.com/tal-tech/go-zero/tools/goctl
     ```
+    
+    如果使用 go1.16 版本, 可以使用 `go install` 命令安装
+    
+    ```shell
+    GOPROXY=https://goproxy.cn/,direct go install github.com/tal-tech/go-zero/tools/goctl@latest
+    ```
 
    确保 goctl 可执行
 
