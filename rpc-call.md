@@ -245,4 +245,4 @@ $ go run search.go -f etc/search-api.yaml
 # 猜你想看
 * [rpc配置](rpc-config.md)
 * [rpc服务目录](rpc-dir.md)
-* [goclt rpc命令](goctl-rpc.md)
+* [goctl rpc命令](goctl-rpc.md)
