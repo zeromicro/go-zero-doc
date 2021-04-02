@@ -21,7 +21,6 @@ $ tree
 .
 ├── etc
 │   └── greet-api.yaml
-├── go.mod
 ├── greet.api
 ├── greet.go
 └── internal
@@ -55,7 +54,7 @@ func (l *GreetLogic) Greet(req types.Request) (*types.Response, error) {
 
 * 启动服务
     ```shell
-    $ cd ~/go-zer-demo/greet
+    $ cd ~/go-zero-demo/greet
     $ go run greet.go -f etc/greet-api.yaml
     ```
     ```text
