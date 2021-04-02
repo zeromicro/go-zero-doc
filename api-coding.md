@@ -16,7 +16,7 @@ type (
         Name         string `json:"name"`
         Gender       string `json:"gender"`
         AccessToken  string `json:"accessToken"`
-        AccessExpore int64 `json:"accessExpore"`
+        AccessExpire int64 `json:"accessExpire"`
         RefreshAfter int64 `json:"refreshAfter"`
     }
 )
