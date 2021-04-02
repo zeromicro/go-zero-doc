@@ -38,13 +38,13 @@ $ mkdir mall && cd mall
 * 创建user rpc服务
     ```shell
     $ cd ~/go-zero-demo/mall
-    $ mkdir -p user/rpc&&cd user/rpc  
+    $ mkdir -p user/rpc && cd user/rpc  
     ```
 
 * 添加`user.proto`文件，增加`getUser`方法
 
     ```shell
-    $ vim ~/go-zero-demo/mall/user/user.proto
+    $ vim ~/go-zero-demo/mall/user/rpc/user.proto
     ```
   
     ```protobuf
@@ -122,7 +122,7 @@ $ mkdir mall && cd mall
 
     ```shell
     $ cd ~/go-zero-demo/mall
-    $ mkdir -p order/api&&cd order/api
+    $ mkdir -p order/api && cd order/api
     ```
   
 * 添加api文件
