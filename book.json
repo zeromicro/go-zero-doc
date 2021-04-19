@@ -1,6 +1,6 @@
 {
-  "title": "go-zero使用文档",
-  "author": "松妹子",
+  "title": "go-zero document",
+  "author": "anqiansong",
   "language": "zh-hans",
   "gitbook": "3.2.3",
   "plugins": [
@@ -43,7 +43,7 @@
     },
     "tbfed-pagefooter": {
       "copyright": "Copyright © 2019-2021 go-zero",
-      "modify_label": "最后更新时间：",
+      "modify_label": "Last UpdateTime：",
       "modify_format": "YYYY-MM-DD HH:mm:ss"
     },
     "hide-element": {
@@ -53,7 +53,7 @@
     },
     "edit-link": {
       "base": "https://github.com/zeromicro/go-zero-doc/blob/master",
-      "label": "编辑此页"
+      "label": "EDIT THIS PAGE"
     },
     "sharing": {
       "douban": false,
