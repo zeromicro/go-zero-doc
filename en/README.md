@@ -138,7 +138,7 @@ go get -u github.com/tal-tech/go-zero
 
    the generated files look like:
 
-   ```Plain Text
+   ```
    ├── greet
    │   ├── etc
    │   │   └── greet-api.yaml        // configuration file
