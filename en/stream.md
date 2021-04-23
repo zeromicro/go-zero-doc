@@ -115,10 +115,10 @@ fx.From(func(source chan<- interface{}) {
 func From(generate GenerateFunc) Stream {
 	source := make(chan interface{})
 
-	go func() {
+	threading.GoSafe(func() {
 		defer close(source)
 		generate(source)
-	}()
+	})
 
 	return Range(source)
 }
