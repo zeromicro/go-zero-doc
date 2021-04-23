@@ -113,11 +113,11 @@ fx.From(func(source chan<- interface{}) {
 func From(generate GenerateFunc) Stream {
 	source := make(chan interface{})
 
-	go func() {
+	threading.GoSafe(func() {
 		defer close(source)
-    // 构造流数据写入channel
+		// 构造流数据写入channel
 		generate(source)
-	}()
+	})
 
 	return Range(source)
 }
