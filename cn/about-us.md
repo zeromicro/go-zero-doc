@@ -8,7 +8,7 @@ go-zero 包含极简的 API 定义和生成工具 goctl，可以根据定义的 
 ## go-zero作者
 [<img src="https://zeromicro.github.io/go-zero/resource/author.jpeg" width="80px" height="80px" alt="kevwan"/>](https://github.com/kevwan)
 
-**万俊峰**，晓黑板研发负责人，好未来技术委员会资深专家，拥有14年研发团队管理经验，16年架构设计经验，20年工程实战经验，负责过多个大型项目的架构设计，曾多次合伙创业（被收购），GopherChina大会讲师，腾讯云开发者大会讲师。
+**万俊峰**，晓黑板研发负责人，好未来技术委员会资深专家，拥有14年研发团队管理经验，16年架构设计经验，20年工程实战经验，负责过多个大型项目的架构设计，曾多次合伙创业（被收购），GopherChina大会讲师，腾讯云开发者大会讲师，ArchSummit全球架构师峰会讲师。
 
 ## go-zero成员
 go-zero截止2021年2月，目前拥有30人的团队开发人员及50+的社区成员。
