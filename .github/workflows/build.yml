@@ -34,6 +34,10 @@ jobs:
         run: gitbook install
       - name: build
         run: gitbook build
+      - name: delete original index
+        run: rm -f ./_book/index.html
+      - name: build index
+        run: ./.github/workflows/contributor-tool -i  ./_book/index.html
       - name: chmod
         run: chmod +x ./.github/workflows/build.sh
       - name: publish
