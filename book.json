@@ -1,6 +1,7 @@
 {
   "title": "go-zero document",
   "author": "anqiansong",
+  "description": "Golang 微服务框架 | 集成各种工程实践的 WEB 和 RPC 框架 | 一键生成 Go, iOS, Android, Kotlin, Dart, TypeScript, JavaScript 代码",
   "language": "zh-hans",
   "gitbook": "3.2.3",
   "plugins": [
