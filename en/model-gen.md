@@ -3,7 +3,7 @@
 > This document is machine-translated by Google. If you find grammatical and semantic errors, and the document description is not clear, please [PR](doc-contibute.md)
 
 
-First, after downloading the [demo project](https://zeromicro.github.io/go-zero/resource/book.zip), we will use the user's model to demonstrate the code generation.
+First, after downloading the [demo project](https://go-zero.dev/en/resource/book.zip), we will use the user's model to demonstrate the code generation.
 
 ## Forward
 Model is a bridge for services to access the persistent data layer. The persistent data of the business often exists in databases such as mysql and mongo. We all know that the operation of a database is nothing more than CURD.
