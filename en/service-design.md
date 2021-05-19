@@ -43,12 +43,11 @@ Therefore, a service may contain the following directory structure:
 
 ```text
 user
-    └── cmd
-        ├── api //  http access service, business requirement realization
-        ├── cronjob // Timed task, timed data update service
-        ├── rmq // Message processing system: mq and dq, handle some high concurrency and delay message services
-        ├── rpc // rpc service to provide basic data access to other subsystems
-        └── script // Script, handle some temporary operation requirements, and repair temporary data
+    ├── api //  http access service, business requirement realization
+    ├── cronjob // Timed task, timed data update service
+    ├── rmq // Message processing system: mq and dq, handle some high concurrency and delay message services
+    ├── rpc // rpc service to provide basic data access to other subsystems
+    └── script // Script, handle some temporary operation requirements, and repair temporary data
 ```
 
 ## Example of complete project directory structure
