@@ -13,29 +13,23 @@ The above system is divided into the following structure according to the direct
 ```text
 .
 ├── afterSale
-│   └── cmd
-│       ├── api
-│       └── rpc
+│   ├── api
+│   └── rpc
 ├── cart
-│   └── cmd
-│       ├── api
-│       └── rpc
+│   ├── api
+│   └── rpc
 ├── order
-│   └── cmd
-│       ├── api
-│       └── rpc
+│   ├── api
+│   └── rpc
 ├── pay
-│   └── cmd
-│       ├── api
-│       └── rpc
+│   ├── api
+│   └── rpc
 ├── product
-│   └── cmd
-│       ├── api
-│       └── rpc
+│   ├── api
+│   └── rpc
 └── user
-    └── cmd
-        ├── api
-        └── rpc
+    ├── api
+    └── rpc
 ```
 
 ## rpc call chain suggestion
@@ -59,46 +53,40 @@ user
 
 ## Example of complete project directory structure
 ```text
-mall // project name
-├── common // General library
+mall // 工程名称
+├── common // 通用库
 │   ├── randx
 │   └── stringx
 ├── go.mod
 ├── go.sum
-└── service // Service storage directory
+└── service // 服务存放目录
     ├── afterSale
-    │   ├── cmd
-    │   │   ├── api
-    │   │   └── rpc
+    │   ├── api
     │   └── model
+    │   └── rpc
     ├── cart
-    │   ├── cmd
-    │   │   ├── api
-    │   │   └── rpc
+    │   ├── api
     │   └── model
+    │   └── rpc
     ├── order
-    │   ├── cmd
-    │   │   ├── api
-    │   │   └── rpc
+    │   ├── api
     │   └── model
+    │   └── rpc
     ├── pay
-    │   ├── cmd
-    │   │   ├── api
-    │   │   └── rpc
+    │   ├── api
     │   └── model
+    │   └── rpc
     ├── product
-    │   ├── cmd
-    │   │   ├── api
-    │   │   └── rpc
+    │   ├── api
     │   └── model
+    │   └── rpc
     └── user
-        ├── cmd
-        │   ├── api
-        │   ├── cronjob
-        │   ├── rmq
-        │   ├── rpc
-        │   └── script
-        └── model
+        ├── api
+        ├── cronjob
+        ├── model
+        ├── rmq
+        ├── rpc
+        └── script
 ```
 
 # Guess you wants

@@ -10,29 +10,23 @@
 ```text
 .
 ├── afterSale
-│   └── cmd
-│       ├── api
-│       └── rpc
+│   ├── api
+│   └── rpc
 ├── cart
-│   └── cmd
-│       ├── api
-│       └── rpc
+│   ├── api
+│   └── rpc
 ├── order
-│   └── cmd
-│       ├── api
-│       └── rpc
+│   ├── api
+│   └── rpc
 ├── pay
-│   └── cmd
-│       ├── api
-│       └── rpc
+│   ├── api
+│   └── rpc
 ├── product
-│   └── cmd
-│       ├── api
-│       └── rpc
+│   ├── api
+│   └── rpc
 └── user
-    └── cmd
-        ├── api
-        └── rpc
+    ├── api
+    └── rpc
 ```
 
 ## rpc调用链建议
@@ -63,38 +57,32 @@ mall // 工程名称
 ├── go.sum
 └── service // 服务存放目录
     ├── afterSale
-    │   ├── cmd
-    │   │   ├── api
-    │   │   └── rpc
+    │   ├── api
     │   └── model
+    │   └── rpc
     ├── cart
-    │   ├── cmd
-    │   │   ├── api
-    │   │   └── rpc
+    │   ├── api
     │   └── model
+    │   └── rpc
     ├── order
-    │   ├── cmd
-    │   │   ├── api
-    │   │   └── rpc
+    │   ├── api
     │   └── model
+    │   └── rpc
     ├── pay
-    │   ├── cmd
-    │   │   ├── api
-    │   │   └── rpc
+    │   ├── api
     │   └── model
+    │   └── rpc
     ├── product
-    │   ├── cmd
-    │   │   ├── api
-    │   │   └── rpc
+    │   ├── api
     │   └── model
+    │   └── rpc
     └── user
-        ├── cmd
-        │   ├── api
-        │   ├── cronjob
-        │   ├── rmq
-        │   ├── rpc
-        │   └── script
-        └── model
+        ├── api
+        ├── cronjob
+        ├── model
+        ├── rmq
+        ├── rpc
+        └── script
 ```
 
 # 猜你想看
