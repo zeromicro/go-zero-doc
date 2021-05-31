@@ -192,6 +192,20 @@ pipeline {
 > ${credentialsId} should be replaced with your specific credential value, that is, a string of strings in the [Add Credentials] module, ${gitUrl} needs to be replaced with the git warehouse address of your code, other variables in the form of ${xxx} are not required Modify it and keep it as it is.
 > ![user-pipepine-script](./resource/user-pipeline-script.png)
 
+### port.sh 
+```
+case $1 in
+"user-api") echo 1000
+;;
+"user-rpc") echo 1001
+;;
+"course-api") echo 1002
+;;
+"course-rpc") echo 1003
+;;
+"selection-api") echo 1004
+esac
+```
 
 The content of dockerlogin.sh
 

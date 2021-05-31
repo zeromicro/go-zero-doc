@@ -189,6 +189,20 @@ pipeline {
 > ${credentialsId}要替换为你的具体凭据值，即【添加凭据】模块中的一串字符串，${gitUrl}需要替换为你代码的git仓库地址，其他的${xxx}形式的变量无需修改，保持原样即可。
 > ![user-pipepine-script](./resource/user-pipeline-script.png)
 
+### port.sh参考内容如下
+```
+case $1 in
+"user-api") echo 1000
+;;
+"user-rpc") echo 1001
+;;
+"course-api") echo 1002
+;;
+"course-rpc") echo 1003
+;;
+"selection-api") echo 1004
+esac
+```
 
 其中dockerlogin.sh内容
 
