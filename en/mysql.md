@@ -5,7 +5,7 @@
 `go-zero` provides easier operation of `mysql` API.
 
 > [!TIP]
-> But `stores/mysql` positioning is not an `orm` framework. If you need to generate `model` layer code through `sql/scheme` -> `model/struct` reverse engineering, developers can use [goctl model](https://www.yuque.com/tal-tech/go-zero/nkg20f), this is an excellent feature.
+> But `stores/mysql` positioning is not an `orm` framework. If you need to generate `model` layer code through `sql/scheme` -> `model/struct` reverse engineering, developers can use [goctl model](https://go-zero.dev/cn/goctl-model.html), this is an excellent feature.
 
 
 
