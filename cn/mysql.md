@@ -3,7 +3,7 @@
 `go-zero` 提供更易于操作 `mysql` API。
 
 > [!TIP]
-> 但是  `stores/mysql` 定位不是一个 `orm` 框架，如果你需要通过 `sql/scheme` -> `model/struct` 逆向生成 `model` 层代码，开发者可以使用「[goctl model](https://www.yuque.com/tal-tech/go-zero/nkg20f)」，这个是极好的功能。
+> 但是  `stores/mysql` 定位不是一个 `orm` 框架，如果你需要通过 `sql/scheme` -> `model/struct` 逆向生成 `model` 层代码，开发者可以使用「[goctl model](https://go-zero.dev/cn/goctl-model.html)」，这个是极好的功能。
 
 
 
