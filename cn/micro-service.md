@@ -216,21 +216,23 @@ $ mkdir mall && cd mall
   $ vim ~/go-zero-demo/mall/order/api/internal/logic/getorderlogic.go
   ```
   ```go
-  user, err := l.svcCtx.UserRpc.GetUser(l.ctx, &userclient.IdRequest{
-      Id: "1",
-  })
-  if err != nil {
-      return nil, err
-  }
+  func (l *GetOrderLogic) GetOrder(req types.OrderReq) (*types.OrderReply, error) {
+	user, err := l.svcCtx.UserRpc.GetUser(l.ctx, &userclient.IdRequest{
+		Id: "1",
+	})
+	if err != nil {
+		return nil, err
+	}
 
-  if user.Name != "test" {
-      return nil, errors.New("用户不存在")
-  }
+	if user.Name != "test" {
+		return nil, errors.New("用户不存在")
+	}
 
-  return &types.OrderReply{
-      Id:   req.Id,
-      Name: "test order",
-  }, nil
+	return &types.OrderReply{
+		Id:   req.Id,
+		Name: "test order",
+	}, nil
+  }
   ```
 
 ## 启动服务并验证
