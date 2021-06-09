@@ -17,4 +17,4 @@ go-zero截止2021年4月，目前拥有30人的团队开发人员及60+的社区
 我们目前拥有4000多人的社区成员，在这里，你可以和大家讨论任何关于go-zero的技术，问题反馈，获取最新的go-zero信息，以及各位大佬每天分享的技术心得。
 
 ## go-zero社区群
-<img src="https://gitee.com/kevwan/static/raw/master/images/wechat.jpg" width="300" alt="社区群"/>
+<img src="https://raw.githubusercontent.com/tal-tech/zero-doc/main/doc/images/wechat.jpg" width="300" alt="社区群"/>
