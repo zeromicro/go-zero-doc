@@ -14,7 +14,7 @@
 * 变量命名应尽量描述其内容，而不是类型
 * 常量命名应尽量描述其值，而不是如何使用这个值
 * 在遇到for，if等循环或分支时，推荐单个字母命名来标识参数和返回值
-* methed、interface、type、package推荐使用单词命名
+* method、interface、type、package推荐使用单词命名
 * package名称也是命名的一部分，请尽量将其利用起来
 * 使用一致的命名风格
 
