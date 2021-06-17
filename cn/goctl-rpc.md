@@ -165,7 +165,7 @@ OPTIONS:
   replace google.golang.org/grpc => google.golang.org/grpc v1.29.1
   ```
 
-* proto不支持暂多文件同时生成
+* proto暂不支持多文件同时生成
 * proto不支持外部依赖包引入，message不支持inline
 * 目前main文件、shared文件、handler文件会被强制覆盖，而和开发人员手动需要编写的则不会覆盖生成，这一类在代码头部均有
 
