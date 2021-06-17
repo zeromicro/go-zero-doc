@@ -1,6 +1,7 @@
 # Summary
 
 * [简介](README.md)
+* [阅读须知](tips.md)
 * [关于我们](about-us.md)
 * [加入我们](join-us.md)
 * [概念介绍](concept-introduction.md)
@@ -77,5 +78,6 @@
 * [贡献人员](contributor.md)
 * [文档贡献](doc-contibute.md)
 * [常见错误处理](error.md)
+* [FAQ](faq.md)
 * [相关源码](source.md)
 
