@@ -17,7 +17,7 @@ In this chapter, we use a simple example to demonstrate some basic functions in 
 Before officially entering the follow-up document description, you can pay attention to the source code here, and we will perform a progressive demonstration of the function based on this source code.
 Instead of starting from 0 completely, if you come from the [Quick Start](quick-start.md) chapter, this source code structure is not a problem for you.
 
-<a href="https://zeromicro.github.io/go-zero/resource/book.zip">Click Here</a> to download Demo project
+<a href="https://github.com/zeromicro/go-zero-doc/blob/master/en/resource/book.zip">Click Here</a> to download Demo project
 
 ## Demonstration project description
 
