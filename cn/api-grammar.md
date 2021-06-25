@@ -531,7 +531,7 @@ eg2：规范写法（推荐）
 )
 service foo-api{
   @doc "foo"
-  @handler: foo
+  @handler foo
   post /foo/:id (Foo) returns (Bar)
 }
 
@@ -540,7 +540,7 @@ service foo-api{
   get /ping
   
   @doc "foo"
-  @handler: bar
+  @handler bar
   post /bar/:id (Foo)
 }
 
