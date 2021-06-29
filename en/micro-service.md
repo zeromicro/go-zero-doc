@@ -244,8 +244,7 @@ $ mkdir mall && cd mall
   ```text
   Starting rpc server at 127.0.0.1:8080...
   ```
-  > [!TIP]
-  > If you start to report an error like `not enough arguments in call to base.NewBalancerBuilder`, please refer to [Error](error.md)
+  
 * Start order api
   ```shell
   $ go run order.go -f etc/order.yaml

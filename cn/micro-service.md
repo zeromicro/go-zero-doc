@@ -247,8 +247,7 @@ $ mkdir mall && cd mall
   ```text
   Starting rpc server at 127.0.0.1:8080...
   ```
-  > [!TIP]
-  > 如果启动报类似`not enough arguments in call to base.NewBalancerBuilder`的错误，请查阅[常见错误处理](error.md)
+  
 * 启动order api
   ```shell
   $ go run order.go -f etc/order.yaml
