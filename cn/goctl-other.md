@@ -58,7 +58,7 @@ greet
 ```
 * 在 `hello` 目录下一键生成 `Dockerfile`
 ```shell
-$ goctl docker -go greet.go
+$ goctl docker -go hello.go
 ```
 Dockerfile 内容如下：
 ```shell
@@ -84,7 +84,7 @@ Dockerfile 内容如下：
     COPY --from=builder /app/etc /app/etc
     CMD ["./hello", "-f", "etc/hello-api.yaml"]
 ```
-* 在 `greet` 目录下 `build` 镜像
+* 在 `hello` 目录下 `build` 镜像
 ```shell
 $ docker build -t hello:v1 -f service/hello/Dockerfile .
 ```

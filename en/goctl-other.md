@@ -61,7 +61,7 @@ greet
 ```
 * Generate a `Dockerfile` in the `hello` directory
 ```shell
-$ goctl docker -go greet.go
+$ goctl docker -go hello.go
 ```
 Dockerfile:
 ```shell
