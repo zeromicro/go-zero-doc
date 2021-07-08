@@ -29,17 +29,17 @@ go-zero 框架中集成了基于prometheus的服务指标监控，下面我们�
 * go-zero默认不开启prometheus监控，开启方式很简单，只需要在shorturl-api.yaml文件中增加配置如下，其中Host为Prometheus Server地址为必填配置，Port端口不填默认9091，Path为用来拉取指标的路径默认为/metrics
     ```yaml
     Prometheus:
-    Host: 127.0.0.1
-    Port: 9091
-    Path: /metrics
+      Host: 127.0.0.1
+      Port: 9091
+      Path: /metrics
     ```
 
 * 编辑prometheus的配置文件prometheus.yml，添加如下配置，并创建targets.json
     ```yaml
     - job_name: 'file_ds'
-    file_sd_configs:
-    - files:
-      - targets.json
+      file_sd_configs:
+      - files:
+        - targets.json
     ```
 * 编辑targets.json文件，其中targets为shorturl配置的目标地址，并添加了几个默认的标签
     ```yaml

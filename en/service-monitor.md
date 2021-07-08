@@ -32,17 +32,17 @@ The go-zero framework integrates prometheus-based service indicator monitoring. 
 * go-zero does not enable prometheus monitoring by default. The opening method is very simple. You only need to add the following configuration to the shorturl-api.yaml file, where Host is the Prometheus Server address, which is a required configuration, the Port port is not filled in and the default is 9091, and the Path is used The path to pull metrics is /metrics by default
     ```yaml
     Prometheus:
-    Host: 127.0.0.1
-    Port: 9091
-    Path: /metrics
+      Host: 127.0.0.1
+      Port: 9091
+      Path: /metrics
     ```
 
 * Edit the prometheus configuration file prometheus.yml, add the following configuration, and create targets.json
     ```yaml
     - job_name: 'file_ds'
-    file_sd_configs:
-    - files:
-      - targets.json
+      file_sd_configs:
+      - files:
+        - targets.json
     ```
 * Edit the targets.json file, where targets is the target address configured by shorturl, and add several default tags
     ```yaml
