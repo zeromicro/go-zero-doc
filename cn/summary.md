@@ -50,6 +50,7 @@
   * [model命令](goctl-model.md)
   * [plugin命令](goctl-plugin.md)
   * [其他命令](goctl-other.md)
+* [自定义模板](template.md)
 * [组件中心](component-center.md)
     * [logx](logx.md)
     * [bloom](bloom.md)
