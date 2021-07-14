@@ -137,18 +137,18 @@ func GreetHandler(ctx *svc.ServiceContext) http.HandlerFunc {
 * Before
 ```json
 {
-  "message": "Hello go-zero!"
+    "message": "Hello go-zero!"
 }
 ```
 
 * After
 ```json
 {
-  "code": 0,
-  "msg": "OK",
-  "data": {
-    "message": "Hello go-zero!"
-  }
+    "code": 0,
+    "msg": "OK",
+    "data": {
+        "message": "Hello go-zero!"
+    }
 }
 ```
 
