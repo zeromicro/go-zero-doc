@@ -6,9 +6,7 @@ Implement a uniformly formatted body accordingly, in the following format.
 {
   "code": 0,
   "msg": "OK",
-  "data": {
-
-  }
+  "data": {}
 }
 ```
 
