@@ -3,7 +3,7 @@
 > This document is machine-translated by Google. If you find grammatical and semantic errors, and the document description is not clear, please [PR](doc-contibute.md)
 
 
-![goctl](https://zeromicro.github.io/go-zero/resource/goctl.png)
+![goctl](https://zeromicro.github.io/go-zero/resource/goctl-command.png)
 
 # goctl
 
