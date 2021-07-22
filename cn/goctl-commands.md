@@ -1,5 +1,5 @@
 # goctl命令大全
-![goctl](https://zeromicro.github.io/go-zero/resource/goctl-command.png)
+![goctl](https://zeromicro.github.io/go-zero/cn/resource/goctl-command.png)
 
 # goctl
 
