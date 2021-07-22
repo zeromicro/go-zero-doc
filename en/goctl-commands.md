@@ -219,7 +219,18 @@
           (Whether the generated code has redis cache logic, bool value)
         - -idea
           (Identifies whether the command comes from the idea plug-in and is used for the development and use of the idea plug-in. Please ignore the terminal execution [optional])
+- mongo
+  (generate model code from mongo)
 
+  -type,t
+  (specify Go Type name)
+  -cache,c
+  (generate code with redis cache logic or not, bool value, default no)
+  -dir,d
+  (specify the code generation directory)
+  -style
+  (specify filename naming style, gozero:lowercase, go_zero:underscore, GoZero:hump)
+      
 ## upgrade
 Goctl updated to the latest version
 
