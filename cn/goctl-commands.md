@@ -1,5 +1,5 @@
 # goctl命令大全
-![goctl](https://zeromicro.github.io/go-zero/resource/goctl.png)
+![goctl](https://zeromicro.github.io/go-zero/cn/resource/goctl-command.png)
 
 # goctl
 
@@ -158,7 +158,7 @@
 - -style
   (指定文件名命名风格，gozero:小写，go_zero:下划线,GoZero:驼峰)
 
-### templae
+### template
 (创建一个proto模板文件)
 
 - -idea
@@ -217,7 +217,18 @@
           (生成代码是否带redis缓存逻辑，bool值)
         - -idea
           (标识命令是否来源于idea插件，用于idea插件开发使用，终端执行请忽略[可选参数])
+- mongo
+  (从mongo生成model代码)
 
+    - -type,t
+      (指定Go Type名称)
+    - -cache,c
+      (生成代码是否带redis缓存逻辑，bool值，默认否)
+    - -dir,d
+      (指定代码生成目录)
+    - -style
+      (指定文件名命名风格，gozero:小写，go_zero:下划线,GoZero:驼峰)
+      
 ## upgrade
 goctl更新到最新版本
 
