@@ -18,6 +18,10 @@ Here we take the `search` service as an example to demonstrate the use of middle
     $ vim search.api
     ```
     ```text
+    type SearchReq struct {}
+  
+    type SearchReply struct {}
+  
     @server(
         jwt: Auth
         middleware: Example // Routing middleware declaration
@@ -67,9 +71,22 @@ Here we take the `search` service as an example to demonstrate the use of middle
     $ vim service/search/cmd/api/internal/middleware/examplemiddleware.go
     ```
     ```go
+    package middleware
+
+    import "net/http"
+    
+    type ExampleMiddleware struct {
+    }
+    
+    func NewExampleMiddleware() *ExampleMiddleware {
+            return &ExampleMiddleware{}
+    }
+    
     func (m *ExampleMiddleware) Handle(next http.HandlerFunc) http.HandlerFunc {
         return func(w http.ResponseWriter, r *http.Request) {
-            logx.Info("example middle")
+            // TODO generate middleware implement function, delete after code implementation
+    
+            // Passthrough to next handler if need
             next(w, r)
         }
     }
