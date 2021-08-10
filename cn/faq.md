@@ -29,4 +29,7 @@
 1. api中间件怎么使用
    > 请参考[中间件](middleware.md)
 
+1. 怎么关闭输出的统计日志(stat)？
+   > logx.DisableStat()
+
 faq会不定期更新大家遇到的问题，也欢迎大家把常见问题通过pr写在这里。
