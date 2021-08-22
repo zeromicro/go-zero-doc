@@ -237,7 +237,7 @@ type Response {
 @server(
     group: user
 )
-service user-api {
+service datacenter-api {
     @handler ping
     post /user/ping ()
     
@@ -258,7 +258,7 @@ service user-api {
     group: user
     middleware: Usercheck
 )
-service user-api {
+service datacenter-api {
     @handler userInfo
     get /user/dc/info (UserReq) returns (UserReply)
 }
@@ -319,7 +319,7 @@ type EnrollResp struct {
 @server(
     group: votes
 )
-service votes-api {
+service datacenter-api {
     @doc(
         summary: "获取活动的信息"
     )
@@ -347,7 +347,7 @@ service votes-api {
     group: votes
     middleware: Usercheck
 )
-service votes-api {
+service datacenter-api {
     @doc(
         summary: "投票"
     )
