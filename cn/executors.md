@@ -1,6 +1,6 @@
 # executors
 
-在 `go-zero` 中，`executors` 充当任务池，做多任务缓冲，使用做批量处理的任务。如：`clickhouse` 大批量 `insert`，`sql batch insert`。同时也可以在 `go-queue` 也可以看到 `executors` 【在 `queue` 里面使用的是 `ChunkExecutor` ，限定任务提交字节大小】。
+在 `go-zero` 中，`executors` 充当任务池，做多任务缓冲，适用于做批量处理的任务。如：`clickhouse` 大批量 `insert`，`sql batch insert`。同时也可以在 `go-queue` 中看到 `executors` 【在 `queue` 里面使用的是 `ChunkExecutor` ，限定任务提交字节大小】。
 
 所以当你存在以下需求，都可以使用这个组件：
 
@@ -27,7 +27,7 @@
 
 
 
-你会看到除了有特殊功能的的 `delay`，`less` ，其余3个都是 `executor` + `container` 的组合设计：
+你会看到除了有特殊功能的 `delay`，`less` ，其余 3 个都是 `executor` + `container` 的组合设计：
 
 
 ```go
@@ -77,7 +77,7 @@ TaskContainer interface {
 
 
 > [!TIP]
-> 所以你想完成自己的 `executor`，可以实现 `container` 的这3个接口，再结合 `periodicalexecutor` 就行
+> 所以你想完成自己的 `executor`，可以实现 `container` 的这 3 个接口，再结合 `periodicalexecutor` 就行
 
 所以回到👆那张图，我们的重点就放在 `periodicalexecutor`，看看它是怎么设计的？
 
@@ -113,7 +113,7 @@ func (dts *DailyTask) Init() {
 ```
 
 > [!TIP]
-> 额外介绍一下：`clickhouse`  适合大批量的插入，因为insert速度很快，大批量insert更能充分利用clickhouse
+> 额外介绍一下：`clickhouse`  适合大批量的插入，因为 insert 速度很快，大批量 insert 更能充分利用 clickhouse
 
 
 主体业务逻辑编写：
@@ -149,12 +149,12 @@ func (dts *DailyTask) insertNewData(ch chan interface{}, sqlFromDb *model.Task) 
 > [!TIP]
 > 可能会疑惑为什么要 `Flush(), Wait()` ，后面会通过源码解析一下
 
-使用上总体上3步：
+使用上总体分为 3 步：
 
 
-- `Add()`：加入task
-- `Flush()`：刷新 `container` 中的task
-- `Wait()`：等待全部的task执行完成
+- `Add()`：加入 task
+- `Flush()`：刷新 `container` 中的 task
+- `Wait()`：等待全部 task 执行完成
 
 
 
@@ -187,7 +187,7 @@ func New...(interval time.Duration, container TaskContainer) *PeriodicalExecutor
 - `commander`：传递 `tasks` 的 channel
 - `container`：暂存 `Add()` 的 task
 - `confirmChan`：阻塞 `Add()` ，在开始本次的 `executeTasks()` 会放开阻塞
-- `ticker`：定时器，防止 `Add()` 阻塞时，会有一个定时执行的机会，及时释放暂存的task
+- `ticker`：定时器，防止 `Add()` 阻塞时，会有一个定时执行的机会，及时释放暂存的 task
 
 
 
@@ -227,10 +227,10 @@ func (pe *PeriodicalExecutor) addAndCheck(task interface{}) (interface{}, bool) 
 }
 ```
 
-`addAndCheck()` 中 `AddTask()` 就是在控制最大 tasks 数，如果超过就执行 `RemoveAll()` ，将暂存 `container` 的tasks pop，传递给 `commander` ，后面有goroutine循环读取，然后去执行 tasks。
+`addAndCheck()` 中 `AddTask()` 就是在控制最大 tasks 数，如果超过就执行 `RemoveAll()` ，将暂存 `container` 的 tasks pop，传递给 `commander` ，后面有 goroutine 循环读取，然后去执行 tasks。
 
 ### backgroundFlush()
-开启一个后台协程，对 `container` 中的task，不断刷新：
+开启一个后台协程，对 `container` 中的 task，不断刷新：
 
 ```go
 func (pe *PeriodicalExecutor) backgroundFlush() {
@@ -277,8 +277,8 @@ func (pe *PeriodicalExecutor) backgroundFlush() {
 
 总体两个过程：
 
-- `commander` 接收到 `RemoveAll()` 传递来的tasks，然后做执行，并放开 `Add()` 的阻塞，得以继续 `Add()`
-- `ticker` 到时间了，如果第一步没有执行，则自动 `Flush()` ，也会去做task的执行
+- `commander` 接收到 `RemoveAll()` 传递来的 tasks，然后执行，并放开 `Add()` 的阻塞，得以继续 `Add()`
+- `ticker` 到时间了，如果第一步没有执行，则自动 `Flush()` ，也会去做 task 的执行
 
 ### Wait()
 在 `backgroundFlush()` ，提到一个函数：`enterExecution()`：
@@ -296,7 +296,7 @@ func (pe *PeriodicalExecutor) Wait() {
 	})
 }
 ```
-这样列举就知道为什么之前为什么在最后要带上 `dts.insertExecutor.Wait()`，当然要等待全部的 `goroutine task` 完成。
+这样列举就知道为什么之前在最后要带上 `dts.insertExecutor.Wait()`，当然要等待全部的 `goroutine task` 完成。
 
 ## 思考
 在看源码中，思考了一些其他设计上的思路，大家是否也有类似的问题：
@@ -306,10 +306,10 @@ func (pe *PeriodicalExecutor) Wait() {
 > [!TIP]
 > `go test` 存在竞态，使用加锁来避免这种情况
 
-- 在分析 `confirmChan` 发现，在此次[提交](https://github.com/tal-tech/go-zero/commit/9d9399ad1014c171cc9bd9c87f78b5d2ac238ce4)才出现，为什么会这么设计？
+- 在分析 `confirmChan` 时发现，`confirmChan` 在此次[提交](https://github.com/tal-tech/go-zero/commit/9d9399ad1014c171cc9bd9c87f78b5d2ac238ce4)才出现，为什么会这么设计？
 
 > 之前是：`wg.Add(1)` 是写在 `executeTasks()` ；现在是：先`wg.Add(1)`，再放开 `confirmChan` 阻塞
-> 如果 `executor func` 执行阻塞，`Add task` 还在进行，因为没有阻塞，可能很快执行到 `Executor.Wait()`，这是就会出现 `wg.Wait()` 在 `wg.Add()` 前执行，这会 `panic`
+> 如果 `executor func` 执行阻塞，`Add task` 还在进行，因为没有阻塞，可能很快执行到 `Executor.Wait()`，这时就会出现 `wg.Wait()` 在 `wg.Add()` 前执行，这会 `panic`
 
 具体可以看最新版本的`TestPeriodicalExecutor_WaitFast()` ，不妨跑在此版本上，就可以重现
 
