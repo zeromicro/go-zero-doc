@@ -14,7 +14,7 @@ protoc是一款用C++编写的工具，其可以将proto文件翻译为指定语
     ```shell
     $ cd protoc-3.14.0-osx-x86_64/bin
     ```
-* 将启动的`protoc`二进制文件移动到被添加到环境变量的任意path下，如`$GOPATH/bin`，这里不建议直接将其和系统的一下path放在一起。
+* 将启动的`protoc`二进制文件移动到被添加到环境变量的任意path下，如`$GOPATH/bin`，这里不建议直接将其和系统的以下path放在一起。
     ```shell
     $ mv protoc $GOPATH/bin
     ```
