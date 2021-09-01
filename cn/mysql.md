@@ -1,15 +1,15 @@
 # mysql
 
-`go-zero` 提供更易于操作 `mysql` API。
+`go-zero` 提供更易于操作的 `mysql` API。
 
 > [!TIP]
-> 但是  `stores/mysql` 定位不是一个 `orm` 框架，如果你需要通过 `sql/scheme` -> `model/struct` 逆向生成 `model` 层代码，开发者可以使用「[goctl model](https://go-zero.dev/cn/goctl-model.html)」，这个是极好的功能。
+> 但是 `stores/mysql` 定位不是一个 `orm` 框架，如果你需要通过 `sql/scheme` -> `model/struct` 逆向生成 `model` 层代码，可以使用「[goctl model](https://go-zero.dev/cn/goctl-model.html)」，这个是极好的功能。
 
 
 
 ## Feature
 
-- 相比原生，提供开发者更友好的API
+- 相比原生，提供对开发者更友好的 API
 - 完成 `queryField -> struct` 的自动赋值
 - 批量插入「bulkinserter」
 - 自带熔断
@@ -19,7 +19,7 @@
 
 
 ## Connection
-下面用一个例子简单说明一下如何创建一个 `mysql` 连接的model：
+下面用一个例子简单说明一下如何创建一个 `mysql` 连接的 model：
 ```go
 // 1. 快速连接一个 mysql
 // datasource: mysql dsn
@@ -81,14 +81,14 @@ func (um *UserModel) Insert(user *User) (int64, error) {
 ```
 
 - 拼接 `insertsql`
-- 将 `insertsql` 以及 占位符对应的 `struct field` 传入 -> `con.Exex(insertsql, field...)`
+- 将 `insertsql` 以及占位符对应的 `struct field` 传入 -> `con.Exex(insertsql, field...)`
 
 
 > [!WARNING]
-> `conn.Exec(sql, args...)` ： `args...` 需对应 `sql` 中占位符。不然会出现赋值异常的问题。
+> `conn.Exec(sql, args...)` ： `args...` 需对应 `sql` 中的占位符。不然会出现赋值异常的问题。
 
 
-`go-zero` 将涉及 `mysql` 修改的操作统一抽象为 `Exec()` 。所以 `insert/update/delete` 操作本质上一致的。其余两个操作，开发者按照上述 `insert` 流程尝试即可。
+`go-zero` 将涉及 `mysql` 修改的操作统一抽象为 `Exec()` 。所以 `insert/update/delete` 操作本质上是一致的。其余两个操作，开发者按照上述 `insert` 流程尝试即可。
 
 
 ### query
