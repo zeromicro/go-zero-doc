@@ -87,12 +87,12 @@ $ mkdir mall && cd mall
     package logic
 
     import (
-        "context"
-      
-        "go-zero-demo/mall/user/internal/svc"
-        "go-zero-demo/mall/user/user"
-    
-        "github.com/tal-tech/go-zero/core/logx"
+    	"context"
+
+	"go-zero-demo/mall/user/rpc/internal/svc"
+	"go-zero-demo/mall/user/rpc/user"
+
+	"github.com/tal-tech/go-zero/core/logx"
     )
     
     type GetUserLogic struct {
@@ -115,6 +115,23 @@ $ mkdir mall && cd mall
             Name: "test",
         }, nil
     }
+    ```
+
+* 修改配置
+
+    ```shell
+    $ vim internal/config/config.go
+    ```
+    ```go
+	package config
+
+	import (
+		"github.com/tal-tech/go-zero/zrpc"
+	)
+
+	type Config struct {
+		zrpc.RpcServerConf
+	}
     ```
 
 ## 创建order api服务
