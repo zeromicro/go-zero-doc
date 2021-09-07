@@ -63,8 +63,16 @@ $ cat id_rsa
 
 #### 2.2、 Add global variables
 Enter `Manage Jenkins`->`Configure System`, slide to the entry of `Global Properties`, add docker private warehouse related information, as shown in the figure is `docker username`, `docker user password`, `docker private warehouse address`
+![docker_server](./resource/docker_env.png)
 
 > [!TIP]
+> 
+>  `docker_user` your docker username
+>
+> `docker_pass` your docker user password
+>
+> `docker_server` your docker server
+> 
 > The private warehouse I use here, if you don’t use the private warehouse provided by the cloud vendor, you can build a private warehouse yourself. I won’t go into details here, and you can google it yourself.
 
 #### 2.3、Configure git

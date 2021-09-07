@@ -60,8 +60,16 @@ $ cat id_rsa
 
 #### 2.2、 添加全局变量
 进入`Manage Jenkins`->`Configure System`，滑动到`全局属性`条目，添加docker私有仓库相关信息，如图为`docker用户名`、`docker用户密码`、`docker私有仓库地址`
+![docker_server](./resource/docker_env.png)
 
 > [!TIP]
+> 
+> `docker_user` 修改为你的docker用户名
+> 
+> `docker_pass` 修改为你的docker用户密码
+> 
+> `docker_server` 修改为你的docker服务器地址
+> 
 > 这里我使用的私有仓库，如果没有云厂商提供的私有仓库使用，可以自行搭建一个私有仓库，这里就不赘述了，大家自行google。
 
 #### 2.3、配置git

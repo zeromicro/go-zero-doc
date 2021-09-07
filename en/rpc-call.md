@@ -40,6 +40,9 @@ From the above information, we can know that the user service needs to provide a
     $ cd service/user/cmd/rpc
     $ goctl rpc proto -src user.proto -dir .
     ```
+  
+> [!TIPS]
+> If the installed version of `protoc-gen-go` is larger than 1.4.0, it is recommended to add `go_package` to the proto file
 
 * Add configuration and improve yaml configuration items
     ```shell

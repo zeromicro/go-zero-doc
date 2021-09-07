@@ -37,6 +37,8 @@
     $ cd service/user/cmd/rpc
     $ goctl rpc proto -src user.proto -dir .
     ```
+> [!TIPS]
+> 如果安装的 `protoc-gen-go` 版大于1.4.0, proto文件建议加上`go_package`
 
 * 添加配置及完善yaml配置项
     ```shell
