@@ -13,7 +13,7 @@ cd ./doc
 echo $PWD
 echo "document clone..."
 git clone ${REPO}
-cd go-zero
+cd go-zero-pages
 rm -rf ./*
 cp -rf ../../_book/* .
 git add ./*
