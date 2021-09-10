@@ -1,6 +1,6 @@
 #!/bin/bash
 ACCESSTOKEN=$1
-REPO="https://x-access-token:${ACCESSTOKEN}@github.com/zeromicro/go-zero.git"
+REPO="https://x-access-token:${ACCESSTOKEN}@github.com/zeromicro/go-zero-pages.git"
 
 # git 配置
 echo "git基础配置"
