@@ -44,8 +44,8 @@ Done.
 
 Right-click on the `user.api` file, and then click to enter `New`->`Go Zero`->`Api Code`, enter the target directory selection, that is, the target storage directory of the api source code, the default is the directory where user.api is located, select Click OK after finishing the list.
 
-![ApiGeneration](https://zeromicro.github.io/go-zero/resource/goctl-api.png)
-![ApiGenerationDirectorySelection](https://zeromicro.github.io/go-zero/resource/goctl-api-select.png)
+![ApiGeneration](https://zeromicro.github.io/go-zero-pages/resource/goctl-api.png)
+![ApiGenerationDirectorySelection](https://zeromicro.github.io/go-zero-pages/resource/goctl-api-select.png)
 
 ### By Keymap
 

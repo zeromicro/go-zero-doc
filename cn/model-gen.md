@@ -34,7 +34,7 @@ Done.
 在Goland中，右键`user.sql`，依次进入并点击`New`->`Go Zero`->`Model Code`即可生成，或者打开`user.sql`文件，
 进入编辑区，使用快捷键`Command+N`（for mac OS）或者 `alt+insert`（for windows），选择`Mode Code`即可
 
-![model生成](https://zeromicro.github.io/go-zero/resource/intellij-model.png)
+![model生成](https://zeromicro.github.io/go-zero-pages/resource/intellij-model.png)
 
 > [!TIP]
 > intellij插件生成需要安装goctl插件，详情见[intellij插件](intellij.md)

@@ -9,7 +9,7 @@ go-zero is a web and rpc framework that integrates various engineering practices
 go-zero contains a minimalist API definition and generation tool goctl, which can generate Go, iOS, Android, Kotlin, Dart, TypeScript, JavaScript code with one click according to the defined api file, and run it directly.
 
 ## Go-Zero's Author
-[<img src="https://zeromicro.github.io/go-zero/resource/author.jpeg" width="80px" height="80px" alt="kevwan"/>](https://github.com/kevwan)
+[<img src="https://zeromicro.github.io/go-zero-pages/resource/author.jpeg" width="80px" height="80px" alt="kevwan"/>](https://github.com/kevwan)
 
 **kevwan** is the XiaoHeiBan’s R&D person in charge and a senior technical expert in TAL, whhas 14 years of R&D team management experience, 16 years of architecture design experience, 20 years of engineering practical experience, responsible for the architecture design of many large-scale projects, and has been in partnership for many times (acquired ), Lecturer of Gopher China Conference, Lecturer of Tencent Cloud Developer Conference.
 

@@ -201,7 +201,7 @@ GO111MODULE=on GOPROXY=https://goproxy.cn/,direct go get -u github.com/tal-tech/
 
 `go-zero` 相关文章都会在 `微服务实践` 公众号整理呈现，欢迎扫码关注，也可以通过公众号私信我 👏
 
-<img src="https://zeromicro.github.io/go-zero/resource/go-zero-practise.png" alt="wechat" width="300" />
+<img src="https://zeromicro.github.io/go-zero-pages/resource/go-zero-practise.png" alt="wechat" width="300" />
 
 ## 9. 微信交流群
 

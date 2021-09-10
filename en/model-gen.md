@@ -38,7 +38,7 @@ Done.
 In Goland, right-click `user.sql`, enter and click `New`->`Go Zero`->`Model Code` to generate it, or open the `user.sql` file,
 Enter the editing area, use the shortcut key `Command+N` (for macOS) or `alt+insert` (for windows), select `Mode Code`.
 
-![model generation](https://zeromicro.github.io/go-zero/resource/intellij-model.png)
+![model generation](https://zeromicro.github.io/go-zero-pages/resource/intellij-model.png)
 
 > [!TIP]
 > The intellij plug-in generation needs to install the goctl plug-in, see [intellij plugin](intellij.md) for details
