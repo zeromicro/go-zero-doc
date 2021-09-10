@@ -39,7 +39,7 @@ Done.
 
 ### 方式二
 
-在`user.api`文件右键，依次点击进入`New`->`Go Zero`->`Api Code`，进入目标目录选择，即api源码的目标存放目录，默认为user.api所在目录，选择好目录后点击OK即可。
+在 `user.api` 文件右键，依次点击进入 `New`->`Go Zero`->`Api Code` ，进入目标目录选择，即api源码的目标存放目录，默认为user.api所在目录，选择好目录后点击OK即可。
 ![api生成](https://zeromicro.github.io/go-zero/resource/goctl-api.png)
 ![api生成目录选择](https://zeromicro.github.io/go-zero/resource/goctl-api-select.png)
 
