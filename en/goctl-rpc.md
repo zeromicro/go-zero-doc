@@ -86,6 +86,8 @@ rpc one-click generation to solve common problems, see [Error](error.md)
 
   package remote;
 
+  option go_package = "remote";
+  
   message Request {
     string username = 1;
     string password = 2;
@@ -177,6 +179,8 @@ syntax = "proto3";
 
 package greet;
 
+option go_package = "greet";
+
 import "base/common.proto"
 
 message Request {
@@ -199,6 +203,8 @@ service Greet {
 syntax = "proto3";
 
 package greet;
+
+option go_package = "greet";
 
 import "base/common.proto"
 

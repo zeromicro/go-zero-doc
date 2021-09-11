@@ -84,6 +84,8 @@ rpc一键生成常见问题解决，见[常见错误处理](error.md)
 
   package remote;
 
+  option go_package = "remote";
+  
   message Request {
     // 用户名
     string username = 1;
@@ -181,6 +183,8 @@ syntax = "proto3";
 
 package greet;
 
+option go_package = "greet";
+
 import "base/common.proto"
 
 message Request {
@@ -203,6 +207,8 @@ service Greet {
 syntax = "proto3";
 
 package greet;
+
+option go_package =  "greet";
 
 import "base/common.proto"
 

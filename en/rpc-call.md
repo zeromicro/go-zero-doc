@@ -20,6 +20,8 @@ From the above information, we can know that the user service needs to provide a
     
     package user;
     
+    option go_package = "user";
+  
     message IdReq{
       int64 id = 1;
     }

@@ -503,6 +503,8 @@ common.proto
 ➜  rpc cat common.proto
 syntax = "proto3";
 
+option go_package = "common";
+
 package common;
 
 

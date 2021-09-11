@@ -17,6 +17,8 @@
     
     package user;
     
+    option go_package = "user";
+  
     message IdReq{
       int64 id = 1;
     }

@@ -508,6 +508,7 @@ syntax = "proto3";
 
 package common;
 
+option go_package = "common";
 
 message BaseAppReq{
   int64 beid=1;

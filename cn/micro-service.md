@@ -52,6 +52,8 @@ $ mkdir mall && cd mall
 
     package user;
     
+    option go_package = "user";
+  
     message IdRequest {
         string id = 1;
     }
