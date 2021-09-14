@@ -36,7 +36,7 @@
 ## datacenter-api服务
 
 
-先看官方文档 [https://www.yuque.com/tal-tech/go-zero/yaoehb](https://www.yuque.com/tal-tech/go-zero/yaoehb)
+先看官方文档 [https://go-zero.dev/cn/](https://go-zero.dev/cn/)
 
 我们先把网关搭建起来：
 
@@ -68,6 +68,10 @@ Done.
 ➜  datacenter tree
 .
 ├── datacenter.api
+├── user.api  #用户
+├── votes.api #投票
+├── search.api #搜索
+├── questions.api #问答
 └── go.mod
 ```
 
@@ -77,287 +81,418 @@ Done.
 
 分别包含了上面的 **公共服务**，**用户服务**，**投票活动服务**
 
+datacenter.api的内容:
 
 ```
 info(
-    title: "中台系统"
-    desc: "中台系统"
-    author: "jackluo"
-    email: "net.webjoy@gmail.com"
+	title: "中台系统"// TODO: add title
+	desc: "中台系统"// TODO: add description
+	author: "jackluo"
+	email: "net.webjoy@gmail.com"
 )
 
-// 获取 应用信息
-type Beid struct {
-    Beid int64 `json:"beid"`
+import "user.api"
+import "votes.api"
+import "search.api"
+import "questions.api"
+
+//获取 应用信息
+type Beid {
+	Beid int64 `json:"beid"`
 }
-type Token struct{
-    Token string `json:"token"`
+type Token {
+	Token string `json:"token"`
 }
-type WxTicket struct{
-    Ticket string `json:"ticket"`
+type WxTicket {
+	Ticket string `json:"ticket"`
 }
-type Application struct {
-    Sname string `json:"Sname"` //名称
-    Logo string `json:"logo"` // login
-    Isclose int64 `json:"isclose"` //是否关闭
-    Fullwebsite string `json:"fullwebsite"` // 全站名称
+type Application {
+	Sname       string `json:"Sname"`       //名称
+	Logo        string `json:"logo"`        // login
+	Isclose     int64  `json:"isclose"`     //是否关闭
+	Fullwebsite string `json:"fullwebsite"` // 全站名称
 }
-type SnsReq struct{
-    Beid
-    Ptyid int64  `json:"ptyid"` //对应平台
-    BackUrl string `json:"back_url"` //登陆返回的地址
+type SnsReq {
+	Beid
+	Ptyid   int64  `json:"ptyid"`    //对应平台
+	BackUrl string `json:"back_url"` //登陆返回的地址
 }
-type SnsResp struct{
-    Beid
-    Ptyid int64  `json:"ptyid"` //对应平台
-    Appid string  `json:"appid"` //sns 平台的id
-    Title string  `json:"title"` //名称
-    LoginUrl string `json:"login_url"` //微信登陆的地址
+type SnsResp {
+	Beid
+	Ptyid    int64  `json:"ptyid"`     //对应平台
+	Appid    string `json:"appid"`     //sns 平台的id
+	Title    string `json:"title"`     //名称
+	LoginUrl string `json:"login_url"` //微信登陆的地址
 }
 
-type WxShareResp struct {
-    Appid string `json:"appid"`
-    Timestamp int64 `json:"timestamp"`
-    Noncestr string `json:"noncestr"`
-    Signature string `json:"signature"`
+type WxShareResp {
+	Appid     string `json:"appid"`
+	Timestamp int64  `json:"timestamp"`
+	Noncestr  string `json:"noncestr"`
+	Signature string `json:"signature"`
 }
 
 @server(
-    group: common
+	group: common
 )
 service datacenter-api {
-    @doc(
-        summary: "获取站点的信息"
-    )
-    @handler votesVerification
-    get /MP_verify_NT04cqknJe0em3mT.txt (SnsReq) returns (SnsResp)
-    
-    @handler appInfo
-    get /common/appinfo (Beid) returns (Application)
-    
-    @doc(
-        summary: "获取站点的社交属性信息"
-    )
-    @handler snsInfo
-    post /common/snsinfo (SnsReq) returns (SnsResp)
-    // 获取分享的
-    @handler wxTicket
-    post /common/wx/ticket (SnsReq) returns (WxShareResp)
-    
+	@doc(
+		summary: "获取站点的信息"
+	)
+	@handler appInfo
+	get /common/appinfo (Beid) returns (Application)
+	@doc(
+		summary: "获取站点的社交属性信息"
+	)
+	@handler snsInfo
+	post /common/snsinfo (SnsReq) returns (SnsResp)
+	
+	//获取分享的
+	@handler wxTicket
+	post /common/wx/ticket (SnsReq) returns (WxShareResp)
+	
 }
 
-// 上传需要登陆
+//上传需要登陆
 @server(
-    jwt: Auth
-    group: common
+	jwt: Auth
+	group: common
 )
 service datacenter-api {
-    @doc(
-        summary: "七牛上传凭证"
-    )
-    @handler qiuniuToken
-    post /common/qiuniu/token (Beid) returns (Token)
+	@doc(
+		summary: "七牛上传凭证"
+	)
+	@handler qiuniuToken
+	post /common/qiuniu/token (Beid) returns (Token)
 }
+```
+user.api内容
 
-// 注册请求
+```
+//注册请求
 type RegisterReq struct {
-    // TODO: add members here and delete this comment
-    Mobile   string `json:"mobile"` // 基本一个手机号码就完事
-    Password string `json:"password"`
-    Smscode    string `json:"smscode"` // 短信码
+	// TODO: add members here and delete this comment
+	Mobile   string `json:"mobile"` //基本一个手机号码就完事
+	Password string `json:"password"`
+	Smscode	string `json:"smscode"` //短信码
 }
-// 登陆请求
+//登陆请求
 type LoginReq struct{
-    Mobile   string `json:"mobile"`
-    Type int64 `json:"type"`    // 1.密码登陆，2.短信登陆
-    Password string `json:"password"`
+	Mobile   string `json:"mobile"`
+	Type int64 `json:"type"`	//1.密码登陆，2.短信登陆
+	Password string `json:"password"`
 }
-// 微信登陆
+//微信登陆
 type WxLoginReq struct {
-    Beid      int64  `json:"beid"` // 应用id
-    Code string `json:"code"` // 微信登陆密钥
-    Ptyid      int64  `json:"ptyid"` // 对应平台
+	Beid	  int64  `json:"beid"` //应用id
+	Code string `json:"code"` //微信登陆密钥
+	Ptyid	  int64  `json:"ptyid"` //对应平台
 }
 
 //返回用户信息
 type UserReply struct {
-    Auid       int64  `json:"auid"`
-    Uid       int64  `json:"uid"`
-    Beid      int64  `json:"beid"` // 应用id
-    Ptyid      int64  `json:"ptyid"` // 对应平台
-    Username string `json:"username"`
-    Mobile   string `json:"mobile"`
-    Nickname string `json:"nickname"`
-    Openid string `json:"openid"`
-    Avator string `json:"avator"`
-    JwtToken
+	Auid       int64  `json:"auid"`
+	Uid       int64  `json:"uid"`
+	Beid	  int64  `json:"beid"` //应用id
+	Ptyid	  int64  `json:"ptyid"` //对应平台
+	Username string `json:"username"`
+	Mobile   string `json:"mobile"`
+	Nickname string `json:"nickname"`
+	Openid string `json:"openid"`
+	Avator string `json:"avator"`
+	JwtToken
 }
-// 返回APPUser
+//返回APPUser
 type AppUser struct{
-    Uid       int64  `json:"uid"`
-    Auid       int64  `json:"auid"`
-    Beid      int64  `json:"beid"` // 应用id
-    Ptyid      int64  `json:"ptyid"` // 对应平台
-    Nickname string `json:"nickname"`
-    Openid string `json:"openid"`
-    Avator string `json:"avator"`
+	Uid       int64  `json:"uid"`
+	Auid       int64  `json:"auid"`
+	Beid	  int64  `json:"beid"` //应用id
+	Ptyid	  int64  `json:"ptyid"` //对应平台
+	Nickname string `json:"nickname"`
+	Openid string `json:"openid"`
+	Avator string `json:"avator"`
 }
 
 type LoginAppUser struct{
-    Uid       int64  `json:"uid"`
-    Auid       int64  `json:"auid"`
-    Beid      int64  `json:"beid"` // 应用id
-    Ptyid      int64  `json:"ptyid"` // 对应平台
-    Nickname string `json:"nickname"`
-    Openid string `json:"openid"`
-    Avator string `json:"avator"`
-    JwtToken
+	Uid       int64  `json:"uid"`
+	Auid       int64  `json:"auid"`
+	Beid	  int64  `json:"beid"` //应用id
+	Ptyid	  int64  `json:"ptyid"` //对应平台
+	Nickname string `json:"nickname"`
+	Openid string `json:"openid"`
+	Avator string `json:"avator"`
+	JwtToken
 }
 
 type JwtToken struct {
-    AccessToken  string `json:"access_token,omitempty"`
-    AccessExpire int64  `json:"access_expire,omitempty"`
-    RefreshAfter int64  `json:"refresh_after,omitempty"`
+	AccessToken  string `json:"access_token,omitempty"`
+	AccessExpire int64  `json:"access_expire,omitempty"`
+	RefreshAfter int64  `json:"refresh_after,omitempty"`
 }
 
 type UserReq struct{
-    Auid       int64  `json:"auid"`
-    Uid       int64  `json:"uid"`
-    Beid      int64  `json:"beid"` // 应用id
-    Ptyid      int64  `json:"ptyid"` // 对应平台
+	Auid       int64  `json:"auid"`
+	Uid       int64  `json:"uid"`
+	Beid	  int64  `json:"beid"` //应用id
+	Ptyid	  int64  `json:"ptyid"` //对应平台
 }
 
 type Request {
-    Name string `path:"name,options=you|me"`
+	Name string `path:"name,options=you|me"`
 }
 type Response {
-    Message string `json:"message"`
+	Message string `json:"message"`
 }
 
-@server(
-    group: user
-)
-service datacenter-api {
-    @handler ping
-    post /user/ping ()
-    
-    @handler register
-    post /user/register (RegisterReq) returns (UserReply)
-    
-    @handler login
-    post /user/login (LoginReq) returns (UserReply)
-    
-    @handler wxlogin
-    post /user/wx/login (WxLoginReq) returns (LoginAppUser)
-    
-    @handler code2Session
-    get /user/wx/login () returns (LoginAppUser)
-}
-@server(
-    jwt: Auth
-    group: user
-    middleware: Usercheck
-)
-service datacenter-api {
-    @handler userInfo
-    get /user/dc/info (UserReq) returns (UserReply)
-}
 
+@server(
+	group: user
+)
+service datacenter-api {
+	@handler ping
+	post /user/ping ()
+	
+	@handler register
+	post /user/register (RegisterReq) returns (UserReply)
+	
+	@handler login
+	post /user/login (LoginReq) returns (UserReply)
+	
+	@handler wxlogin
+	post /user/wx/login (WxLoginReq) returns (LoginAppUser)
+	
+	@handler code2Session
+	get /user/wx/login () returns (LoginAppUser)
+}
+@server(
+	jwt: Auth
+	group: user
+	middleware: Usercheck
+)
+service datacenter-api {
+	@handler userInfo
+	get /user/dc/info (UserReq) returns (UserReply)
+}
+```
+votes.api 投票内容
+```
 // 投票活动api
+
+
 type Actid struct {
-    Actid       int64  `json:"actid"` //活动id
+	Actid       int64  `json:"actid"` //活动id
 }
 
 type VoteReq struct {
-    Aeid       int64  `json:"aeid"` // 作品id
-    Actid
+	Aeid       int64  `json:"aeid"` // 作品id
+	Actid
 }
 type VoteResp struct {
-    VoteReq
-    Votecount       int64  `json:"votecount"` //投票票数
-    Viewcount       int64  `json:"viewcount"` //浏览数
+	VoteReq
+	Votecount       int64  `json:"votecount"` //投票票数
+	Viewcount       int64  `json:"viewcount"` //浏览数
 }
 
 
 // 活动返回的参数
+
 type ActivityResp struct {
-    Actid           int64  `json:"actid"`
-    Title           string  `json:"title"` //活动名称
-    Descr           string  `json:"descr"` //活动描述
-    StartDate       int64  `json:"start_date"` //活动时间
-    EnrollDate      int64  `json:"enroll_date"` //投票时间
-    EndDate           int64  `json:"end_date"` //活动结束时间
-    Votecount       int64  `json:"votecount"` //当前活动的总票数
-    Viewcount       int64  `json:"viewcount"` //当前活动的总浏览数
-    Type            int64 `json:"type"` //投票方式
-    Num                int64 `json:"num"` //投票几票
+	Actid       	int64  `json:"actid"`
+	Title       	string  `json:"title"` //活动名称
+	Descr       	string  `json:"descr"` //活动描述
+	StartDate       int64  `json:"start_date"` //活动时间
+	EnrollDate      int64  `json:"enroll_date"` //投票时间
+	EndDate       	int64  `json:"end_date"` //活动结束时间
+	Votecount       int64  `json:"votecount"` //当前活动的总票数
+	Viewcount       int64  `json:"viewcount"` //当前活动的总浏览数
+	Type			int64 `json:"type"` //投票方式
+	Num				int64 `json:"num"` //投票几票
 }
-
-
 //报名
+
+
 type EnrollReq struct {
-    Actid
-    Name           string  `json:"name"` // 名称
-    Address           string  `json:"address"` //地址
-    Images           []string  `json:"images"` //作品图片
-    Descr           string  `json:"descr"` // 作品描述
+	Actid
+	Name       	string  `json:"name"` // 名称
+	Address       	string  `json:"address"` //地址
+	Images       	[]string  `json:"images"` //作品图片
+	Descr       	string  `json:"descr"` // 作品描述
 }
-
 // 作品返回
+
 type EnrollResp struct {
-    Actid
-    Aeid        int64 `json:"aeid"` // 作品id
-    Name           string  `json:"name"` // 名称
-    Address           string  `json:"address"` //地址
-    Images           []string  `json:"images"` //作品图片
-    Descr           string  `json:"descr"` // 作品描述
-    Votecount       int64  `json:"votecount"` //当前活动的总票数
-    Viewcount       int64  `json:"viewcount"` //当前活动的总浏览数
-    
+	Actid
+	Aeid		int64 `json:"aeid"` // 作品id
+	Name       	string  `json:"name"` // 名称
+	Address       	string  `json:"address"` //地址
+	Images       	[]string  `json:"images"` //作品图片
+	Descr       	string  `json:"descr"` // 作品描述
+	Votecount       int64  `json:"votecount"` //当前活动的总票数
+	Viewcount       int64  `json:"viewcount"` //当前活动的总浏览数
+	
+}
+
+
+@server(
+	group: votes
+)
+service datacenter-api {
+	@doc(
+		summary: "获取活动的信息"
+	)
+	@handler activityInfo
+	get /votes/activity/info (Actid) returns (ActivityResp)
+	@doc(
+		summary: "活动访问+1"
+	)
+	@handler activityIcrView
+	get /votes/activity/view (Actid) returns (ActivityResp)
+	@doc(
+		summary: "获取报名的投票作品信息"
+	)
+	@handler enrollInfo
+	get /votes/enroll/info (VoteReq) returns (EnrollResp)
+	@doc(
+		summary: "获取报名的投票作品列表"
+	)
+	@handler enrollLists
+	get /votes/enroll/lists (Actid)	returns(EnrollResp)
 }
 
 @server(
-    group: votes
+	jwt: Auth
+	group: votes
+	middleware: Usercheck
 )
 service datacenter-api {
-    @doc(
-        summary: "获取活动的信息"
-    )
-    @handler activityInfo
-    get /votes/activity/info (Actid) returns (ActivityResp)
-    @doc(
-        summary: "活动访问+1"
-    )
-    @handler activityIcrView
-    get /votes/activity/view (Actid) returns (ActivityResp)
-    @doc(
-        summary: "获取报名的投票作品信息"
-    )
-    @handler enrollInfo
-    get /votes/enroll/info (VoteReq) returns (EnrollResp)
-    @doc(
-        summary: "获取报名的投票作品列表"
-    )
-    @handler enrollLists
-    get /votes/enroll/lists (Actid)    returns(EnrollResp)
+	@doc(
+		summary: "投票"
+	)
+	@handler vote
+	post /votes/vote (VoteReq) returns (VoteResp)
+	@handler enroll
+	post /votes/enroll (EnrollReq) returns (EnrollResp)
 }
 
-@server(
-    jwt: Auth
-    group: votes
-    middleware: Usercheck
-)
-service datacenter-api {
-    @doc(
-        summary: "投票"
-    )
-    @handler vote
-    post /votes/vote (VoteReq) returns (VoteResp)
-    @handler enroll
-    post /votes/enroll (EnrollReq) returns (EnrollResp)
-}
 ```
 
+questions.api 问答内容:
+```
+// 问答 抽奖 开始
+@server(
+	group: questions
+)
+service datacenter-api {
+	@doc(
+		summary: "获取活动的信息"
+	)
+	@handler activitiesInfo
+	get /questions/activities/info (Actid) returns (ActivityResp)
+	@doc(
+		summary: "获取奖品信息"
+	)
+	@handler awardInfo
+	get /questions/award/info (Actid) returns (ActivityResp)
+
+	@handler awardList
+	get /questions/award/list (Actid) returns (ActivityResp)
+	
+}
+type AnswerReq struct {
+	ActivityId	int64 `json:"actid"` 
+	Answers	string `json:"answers"` 
+	Score	string `json:"score"`
+}
+type QuestionsAwardReq struct {
+	ActivityId	int64 `json:"actid"` 
+	AnswerId	int64 `json:"answerid"` 
+}
+type AnswerResp struct {
+	Answers	string `json:"answers"` 
+	Score	string `json:"score"`
+}
+type AwardConvertReq struct {
+	UserName	string `json:"username"` 
+	Phone		string `json:"phone"` 
+	LotteryId	int64 `json:"lotteryid"` 
+}
+
+
+@server(
+	jwt: Auth
+	group: questions
+	middleware: Usercheck
+)
+service datacenter-api {
+	@doc(
+		summary: "获取题目"
+	)
+	@handler lists
+	get /questions/lists (VoteReq) returns (AnswerResp)
+	@doc(
+		summary: "提交答案"
+	)
+	@handler change
+	post /questions/change (AnswerReq) returns (VoteResp)
+
+	@doc(
+		summary: "获取分数"
+	)
+	@handler grade
+	get /questions/grade (VoteReq) returns (VoteResp)
+
+	@doc(
+		summary: "开始转盘"
+	)
+	@handler turntable
+	post /questions/lottery/turntable (EnrollReq) returns (EnrollResp)
+	@doc(
+		summary: "填写中奖信息人"
+	)
+	@handler lottery
+	post /questions/lottery/convert (AwardConvertReq) returns (EnrollResp)
+}
+
+
+// 问答 抽奖 结束
+```
+search.api 搜索
+```
+
+
+type SearchReq struct {
+	Keyword string `json:"keyword"`
+	Page string `json:"page"`
+	Size string `json:"size"`
+}
+type SearchResp struct {
+	Data []ArticleReq `json:"data"`
+}
+
+type ArticleReq struct{
+	NewsId string `json:"NewsId"`
+	NewsTitle string `json:"NewsTitle"`
+	ImageUrl string `json:"ImageUrl"`
+}
+
+
+@server(
+	group: search
+	middleware: Admincheck
+)
+service datacenter-api {
+	@doc(
+		summary: "搜索"
+	)
+	@handler article
+	get /search/article (SearchReq) returns (SearchResp)
+	@handler articleInit
+	get /search/articel/init (SearchReq) returns (SearchResp)
+	@handler articleStore
+	post /search/articel/store (ArticleReq) returns (ArticleReq)
+}
+
+```
 
 上面基本上写就写的API及文档的思路
 
@@ -368,7 +503,7 @@ service datacenter-api {
 ```
 ➜  datacenter goctl api go -api datacenter.api -dir .
 Done.
-➜  datacenter tree
+➜  datacenter treer
 .
 ├── datacenter.api
 ├── etc
