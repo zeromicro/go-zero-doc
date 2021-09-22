@@ -1,3 +1,5 @@
 /.idea/
 /_book/
 /node_modules/
+/cn/.DS_Store
+/cn/resource/Thumbs.db

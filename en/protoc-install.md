@@ -29,9 +29,21 @@ Demonstration environment of this document
     ```shell
     libprotoc 3.14.0
     ```
-## protoc-gen-go installation
+## protoc-gen-* installation
+With goctl versions greater than 1.2.1, there is no need to install the `protoc-gen-go` plugin, because after that version, goctl has been implemented as a plugin for `protoc`, and goctl will automatically
+create a symbolic link `protoc-gen-goctl` to `goctl`, which will generate pb.go according to the following logic.
+1. check if the `protoc-gen-goctl` plug-in exists in the environment variable, if so, skip to step 3
+2. detect the existence of `protoc-gen-go` plugin in the environment variable, if not, the generation process is finished
+3. generate pb.go based on the detected plugins
 
+> [!TIPS]
+>
+> Windows may report an error, `A required privilege is not held by the client.`, because goctl needs to be run `as administrator` under Windows.
+>The reason is that goctl needs to be run "as administrator" under Windows.
 * Download and install `protoc-gen-go`
+
+  If the goctl version is already 1.2.1 or later, you can ignore this step.
+
     ```shell
     $ go get -u github.com/golang/protobuf/protoc-gen-go@v1.3.2
     ```

@@ -2,6 +2,12 @@
 > [!TIP]
 > This document is machine-translated by Google. If you find grammatical and semantic errors, and the document description is not clear, please [PR](doc-contibute.md)
 
+## Error reporting on Windows
+```text
+A required privilege is not held by the client.
+```text
+Solution: "Run as administrator" goctl will work.
+
 ## grpc error
 * Case 1
   ```text
@@ -16,7 +22,7 @@
   --go_out: protoc-gen-go: Plugin failed with status code 1.
   
   ```
-  Solution：
+  Solution:
    ```text
    go get -u github.com/golang/protobuf/protoc-gen-go@v1.3.2
    ```

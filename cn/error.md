@@ -1,5 +1,11 @@
 # 常见错误处理
 
+## Windows上报错
+```text
+A required privilege is not held by the client.
+```
+解决方法："以管理员身份运行" goctl 即可。
+
 ## grpc引起错误
 * 错误一
   ```text
