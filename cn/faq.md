@@ -34,13 +34,15 @@
 
 9. rpc直连与服务发现连接模式写法
    ```go
-   // 服务发现mode
-   // client, _ := zrpc.NewClient(config)
-   
-   // 直连mode
-   client, _ := zrpc.NewClientWithTarget("ip:port")
-   
-   userclient.NewUser(client)
+    // mode1: 集群直连
+	// conf:=zrpc.NewDirectClientConf([]string{"ip:port"},"app","token")
+	
+	// mode2: etcd 服务发现
+	// conf:=zrpc.NewEtcdClientConf([]string{"ip:port"},"key","app","token")
+	// client, _ := zrpc.NewClient(conf)
+	
+	// mode3: ip直连mode
+	// client, _ := zrpc.NewClientWithTarget("127.0.0.1:8888")
    ```
 
 faq会不定期更新大家遇到的问题，也欢迎大家把常见问题通过pr写在这里。

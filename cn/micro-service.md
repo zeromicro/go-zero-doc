@@ -224,23 +224,10 @@ $ mkdir mall && cd mall
       }
     
       func NewServiceContext(c config.Config) *ServiceContext {
-          // 服务发现mode
           return &ServiceContext{
               Config:  c,
               UserRpc: userclient.NewUser(zrpc.MustNewClient(c.UserRpc)),
           }
-    
-          // 直连mode
-          // client, err := zrpc.NewClientWithTarget("ip")
-          // if err!=nil{
-          //     log.Fatalln(err)
-          //     return
-          // }
-          // 
-          // return &ServiceContext{
-          //     Config:  c,
-          //     UserRpc: userclient.NewUser(client),
-          // }
       }
       ```
 
