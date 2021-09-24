@@ -203,33 +203,46 @@ $ mkdir mall && cd mall
         - 127.0.0.1:2379
         Key: user.rpc
     ```
-* 完善服务依赖
+  * 完善服务依赖
 
-    ```shell
-    $ vim internal/svc/servicecontext.go
-    ```
-    ```go
-    package svc
+      ```shell
+      $ vim internal/svc/servicecontext.go
+      ```
+      ```go
+      package svc
 
-    import (
-        "go-zero-demo/mall/order/api/internal/config"
-        "go-zero-demo/mall/user/rpc/userclient"
+      import (
+          "go-zero-demo/mall/order/api/internal/config"
+          "go-zero-demo/mall/user/rpc/userclient"
   
-        "github.com/tal-tech/go-zero/zrpc"
-    )
+          "github.com/tal-tech/go-zero/zrpc"
+      )
     
-    type ServiceContext struct {
-        Config  config.Config
-        UserRpc userclient.User
-    }
+      type ServiceContext struct {
+          Config  config.Config
+          UserRpc userclient.User
+      }
     
-    func NewServiceContext(c config.Config) *ServiceContext {
-        return &ServiceContext{
-            Config:  c,
-            UserRpc: userclient.NewUser(zrpc.MustNewClient(c.UserRpc)),
-        }
-    }
-    ```
+      func NewServiceContext(c config.Config) *ServiceContext {
+          // 服务发现mode
+          return &ServiceContext{
+              Config:  c,
+              UserRpc: userclient.NewUser(zrpc.MustNewClient(c.UserRpc)),
+          }
+    
+          // 直连mode
+          // client, err := zrpc.NewClientWithTarget("ip")
+          // if err!=nil{
+          //     log.Fatalln(err)
+          //     return
+          // }
+          // 
+          // return &ServiceContext{
+          //     Config:  c,
+          //     UserRpc: userclient.NewUser(client),
+          // }
+      }
+      ```
 
 * 添加order演示逻辑
   
@@ -239,21 +252,21 @@ $ mkdir mall && cd mall
   ```
   ```go
   func (l *GetOrderLogic) GetOrder(req types.OrderReq) (*types.OrderReply, error) {
-	user, err := l.svcCtx.UserRpc.GetUser(l.ctx, &userclient.IdRequest{
-		Id: "1",
-	})
-	if err != nil {
-		return nil, err
-	}
+    user, err := l.svcCtx.UserRpc.GetUser(l.ctx, &userclient.IdRequest{
+        Id: "1",
+    })
+    if err != nil {
+        return nil, err
+    }
 
-	if user.Name != "test" {
-		return nil, errors.New("用户不存在")
-	}
+    if user.Name != "test" {
+        return nil, errors.New("用户不存在")
+    }
 
-	return &types.OrderReply{
-		Id:   req.Id,
-		Name: "test order",
-	}, nil
+    return &types.OrderReply{
+        Id:   req.Id,
+        Name: "test order",
+    }, nil
   }
   ```
 
