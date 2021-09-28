@@ -10,7 +10,7 @@ Here we strongly recommend that you install it, because most of the follow-up de
 ## Install(mac&linux)
 * download&install
     ```shell
-    GO111MODULE=on GOPROXY=https://goproxy.cn/,direct go get -u github.com/zeromicro/go-zero/tools/goctl
+    GO111MODULE=on GOPROXY=https://goproxy.cn/,direct go get -u github.com/tal-tech/go-zero/tools/goctl
     ```
 * Environmental variable detection
 
