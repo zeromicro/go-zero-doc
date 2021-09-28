@@ -47,7 +47,7 @@ Version number description
 ### The way one（go get）
 
 ```shell
-$ GO111MODULE=on GOPROXY=https://goproxy.cn/,direct go get -u github.com/zeromicro/go-zero/tools/goctl
+$ GO111MODULE=on GOPROXY=https://goproxy.cn/,direct go get -u github.com/tal-tech/go-zero/tools/goctl
 ```
 
 Use this command to install the goctl tool into the `GOPATHbin` directory
