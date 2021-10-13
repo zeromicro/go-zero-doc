@@ -50,7 +50,7 @@ Version number description
 $ GO111MODULE=on GOPROXY=https://goproxy.cn/,direct go get -u github.com/tal-tech/go-zero/tools/goctl
 ```
 
-Use this command to install the goctl tool into the `GOPATHbin` directory
+Use this command to install the goctl tool into the `$GOPATH/bin` directory
 
 ### The way two （fork and build）
 
