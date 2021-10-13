@@ -32,7 +32,7 @@ goctl version ${version} ${os}/${arch}
 
 例如输出：
 ```text
-goctl version 1.1.5 darwin/amd64
+goctl version 1.2.2 darwin/amd64
 ```
 
 版本号说明
@@ -59,7 +59,7 @@ $ GO111MODULE=on GOPROXY=https://goproxy.cn/,direct go get -u github.com/tal-tec
 ```shell
 $ goctl -v
 
-goctl version 1.1.4 darwin/amd64
+goctl version 1.2.2 darwin/amd64
 ```
 
 ## 常见问题
