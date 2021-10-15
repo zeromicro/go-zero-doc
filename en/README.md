@@ -3,7 +3,7 @@
 # go-zero
 
 [![Go](https://github.com/tal-tech/go-zero/workflows/Go/badge.svg?branch=master)](https://github.com/tal-tech/go-zero/actions)
-[![codecov](https://codecov.io/gh/tal-tech/go-zero/branch/master/graph/badge.svg)](https://codecov.io/gh/tal-tech/go-zero)
+[![codecov](https://codecov.io/gh/zeromicro/go-zero/branch/master/graph/badge.svg)](https://codecov.io/gh/zeromicro/go-zero)
 [![Go Report Card](https://goreportcard.com/badge/github.com/tal-tech/go-zero)](https://goreportcard.com/report/github.com/tal-tech/go-zero)
 [![Release](https://img.shields.io/github/v/release/tal-tech/go-zero.svg?style=flat-square)](https://github.com/tal-tech/go-zero)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -217,7 +217,20 @@ go get -u github.com/tal-tech/go-zero
 * For protobuf compatibility, use `protocol-gen@v1.3.2`.
 
   ` go get -u github.com/golang/protobuf/protoc-gen-go@v1.3.2`
+  
+## 10. Cloud Native Landscape
 
-## 10. Chat group
+<p float="left">
+<img src="https://landscape.cncf.io/images/left-logo.svg" width="150"/>&nbsp;&nbsp;&nbsp;
+<img src="https://landscape.cncf.io/images/right-logo.svg" width="200"/>
+</p>
+
+go-zero enlisted in the [CNCF Cloud Native Landscape](https://landscape.cncf.io/?selected=go-zero).
+
+## 11. Give a Star! ⭐
+
+If you like or are using this project to learn or start your solution, please give it a star. Thanks!
+
+## 12. Chat group
 
 Join the chat via https://join.slack.com/t/go-zeroworkspace/shared_invite/zt-m39xssxc-kgIqERa7aVsujKNj~XuPKg
