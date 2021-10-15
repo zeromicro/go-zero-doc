@@ -196,14 +196,23 @@ GO111MODULE=on GOPROXY=https://goproxy.cn/,direct go get -u github.com/tal-tech/
         <td><a href="https://github.com/zeromicro/goctl-go-compact">goctl-go-compact</a> </td> <td>合并 <code>api</code> 里同一个 <code>group</code> 里的 <code>handler</code> 到一个 go 文件</td>
     </tr>
     </table>
+    
+## 8. CNCF 云原生技术全景图
 
-## 8. 微信公众号
+<p float="left">
+<img src="https://landscape.cncf.io/images/left-logo.svg" width="150"/>&nbsp;&nbsp;&nbsp;
+<img src="https://landscape.cncf.io/images/right-logo.svg" width="200"/>
+</p>
+
+go-zero 收录在 [CNCF Cloud Native 云原生技术全景图](https://landscape.cncf.io/?selected=go-zero)。
+
+## 9. 微信公众号
 
 `go-zero` 相关文章都会在 `微服务实践` 公众号整理呈现，欢迎扫码关注，也可以通过公众号私信我 👏
 
 <img src="https://zeromicro.github.io/go-zero-pages/resource/go-zero-practise.png" alt="wechat" width="300" />
 
-## 9. 微信交流群
+## 10. 微信交流群
 
 如果文档中未能覆盖的任何疑问，欢迎您在群里提出，我们会尽快答复。
 
